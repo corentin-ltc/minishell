@@ -1,21 +1,22 @@
-#include <stdio.h>
-
-#include <unistd.h>
+#include <minishell.h>
 
 int main(int argc, char **argv, char **env)
 {
 	char *line;
 
-	// while (1)
-	// {
-		// line = readline("minishell > ");
-		// if (!line)
-		// {
-		// 	perror("Memory");
-		// 	exit(1);
-		// }
-		add_history("xptdrr");
-		
+	while (1)
+	{
+		line = readline("minishell > ");
+		if (!line)
+		{
+			perror("Memory");
+			exit(1);
+		}
+	add_history("xptdrr");
+	}
+	argc++;
+	argv++;
+	env++;
 }
 
 // TODO:
