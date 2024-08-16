@@ -25,7 +25,10 @@ EXEC =
 
 BUILTIN =	builtin.c \
 			echo.c \
-			cd.c
+			cd.c \
+			exit.c
+
+UTILS =	
 
 SRCS_NAMES =	main.c \
 				${addprefix parsing/, ${PARSING}} \
@@ -33,6 +36,7 @@ SRCS_NAMES =	main.c \
 				${addprefix errors/, ${ERRORS}} \
 				${addprefix exec/, ${EXEC}} \
 				${addprefix builtin/, ${BUILTIN}} \
+				${addprefix utils/, ${UTILS}} \
 
 SRCS_DIR = srcs/
 
@@ -80,6 +84,7 @@ ${OBJS_DIR} :
 	mkdir $@errors
 	mkdir $@exec
 	mkdir $@builtin
+	mkdir $@utils
 
 ${OBJS_DIR}%.o : ${SRCS_DIR}%.c
 	${CC} ${FLAGS} ${CPPFLAGS} ${foreach include, ${INCLUDES},-I ${include}} -c $< -o $@
