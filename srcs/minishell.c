@@ -17,7 +17,7 @@ int main(int argc, char **argv, char **env)
 {
 	char *line;
 
-	signal(SIGQUIT, handle_sig);
+	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, handle_sig);
 	while (1)
 	{
