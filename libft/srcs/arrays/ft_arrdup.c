@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_arrdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 22:47:40 by nbellila         ###   ########.fr       */
+/*   Created: 2024/08/16 20:09:35 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/16 21:33:58 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main(int argc, char **argv, char **env)
+char	**ft_arrdup(char **tab)
 {
-	char *line;
+	char **new;
+	size_t	i;
 
-	env = ft_arrdup(env);
-	set_signals();
-	while (1)
+	i = 0;
+	while (tab[i++]);
+	new = malloc(i * sizeof(char *));
+	if (!new)
+		return (NULL);
+	i = 0;
+	while (tab[i])
 	{
-		line = readline("minishell > ");
-		if (!line)
-			exit(1);
-		add_history(line);
-		check_builtin(ft_split(line, " "), &env);
-		free(line);
+		new[i] = ft_strdup(tab[i]);
+		if (!new[i])
+			return (free_2d((void **)new, i));
+		i++;
 	}
+	new[i] = tab[i];
+	return (new);
 }

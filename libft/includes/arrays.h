@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   arrays.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 22:47:40 by nbellila         ###   ########.fr       */
+/*   Created: 2024/06/14 14:15:15 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/16 22:45:10 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef ARRAYS_H
+# define ARRAYS_H
 
-int main(int argc, char **argv, char **env)
-{
-	char *line;
+char	**ft_remove_index(char ***tab, size_t index);
 
-	env = ft_arrdup(env);
-	set_signals();
-	while (1)
-	{
-		line = readline("minishell > ");
-		if (!line)
-			exit(1);
-		add_history(line);
-		check_builtin(ft_split(line, " "), &env);
-		free(line);
-	}
-}
+char	**ft_arrdup(char **tab);
+
+char	**ft_arradd(char ***tab, char *str);
+
+#endif

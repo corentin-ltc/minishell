@@ -69,6 +69,10 @@ READ_FILES =	get_next_line.c \
 				get_next_line_utils.c \
 				get_lines.c
 
+ARRAYS =	remove_index.c \
+			ft_arrdup.c \
+			ft_arradd.c
+
 LINKED_LISTS =	ft_lstnew.c \
 				ft_lstadd_front.c \
 				ft_lstsize.c \
@@ -85,6 +89,7 @@ SRCS_NAMES =	${addprefix is_checkers/, ${IS_CHECKERS}} \
 				${addprefix memory/, ${MEMORY}} \
 				${addprefix converters/, ${CONVERTERS}} \
 				${addprefix read_files/, ${READ_FILES}} \
+				${addprefix arrays/, ${ARRAYS}} \
 				${addprefix linked_lists/, ${LINKED_LISTS}}
 
 SRCS_DIR = srcs/
@@ -109,6 +114,7 @@ ${OBJS_DIR}:
 	mkdir ${OBJS_DIR}strings
 	mkdir ${OBJS_DIR}memory
 	mkdir ${OBJS_DIR}converters
+	mkdir ${OBJS_DIR}arrays
 	mkdir ${OBJS_DIR}linked_lists
 	mkdir ${OBJS_DIR}read_files
 
