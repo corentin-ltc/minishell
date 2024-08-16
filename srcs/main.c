@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 18:47:10 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/16 18:54:36 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ int main(int argc, char **argv, char **env)
 	set_signals();
 	while (1)
 	{
-		ft_putstr(getcwd(NULL, 0));
-		line = readline(" > ");
+		line = readline("minishell > ");
 		if (!line)
 			exit(1);
 		add_history(line);
