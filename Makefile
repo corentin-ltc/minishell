@@ -28,6 +28,7 @@ BUILTIN =	builtin.c \
 			pwd.c \
 			env.c \
 			unset.c \
+			export.c
 
 UTILS =	
 

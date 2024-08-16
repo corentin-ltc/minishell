@@ -70,7 +70,8 @@ READ_FILES =	get_next_line.c \
 				get_lines.c
 
 ARRAYS =	remove_index.c \
-			ft_arrdup.c
+			ft_arrdup.c \
+			ft_arradd.c
 
 LINKED_LISTS =	ft_lstnew.c \
 				ft_lstadd_front.c \
