@@ -4,7 +4,7 @@ NAME = minishell
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = #-Wall -Wextra -Werror
 
 LINKFLAGS = -lreadline
 
@@ -15,12 +15,22 @@ INCLUDES =	includes \
 
 ######################## SOURCES ########################
 
-PARSING =	minishell.c
+PARSING =	
 
-BUILT-IN =	echo.c 
+SIGNALS =	signals.c
 
-SRCS_NAMES =	${addprefix parsing/, ${PARSING}} \
-				${addprefix built-in/, ${BUILT-IN}}
+ERRORS =	
+
+EXEC =	
+
+BUILTIN =	echo.c
+
+SRCS_NAMES =	main.c \
+				${addprefix parsing/, ${PARSING}} \
+				${addprefix signals/, ${SIGNALS}} \
+				${addprefix errors/, ${ERRORS}} \
+				${addprefix exec/, ${EXEC}} \
+				${addprefix builtin/, ${BUILTIN}} \
 
 SRCS_DIR = srcs/
 
@@ -33,7 +43,7 @@ OBJS = ${addprefix ${OBJS_DIR}, ${SRCS_NAMES:.c=.o}}
 ######################## BASIC RULES ########################
 
 all : 
-	${MAKE} -j ${NAME}
+	${MAKE} ${NAME}
 
 re : fclean
 	${MAKE} all
@@ -63,8 +73,11 @@ debug : ${OBJS_DIR} ${OBJS}
 
 ${OBJS_DIR} :
 	mkdir $@
-	mkdir $@/parsing
-	mkdir $@/built-in
+	mkdir $@parsing
+	mkdir $@signals
+	mkdir $@errors
+	mkdir $@exec
+	mkdir $@builtin
 
 ${OBJS_DIR}%.o : ${SRCS_DIR}%.c
 	${CC} ${FLAGS} ${CPPFLAGS} ${foreach include, ${INCLUDES},-I ${include}} -c $< -o $@

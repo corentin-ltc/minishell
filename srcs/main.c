@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 16:05:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 17:11:57 by nbellila         ###   ########.fr       */
+/*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/16 17:18:25 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "minishell.h"
 
-/*libft*/
-# include "libft.h"
-/*readline*/
-# include <readline/readline.h>
-# include <readline/history.h>
-/*signals*/
-# include <signal.h>
+int main(int argc, char **argv, char **env)
+{
+	char *line;
 
-/*others*/
-# include "signals.h"
-# include "builtin.h"
-
-#endif
+	set_signals();
+	while (1)
+	{
+		line = readline("minishell > ");
+		if (!line)
+			exit(1);
+		add_history(line);
+		free(line);
+	}
+}
