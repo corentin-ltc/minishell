@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 17:02:09 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 18:43:06 by nbellila         ###   ########.fr       */
+/*   Created: 2024/08/16 18:28:07 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/16 18:43:31 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+#include "minishell.h"
 
-/*functions*/
-bool	check_builtin(char **argv);
-
-void	ft_echo(char **argv);
-
-void	ft_cd(char **argv);
-
-void	ft_exit(char **argv);
-
-#endif
+void	ft_exit(char **argv)
+{
+	exit(EXIT_SUCCESS);
+}
