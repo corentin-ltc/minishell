@@ -1,31 +1,28 @@
 #include <minishell.h>
 
+void handle_sig(int sig)
+{
+	(void)sig;
+	if (sig == SIGINT)
+		write(STDOUT_FILENO, "\nminishell > ", 13);
+}
+
 int main(int argc, char **argv, char **env)
 {
 	char *line;
 
+	signal(SIGQUIT, handle_sig);
+	signal(SIGINT, handle_sig);
 	while (1)
 	{
 		line = readline("minishell > ");
 		if (!line)
-		{
-			perror("Memory");
 			exit(1);
-		}
-	add_history("xptdrr");
-	}
-	argc++;
+		add_history(line);
+		free(line);
+  argc++;
 	argv++;
 	env++;
+	}
 }
 
-// TODO:
-
-// -Faire le Makefile
-
-// - Implémenter  et adapter PIPEX 
-
-// - Modifier le signal CTRL + C 
-// (Ne pas quitter le programmer mais réafficher un nouveau prompt)
-
-// - 
