@@ -4,21 +4,18 @@ NAME = minishell
 
 CC = cc
 
-FLAGS = -lreadline #-Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
+
+LINKFLAGS = -lreadline
 
 LIBS = libft \
-PIPEX = pipex \
 
 INCLUDES =	includes \
 			${foreach lib, ${LIBS}, ${lib} ${lib}/includes}
 
 ######################## SOURCES ########################
 
-SRCS_NAMES =	main.c \
-				init.c \
-				parsing.c \
-				pipex.c \
-				exit.c
+SRCS_NAMES =	minishell.c \
 
 SRCS_DIR = srcs/
 
@@ -30,7 +27,8 @@ OBJS = ${addprefix ${OBJS_DIR}, ${SRCS_NAMES:.c=.o}}
 
 ######################## BASIC RULES ########################
 
-all : ${NAME}
+all : 
+	${MAKE} -j ${NAME}
 
 re : fclean
 	${MAKE} all
@@ -66,11 +64,10 @@ ${OBJS_DIR}%.o : ${SRCS_DIR}%.c
 	
 ######################## TEST ########################
 
-test : all
-	./${NAME} infile "ls -l" "wc -l" /dev/stdout
+test : base
 
-here : all
-	./${NAME} here_doc EOF "cat" "wc -l" /dev/stdout
+base : all
+	./${NAME}
 
 leak : all
-	valgrind --trace-children=yes --track-fds=yes --leak-check=full --show-leak-kinds=all ./${NAME} infile "echo premier" "echo bye" outfile
+	valgrind --trace-children=yes --track-fds=yes --leak-check=full --show-leak-kinds=all ./${NAME}
