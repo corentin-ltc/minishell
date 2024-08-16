@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 19:05:12 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/16 19:52:25 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main(int argc, char **argv, char **env)
 		if (!line)
 			exit(1);
 		add_history(line);
-		check_builtin(ft_split(line, " "), env);
+		check_builtin(ft_split(line, " "), &env);
 		free(line);
 	}
 }

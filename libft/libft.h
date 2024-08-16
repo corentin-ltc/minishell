@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 18:07:04 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 18:10:03 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/16 20:14:29 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # include "converters.h"
 # include "memory.h"
 # include "printers.h"
+# include "arrays.h"
 # include "read_files.h"
 
 #endif

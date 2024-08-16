@@ -6,13 +6,13 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:59:38 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 18:24:04 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/16 19:18:29 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_echo(char **argv)
+void	ft_echo(char **argv, char **env)
 {
 	size_t	i;
 	bool	newline;

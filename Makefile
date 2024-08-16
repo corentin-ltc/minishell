@@ -27,6 +27,7 @@ BUILTIN =	builtin.c \
 			echo.c \
 			pwd.c \
 			env.c \
+			unset.c \
 
 UTILS =	
 

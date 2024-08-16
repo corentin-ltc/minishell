@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   arrays.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 19:03:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 19:14:35 by nbellila         ###   ########.fr       */
+/*   Created: 2024/06/14 14:15:15 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/16 21:33:57 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef ARRAYS_H
+# define ARRAYS_H
 
-void	ft_env(char **argv, char **env)
-{
-	size_t	i;
+char	**ft_remove_index(char ***tab, size_t index);
 
-	i = 0;
-	while (env[i])
-	{
-		ft_putendl(env[i]);
-		i++;
-	}
-}
+char	**ft_arrdup(char **tab);
+
+#endif
