@@ -43,7 +43,7 @@ OBJS = ${addprefix ${OBJS_DIR}, ${SRCS_NAMES:.c=.o}}
 ######################## BASIC RULES ########################
 
 all : 
-	${MAKE} ${NAME}
+	${MAKE} -j ${NAME}
 
 re : fclean
 	${MAKE} all

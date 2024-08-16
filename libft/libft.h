@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 18:07:04 by nbellila          #+#    #+#             */
-/*   Updated: 2024/06/29 19:13:57 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/16 18:10:03 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@
 # define HEXA "0123456789abcdef"
 # define HEXA_UP "0123456789ABCDEF"
 /*
-*	INT_MAX / SIZE_MAX
+*	INT_MAX / SIZE_MAX / BOOL
 */
 # include <limits.h>
 # include <stdint.h>
+# include <stdbool.h>
 /*
 *	malloc / size_t
 */

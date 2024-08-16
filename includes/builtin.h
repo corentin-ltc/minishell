@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 17:02:09 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 17:18:23 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/16 18:15:38 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 # define BUILTIN_H
 
 /*functions*/
-void	ft_echo(char *line);
+void	ft_echo(char **argv);
 
 #endif
