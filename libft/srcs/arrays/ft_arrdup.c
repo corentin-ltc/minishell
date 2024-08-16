@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   ft_arrdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 19:03:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 19:14:35 by nbellila         ###   ########.fr       */
+/*   Created: 2024/08/16 20:09:35 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/16 21:33:58 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	ft_env(char **argv, char **env)
+char	**ft_arrdup(char **tab)
 {
+	char **new;
 	size_t	i;
 
 	i = 0;
-	while (env[i])
+	while (tab[i++]);
+	new = malloc(i * sizeof(char *));
+	if (!new)
+		return (NULL);
+	i = 0;
+	while (tab[i])
 	{
-		ft_putendl(env[i]);
+		new[i] = ft_strdup(tab[i]);
+		if (!new[i])
+			return (free_2d((void **)new, i));
 		i++;
 	}
+	new[i] = tab[i];
+	return (new);
 }
