@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:23:03 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 19:52:24 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/16 22:31:17 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ bool	check_builtin(char **argv, char ***env)
 		ft_env(argv, *env);
 	else if (!ft_strcmp(argv[0], "unset"))
 		ft_unset(argv, env);
+	else if (!ft_strcmp(argv[0], "export"))
+		ft_export(argv, env);
 	else if (!ft_strcmp(argv[0], "exit"))
 		exit(EXIT_SUCCESS);
 	else 

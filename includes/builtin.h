@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 17:02:09 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 19:52:23 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/16 22:31:06 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@ void	ft_pwd(char **argv, char **env);
 void	ft_env(char **argv, char **env);
 
 void	ft_unset(char **argv, char ***env);
+
+void	ft_export(char **argv, char ***env);
 
 #endif
