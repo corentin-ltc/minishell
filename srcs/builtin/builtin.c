@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 16:59:38 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 18:24:04 by nbellila         ###   ########.fr       */
+/*   Created: 2024/08/16 18:23:03 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/16 18:28:25 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_echo(char **argv)
+bool	check_builtin(char **argv)
 {
-	size_t	i;
-	bool	newline;
-	
-	newline = true;
-	i = 1;
-	if (!ft_strcmp("-n", argv[i]))
-	{
-		newline = false;
-		i = 2;
-	}
-	while (argv[i])
-	{
-		ft_putstr(argv[i]);
-		i++;
-		if (argv[i])
-			ft_putstr(" ");
-	}
-	if (newline)
-		ft_putstr("\n");
+	if (!ft_strcmp(argv[0], "echo"))
+		ft_echo(argv);
+	else if (!ft_strcmp(argv[0], "cd"))
+		ft_cd(argv);
+	else 
+		return (false);
+	return (true);
 }

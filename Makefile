@@ -23,7 +23,9 @@ ERRORS =
 
 EXEC =	
 
-BUILTIN =	echo.c
+BUILTIN =	builtin.c \
+			echo.c \
+			cd.c
 
 SRCS_NAMES =	main.c \
 				${addprefix parsing/, ${PARSING}} \
