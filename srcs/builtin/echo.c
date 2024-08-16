@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 16:05:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 17:11:57 by nbellila         ###   ########.fr       */
+/*   Created: 2024/08/16 16:59:38 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/16 17:14:42 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "minishell.h"
 
-/*libft*/
-# include "libft.h"
-/*readline*/
-# include <readline/readline.h>
-# include <readline/history.h>
-/*signals*/
-# include <signal.h>
-
-/*others*/
-# include "signals.h"
-# include "builtin.h"
-
-#endif
+void	ft_echo(char *line)
+{
+	ft_putstr(line);
+}
