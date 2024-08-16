@@ -104,13 +104,13 @@ ${NAME}: ${OBJS_DIR} ${OBJS}
 
 ${OBJS_DIR}:
 	mkdir ${OBJS_DIR}
-	mkdir ${OBJS_DIR}/is_checkers
-	mkdir ${OBJS_DIR}/printers
-	mkdir ${OBJS_DIR}/strings
-	mkdir ${OBJS_DIR}/memory
-	mkdir ${OBJS_DIR}/converters
-	mkdir ${OBJS_DIR}/linked_lists
-	mkdir ${OBJS_DIR}/read_files
+	mkdir ${OBJS_DIR}is_checkers
+	mkdir ${OBJS_DIR}printers
+	mkdir ${OBJS_DIR}strings
+	mkdir ${OBJS_DIR}memory
+	mkdir ${OBJS_DIR}converters
+	mkdir ${OBJS_DIR}linked_lists
+	mkdir ${OBJS_DIR}read_files
 
 ${OBJS_DIR}%.o : ${SRCS_DIR}%.c
 	${CC} ${FLAGS} ${foreach include, ${INCLUDES},-I ${include}} -c $< -o $@
