@@ -23,7 +23,14 @@ ERRORS =
 
 EXEC =	
 
-BUILTIN =	echo.c
+BUILTIN =	builtin.c \
+			echo.c \
+			pwd.c \
+			env.c \
+			unset.c \
+			export.c
+
+UTILS =	
 
 SRCS_NAMES =	main.c \
 				${addprefix parsing/, ${PARSING}} \
@@ -31,6 +38,7 @@ SRCS_NAMES =	main.c \
 				${addprefix errors/, ${ERRORS}} \
 				${addprefix exec/, ${EXEC}} \
 				${addprefix builtin/, ${BUILTIN}} \
+				${addprefix utils/, ${UTILS}} \
 
 SRCS_DIR = srcs/
 
@@ -43,7 +51,7 @@ OBJS = ${addprefix ${OBJS_DIR}, ${SRCS_NAMES:.c=.o}}
 ######################## BASIC RULES ########################
 
 all : 
-	${MAKE} ${NAME}
+	${MAKE} -j ${NAME}
 
 re : fclean
 	${MAKE} all
@@ -78,6 +86,7 @@ ${OBJS_DIR} :
 	mkdir $@errors
 	mkdir $@exec
 	mkdir $@builtin
+	mkdir $@utils
 
 ${OBJS_DIR}%.o : ${SRCS_DIR}%.c
 	${CC} ${FLAGS} ${CPPFLAGS} ${foreach include, ${INCLUDES},-I ${include}} -c $< -o $@

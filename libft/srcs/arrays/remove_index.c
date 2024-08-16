@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   remove_index.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 22:47:40 by nbellila         ###   ########.fr       */
+/*   Created: 2024/08/16 20:02:36 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/16 23:08:50 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main(int argc, char **argv, char **env)
+char	**ft_remove_index(char ***tab, size_t index)
 {
-	char *line;
+	char	**new_tab;
+	size_t	i;
+	size_t	j;
 
-	env = ft_arrdup(env);
-	set_signals();
-	while (1)
+	i = 0;
+	while (tab[0][i++]);
+	new_tab = malloc((i - 2 + 1) * sizeof(char *));
+	if (!new_tab)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (tab[0][i])
 	{
-		line = readline("minishell > ");
-		if (!line)
-			exit(1);
-		add_history(line);
-		check_builtin(ft_split(line, " "), &env);
-		free(line);
+		if (i != index)
+		{
+			new_tab[j] = tab[0][i];
+			j++;
+		}
+		i++;
 	}
+	new_tab[j] = NULL;
+	free(tab[0][index]);
+	free(*tab);
+	*tab = new_tab;
+	return (*tab);
 }

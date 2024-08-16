@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 22:47:40 by nbellila         ###   ########.fr       */
+/*   Created: 2024/08/16 18:28:07 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/16 19:04:38 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int main(int argc, char **argv, char **env)
+void	ft_pwd(char **argv, char **env)
 {
-	char *line;
+	char	*path;
 
-	env = ft_arrdup(env);
-	set_signals();
-	while (1)
-	{
-		line = readline("minishell > ");
-		if (!line)
-			exit(1);
-		add_history(line);
-		check_builtin(ft_split(line, " "), &env);
-		free(line);
-	}
+	path = getcwd(NULL, 0);
+	if (!path)
+		exit(EXIT_FAILURE);
+	ft_putendl(path);
+	free(path);
 }

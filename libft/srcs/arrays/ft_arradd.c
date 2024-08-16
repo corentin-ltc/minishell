@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_arradd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 22:47:40 by nbellila         ###   ########.fr       */
+/*   Created: 2024/08/16 20:02:36 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/16 22:45:00 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main(int argc, char **argv, char **env)
+char	**ft_arradd(char ***tab, char *str)
 {
-	char *line;
+	char	**new_tab;
+	size_t	i;
 
-	env = ft_arrdup(env);
-	set_signals();
-	while (1)
+	i = 0;
+	while (tab[0][i++]);
+	new_tab = malloc((i - 1 + 1 + 1) * sizeof(char *));
+	if (!new_tab)
+		return (NULL);
+	i = 0;
+	while (tab[0][i])
 	{
-		line = readline("minishell > ");
-		if (!line)
-			exit(1);
-		add_history(line);
-		check_builtin(ft_split(line, " "), &env);
-		free(line);
+		new_tab[i] = tab[0][i];
+		i++;
 	}
+	new_tab[i] = str;
+	new_tab[i + 1] = NULL;
+	free(*tab);
+	*tab = new_tab;
+	return (*tab);
 }
