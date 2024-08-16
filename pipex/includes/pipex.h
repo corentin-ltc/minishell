@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 11:22:59 by nbellila          #+#    #+#             */
-/*   Updated: 2024/07/17 18:59:17 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/16 16:14:46 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define PIPEX_H
 /*wait*/
 # include <sys/wait.h>
-/*libft*/
-# include "libft.h"
 /*structs*/
 typedef struct s_data {
 	char	**paths;
