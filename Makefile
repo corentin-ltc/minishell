@@ -15,7 +15,12 @@ INCLUDES =	includes \
 
 ######################## SOURCES ########################
 
-SRCS_NAMES =	minishell.c \
+PARSING =	minishell.c
+
+BUILT-IN =	echo.c 
+
+SRCS_NAMES =	${addprefix parsing/, ${PARSING}} \
+				${addprefix built-in/, ${BUILT-IN}}
 
 SRCS_DIR = srcs/
 
@@ -58,10 +63,12 @@ debug : ${OBJS_DIR} ${OBJS}
 
 ${OBJS_DIR} :
 	mkdir $@
+	mkdir $@/parsing
+	mkdir $@/built-in
 
 ${OBJS_DIR}%.o : ${SRCS_DIR}%.c
 	${CC} ${FLAGS} ${CPPFLAGS} ${foreach include, ${INCLUDES},-I ${include}} -c $< -o $@
-	
+
 ######################## TEST ########################
 
 test : base
