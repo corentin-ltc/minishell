@@ -25,7 +25,8 @@ EXEC =
 
 BUILTIN =	builtin.c \
 			echo.c \
-			pwd.c
+			pwd.c \
+			env.c \
 
 UTILS =	
 
