@@ -20,9 +20,9 @@ int main(int argc, char **argv, char **env)
 			exit(1);
 		add_history(line);
 		free(line);
-  argc++;
-	argv++;
-	env++;
+		argc++;
+		argv++;
+		env++;
 	}
 }
 
