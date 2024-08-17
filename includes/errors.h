@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 16:05:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/17 18:21:57 by nbellila         ###   ########.fr       */
+/*   Created: 2024/08/17 17:48:54 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/17 18:21:33 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef ERRORS_H
+# define ERRORS_H
 
-/*libft*/
-# include "libft.h"
-/*readline*/
-# include <readline/readline.h>
-# include <readline/history.h>
-/*signals*/
-# include <signal.h>
-
-/*others*/
-# include "signals.h"
-# include "builtin.h"
-# include "errors.h"
-# include "utils.h"
+/*functions*/
+void	shell_error(char *cmd, char *message);
 
 #endif
