@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:28:07 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 22:18:44 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/17 19:41:16 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_unset(char **argv, char ***env)
 		{
 			if (!ft_strncmp(argv[i_arg], env[0][i_env], ft_strlen(argv[i_arg])))
 				if (!ft_remove_index(env, i_env))
+					//todo: free & exit
 					exit(EXIT_FAILURE);
 				else
 					break ;

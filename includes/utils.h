@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 17:02:09 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/17 19:21:21 by nbellila         ###   ########.fr       */
+/*   Created: 2024/08/17 17:48:54 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/17 19:19:37 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+#ifndef UTILS_H
+# define UTILS_H
 
 /*functions*/
-bool	check_builtin(char **argv, char ***env);
+char	*ft_getenv(char *name, char **env);
 
-void	ft_echo(char **argv, char **env);
-
-void	ft_cd(char **argv, char ***env);
-
-void	ft_pwd(char **argv, char **env);
-
-void	ft_env(char **argv, char **env);
-
-void	ft_unset(char **argv, char ***env);
-
-void	ft_export(char **argv, char ***env);
+char	*ft_setenv(char *name, char *value, char ***env);
 
 #endif
