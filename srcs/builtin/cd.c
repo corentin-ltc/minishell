@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:03:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/17 18:30:14 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/17 18:39:54 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,17 @@ void	ft_cd(char **argv, char **env)
 	path = argv[1];
 	if (path && argv[2])
 		return (shell_error("cd", "too many arguments"));
-	if (path == NULL)
+	if (path == NULL || !ft_strcmp(path, "--"))
 	{
 		path = ft_getenv("HOME", env);
 		if (!path)
 			return (shell_error("cd", "no HOME environment variable"));
+	}
+	if (!ft_strcmp(path, "-"))
+	{
+		path = ft_getenv("OLDPWD", env);
+		if (!path)
+			return (shell_error("cd", "no OLDPWD environment variable"));
 	}
 	chdir(path);
 }
