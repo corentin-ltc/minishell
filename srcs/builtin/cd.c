@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:03:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/17 18:39:54 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/17 18:41:13 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ void	ft_cd(char **argv, char **env)
 		if (!path)
 			return (shell_error("cd", "no OLDPWD environment variable"));
 	}
+	//todo: update OLDPWD et PWD
 	chdir(path);
 }
