@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 17:02:09 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/17 17:41:27 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/17 19:21:21 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool	check_builtin(char **argv, char ***env);
 
 void	ft_echo(char **argv, char **env);
 
-void	ft_cd(char **argv, char **env);
+void	ft_cd(char **argv, char ***env);
 
 void	ft_pwd(char **argv, char **env);
 
