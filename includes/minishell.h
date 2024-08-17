@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:05:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 17:11:57 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/17 19:48:20 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@
 # include <readline/history.h>
 /*signals*/
 # include <signal.h>
-
+/*dirs*/
+# include <sys/types.h>
+# include <dirent.h>
 /*others*/
 # include "signals.h"
 # include "builtin.h"
+# include "errors.h"
+# include "utils.h"
 
 #endif

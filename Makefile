@@ -19,18 +19,19 @@ PARSING =
 
 SIGNALS =	signals.c
 
-ERRORS =	
+ERRORS =	errors.c
 
 EXEC =	
 
 BUILTIN =	builtin.c \
 			echo.c \
+			cd.c \
 			pwd.c \
 			env.c \
 			unset.c \
 			export.c
 
-UTILS =	
+UTILS =	env.c
 
 SRCS_NAMES =	main.c \
 				${addprefix parsing/, ${PARSING}} \

@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 14:20:11 by nbellila          #+#    #+#             */
-/*   Updated: 2024/07/02 03:46:33 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/17 19:03:59 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 size_t	ft_strlen(const char *s);
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t siz);
+
+char	*ft_strcat(char *dst, char const *src);
 
 size_t	ft_strlcat(char *dst, const char *src, size_t siz);
 
@@ -48,6 +50,8 @@ char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 char	*ft_strjoin(char const *s1, char const *s2);
+
+char	*ft_strjoin_sep(char const *s1, char const *s2, char const *sep);
 
 char	*ft_strtrim(char const *s1, char const *set);
 
