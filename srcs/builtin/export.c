@@ -6,39 +6,58 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:28:07 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 23:10:46 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/17 19:18:19 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+char	*ft_setenv(char *name, char *value, char ***env)
+{
+	char	*str;
+	size_t	i;
+
+	str = ft_strjoin_sep(name, value, "=");
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (env[0][i])
+	{
+		if (!ft_strncmp(name, env[0][i], ft_strlen(name)))
+			if (!ft_remove_index(env, i))
+			{
+				free(str);
+				return (NULL);
+			}
+		i++;
+	}
+	if (!ft_arradd(env, str))
+	{
+		free(str);
+		return (NULL);
+	}
+	return (str);
+}
+
 
 void	ft_export(char **argv, char ***env)
 {
-	size_t	i_arg;
-	size_t	i_env;
-	size_t	i_equal;
+	size_t	i;
+	size_t	name_len;
 
-	i_arg = 1;
-	while (argv[i_arg])
+	i = 1;
+	while (argv[i])
 	{
-		i_equal = 0;
-		while (argv[i_arg][i_equal] && argv[i_arg][i_equal] != '=')
-			i_equal++;
-		if (i_equal && argv[i_arg][i_equal] && argv[i_arg][i_equal + 1] != '=')
+		name_len = 0;
+		while (argv[i][name_len] && argv[i][name_len] != '=')
+			name_len++;
+		argv[i][name_len] = '\0';
+		if (name_len != 0 || name_len != ft_strlen(argv[i]))
 		{
-			i_env = 0;
-			while (env[0][i_env])
-			{
-				if (!ft_strncmp(argv[i_arg], env[0][i_env], i_equal))
-					if (!ft_remove_index(env, i_env))
-						exit(EXIT_FAILURE);
-				i_env++;
-			}
-			if (!ft_arradd(env, argv[i_arg]))
+			if (!ft_setenv(argv[i], &argv[i][name_len + 1], env))
+				//todo: free & exit
 				exit(EXIT_FAILURE);
 		}
-		i_arg++;
+		i++;
 	}
 }
-//export salut=salut cc= =nope nope nope== double=fail double=ez
