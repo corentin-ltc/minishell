@@ -6,14 +6,52 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:03:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/17 19:21:38 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/17 19:50:44 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static bool	check_access(char *path)
+{
+	void	*dir;
+
+	dir = opendir(path);
+	if (!dir)
+		return (false);
+	closedir(dir);
+	return (true);
+}
+
+static void	*ft_cd_update_env(char *path, char ***env)
+{
+	char *oldpwd;
+	char *pwd;
+
+	oldpwd = getcwd(NULL, 0);
+	if (!oldpwd)
+		return (NULL);
+	chdir(path);
+	pwd = getcwd(NULL, 0);
+	if (!pwd)
+	{
+		free(oldpwd);
+		return (NULL);
+	}
+	if (!ft_setenv("OLDPWD", oldpwd, env) || !ft_setenv("PWD", pwd, env))
+	{
+		free(oldpwd);
+		free(pwd);
+		return (NULL);
+	}
+	free(oldpwd);
+	free(pwd);
+	return (path);
+}
+
 void	ft_cd(char **argv, char ***env)
 {
+	char	*dir;
 	char	*path;
 
 	path = argv[1];
@@ -31,8 +69,9 @@ void	ft_cd(char **argv, char ***env)
 		if (!path)
 			return (shell_error("cd", "no OLDPWD environment variable"));
 	}
-	//todo: update OLDPWD et PWD
-	ft_setenv("OLDPWD", getcwd(NULL, 0), env);
-	chdir(path);
-	ft_setenv("PWD", getcwd(NULL, 0), env);
+	if (!check_access(path))
+		return (perror(path));
+	if (!ft_cd_update_env(path, env))
+		//todo: free & exit
+		exit(EXIT_FAILURE);
 }
