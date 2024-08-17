@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 16:05:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/17 18:21:57 by nbellila         ###   ########.fr       */
+/*   Created: 2024/08/17 17:46:40 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/17 17:48:29 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "minishell.h"
 
-/*libft*/
-# include "libft.h"
-/*readline*/
-# include <readline/readline.h>
-# include <readline/history.h>
-/*signals*/
-# include <signal.h>
-
-/*others*/
-# include "signals.h"
-# include "builtin.h"
-# include "errors.h"
-# include "utils.h"
-
-#endif
+void	shell_error(char *cmd, char *message)
+{
+	ft_putstr_fd(cmd, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putendl_fd(message, 2);
+}

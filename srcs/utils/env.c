@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 16:05:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/17 18:21:57 by nbellila         ###   ########.fr       */
+/*   Created: 2024/08/17 18:18:19 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/17 18:27:24 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "minishell.h"
 
-/*libft*/
-# include "libft.h"
-/*readline*/
-# include <readline/readline.h>
-# include <readline/history.h>
-/*signals*/
-# include <signal.h>
+char	*ft_getenv(char *name, char **env)
+{
+	size_t	i;
+	size_t	name_len;
 
-/*others*/
-# include "signals.h"
-# include "builtin.h"
-# include "errors.h"
-# include "utils.h"
-
-#endif
+	name_len = ft_strlen(name);
+	i = 0;
+	while (env[i])
+	{
+		if (!ft_strncmp(name, env[i], name_len))
+			return (&env[i][name_len + 1]);
+		i++;
+	}
+	return (NULL);
+}
