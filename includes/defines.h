@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   define.h                                           :+:      :+:    :+:   */
+/*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 15:51:20 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 15:51:41 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/18 19:31:01 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,10 @@ typedef struct s_data{
 	char	*line;
 	t_cmd	**cmds;
 }t_data;
+
+typedef struct s_parser{
+	bool	d_quotes;
+	bool	s_quotes;
+}t_parser;
 
 #endif

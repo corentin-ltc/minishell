@@ -6,29 +6,11 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 16:23:39 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 19:28:15 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/18 19:43:04 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// while (str[i])
-// {
-// 	if (str[i] == '"')
-// 	{
-// 		if (parser.d_quotes == true)
-// 			parser.d_quotes = false;
-// 		else if (parser.quotes == false)
-// 			(parser.d_quotes = true)
-// 	}
-// 	else if (str[i] == d_quotes =)
-// }
-
-
-
-
-
-
 
 t_cmd	*init_cmd(char *line)
 {
@@ -47,23 +29,15 @@ t_cmd	*init_cmd(char *line)
 
 int	get_varindex(char *line)
 {
-	size_t	i;
-	bool	is_valid;
+	t_parser	parser;
+	size_t		i;
 
-	is_valid = true;
+	parser = new_parser();
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] == '\'')
-		{
-			is_valid = false;
-			i++;
-			while (line[i] && line[i] != '\'')
-				i++;
-			if (line[i] == '\'')
-				is_valid = true;
-		}
-		if (is_valid && line[i] == '$' && ft_isalnum(line[i + 1]))
+		update_parser(&parser, line[i]);
+		if (!parser.s_quotes && line[i] == '$' && ft_isalnum(line[i + 1]))
 			return (i);
 		i++;
 	}
