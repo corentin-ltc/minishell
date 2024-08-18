@@ -6,7 +6,7 @@ CC = cc
 
 FLAGS = #-Wall -Wextra -Werror
 
-LINKFLAGS = -lreadline
+LINKFLAGS = #-lreadline
 
 LIBS = libft \
 
