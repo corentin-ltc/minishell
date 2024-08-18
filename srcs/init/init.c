@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 14:59:26 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 16:18:25 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/18 19:20:14 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	init_data(t_data *data, char **env)
 
 void	minishell_loop(t_data *data)
 {
+	size_t	i;
+
 	while (true)
 	{
 		data->line = readline("minishell > ");
@@ -30,7 +32,13 @@ void	minishell_loop(t_data *data)
 			exit_error("success", data);
 		add_history(data->line);
 		get_cmds(data);
-		get_vars(data);
+		i = 0;
+		while (data->cmds[i])
+		{
+			get_vars(data, data->cmds[i]);
+			ft_putendl(data->cmds[i]->line);
+			i++;
+		}
 		free(data->line);
 		free_cmds(data->cmds);
 	}
