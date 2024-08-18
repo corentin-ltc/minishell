@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 15:11:32 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 15:43:07 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/18 16:16:45 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static t_cmd	*init_cmd(char *line)
 	cmd->args = NULL;
 	return (cmd);
 }
-
 void	get_cmds(t_data *data)
 {
 	char	**cmds;

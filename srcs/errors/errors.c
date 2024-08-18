@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:46:40 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 15:47:50 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/18 16:16:35 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	shell_error(char *cmd, char *message)
 
 void	exit_error(char *str, t_data *data)
 {
-	ft_putstr_fd(str, 2);
+	ft_putendl_fd(str, 2);
 	if (data)
 		free_data(data);
 	exit(EXIT_FAILURE);
 }
 
-static void	free_cmds(t_cmd **cmd)
+void	free_cmds(t_cmd **cmd)
 {
 	size_t	i;
 
