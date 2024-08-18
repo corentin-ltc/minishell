@@ -18,7 +18,8 @@ INCLUDES =	includes \
 INIT =	init.c \
 		signals.c
 
-PARSING =	parsing.c
+PARSING =	parsing.c \
+			utils.c
 
 ERRORS =	errors.c
 
@@ -54,7 +55,7 @@ OBJS = ${addprefix ${OBJS_DIR}, ${SRCS_NAMES:.c=.o}}
 ######################## BASIC RULES ########################
 
 all : 
-	${MAKE} -j ${NAME}
+	${MAKE} ${NAME}
 
 re : fclean
 	${MAKE} all

@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:03:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 15:48:29 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/18 17:18:06 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	ft_cd(char **argv, char ***env)
 	if (!ft_strcmp(path, "-"))
 	{
 		path = ft_getenv("OLDPWD", *env);
+		ft_putstr(path);
 		if (!path)
 			return (shell_error("cd", "no OLDPWD environment variable"));
 	}
