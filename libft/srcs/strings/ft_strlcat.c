@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:31:59 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/17 19:01:57 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/18 19:11:05 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strcat(char *dst, char const *src)
 
 	start = ft_strlen(dst);
 	i = 0;
-	while (src[i])
+	while (src && src[i])
 	{
 		dst[start + i] = src[i];
 		i++;

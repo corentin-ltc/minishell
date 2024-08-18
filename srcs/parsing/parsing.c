@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 15:11:32 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 17:09:03 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/18 19:21:46 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	get_cmds(t_data *data)
 	size_t	i;
 
 	cmds = ft_split(data->line, ("|"));
-	ft_putarr(cmds);
 	if (!cmds)
 		exit_error("An allocation failed", data);
 	data->cmds = ft_calloc(ft_countwords(data->line, "|") + 1, sizeof(t_cmd *));
@@ -36,15 +35,38 @@ void	get_cmds(t_data *data)
 	free(cmds);
 }
 
-void	get_vars(t_data *data)
+void	get_vars(t_data *data, t_cmd *cmd)
 {
 	char	*name;
-	size_t	i;
+	char	*new;
+	char	*value;
+	int		index;
+	size_t	len;
 
-	i = 0;
-	while (data->cmds[i])
+	//recupere l'index du dollar
+	index = get_varindex(cmd->line);
+	while (index >= 0)
 	{
-		get_varname(data->cmds[i]->line);
-		i++;
+		//recupere la taille
+		len = 0;
+		while (ft_isalnum(cmd->line[index + 1 + len]))
+			len++;
+		//recupere la valeur
+		name = ft_substr(cmd->line, index + 1, len);
+		if (!name)
+			exit(1);
+		value = ft_getenv(name, data->env);
+		new = calloc(ft_strlen(cmd->line) - len + ft_strlen(value), sizeof(char));
+		if (!new)
+			exit(1);
+		ft_strlcat(new, cmd->line, index + 1);
+		if (len)
+			ft_strcat(new, value);
+		else
+			ft_strcat(new, "$");
+		ft_strcat(new, &cmd->line[index + 1 + len ]);
+		free(cmd->line);
+		cmd->line = new;
+		index = get_varindex(cmd->line);
 	}
 }
