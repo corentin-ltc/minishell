@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 22:47:40 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:01:10 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,10 @@
 
 int main(int argc, char **argv, char **env)
 {
-	char *line;
+	t_data	data;
 
-	env = ft_arrdup(env);
 	set_signals();
-	while (1)
-	{
-		line = readline("minishell > ");
-		if (!line)
-			exit(1);
-		add_history(line);
-		check_builtin(ft_split(line, " "), &env);
-		free(line);
-	}
+	init_data(&data, env);
+	minishell_loop(&data);
+	return (0);
 }
