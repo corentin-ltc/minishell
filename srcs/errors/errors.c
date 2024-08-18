@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:46:40 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 15:40:06 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:47:50 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	exit_error(char *str, t_data *data)
 static void	free_cmds(t_cmd **cmd)
 {
 	size_t	i;
-	
+
 	i = 0;
 	while (cmd[i])
 	{

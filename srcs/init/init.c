@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 14:59:26 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 15:15:40 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:47:17 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	minishell_loop(t_data *data)
 			exit_error("success", data);
 		add_history(data->line);
 		get_cmds(data);
-		// check_builtin(ft_split(data->line, " "), &data->env);
 		free(data->line);
 	}
 }
