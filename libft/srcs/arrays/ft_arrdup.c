@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 20:09:35 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 21:33:58 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:45:11 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 char	**ft_arrdup(char **tab)
 {
-	char **new;
+	char	**new;
 	size_t	i;
 
 	i = 0;
-	while (tab[i++]);
+	while (tab[i])
+		i++;
 	new = malloc(i * sizeof(char *));
 	if (!new)
 		return (NULL);
