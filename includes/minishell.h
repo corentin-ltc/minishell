@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:05:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 15:51:54 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/18 16:19:56 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 /*sources*/
 # include "init.h"
 # include "builtin.h"
+# include "parsing.h"
 # include "errors.h"
 # include "utils.h"
 
