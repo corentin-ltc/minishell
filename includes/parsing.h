@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:48:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 19:36:41 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/18 20:03:26 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void		show_parser(t_parser parser);
 
 void		get_cmds(t_data *data);
 
-void		get_vars(t_data *data, t_cmd *cmd);
+void		get_vars(t_data *data);
 
 t_cmd		*init_cmd(char *line);
 
