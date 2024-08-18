@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 17:02:09 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 14:32:35 by nbellila         ###   ########.fr       */
+/*   Created: 2024/08/16 19:03:46 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/18 14:39:16 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+#include "minishell.h"
 
-/*functions*/
-bool	check_builtin(char **argv, char ***env);
+void	ft_exit(char **argv, char ***env)
+{
+	int	status;
 
-void	ft_echo(char **argv, char **env);
-
-void	ft_cd(char **argv, char ***env);
-
-void	ft_pwd(char **argv, char **env);
-
-void	ft_env(char **argv, char **env);
-
-void	ft_unset(char **argv, char ***env);
-
-void	ft_export(char **argv, char ***env);
-
-void	ft_exit(char **argv, char ***env);
-
-#endif
+	status = EXIT_SUCCESS;
+	if (argv[1])
+	{
+		status = ft_atoi(argv[1]);
+		if (status < 0 || status > 255)
+			status = EXIT_SUCCESS;
+	}
+	ft_putstr("exit\n");
+	exit(status);
+}
