@@ -65,11 +65,6 @@ size_t	ft_unsignedlen_base(unsigned long nbr, const char *base)
 
 	base_len = (unsigned long)ft_strlen(base);
 	count = 1;
-	if (nbr < 0)
-	{
-		nbr *= -1;
-		count++;
-	}
 	while (nbr >= base_len)
 	{
 		count++;

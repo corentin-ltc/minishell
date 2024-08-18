@@ -102,7 +102,7 @@ int	clean_lst(t_list **lst)
 		current = next;
 	}
 	nl_index = ft_strcontains(current->content, '\n') + 1;
-	clean = ft_strdup(&current->content[nl_index]);
+	clean = ft_strdup(&ft_lsttos(current)[nl_index]);
 	if (!clean)
 		return (0);
 	free(current->content);

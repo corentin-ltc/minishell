@@ -16,8 +16,8 @@
 /*libft*/
 # include "libft.h"
 /*readline*/
-# include <readline/readline.h>
-# include <readline/history.h>
+// # include <readline/readline.h>
+// # include <readline/history.h>
 /*signals*/
 # include <signal.h>
 /*dirs*/
