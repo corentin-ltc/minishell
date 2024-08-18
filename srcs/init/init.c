@@ -6,11 +6,24 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 14:59:26 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 19:48:00 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/18 20:49:57 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	show_data(t_data data)
+{
+	size_t	i;
+
+	printf("Data->line : %s\n", data.line);
+	i = 0;
+	while (data.cmds[i])
+	{
+		printf("Cmd[%zu]->line: %s\n", i, data.cmds[i]->line);
+		i++;
+	}
+}
 
 void	init_data(t_data *data, char **env)
 {
@@ -32,13 +45,8 @@ void	minishell_loop(t_data *data)
 			exit_error("success", data);
 		add_history(data->line);
 		get_cmds(data);
-		i = 0;
-		while (data->cmds[i])
-		{
-			get_vars(data, data->cmds[i]);
-			ft_putendl(data->cmds[i]->line);
-			i++;
-		}
+		get_vars(data);
+		show_data(*data);
 		free(data->line);
 		free_cmds(data->cmds);
 	}
