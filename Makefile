@@ -19,6 +19,7 @@ INIT =	init.c \
 		signals.c
 
 PARSING =	parsing.c \
+			parser.c \
 			utils.c
 
 ERRORS =	errors.c
