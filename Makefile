@@ -6,7 +6,7 @@ CC = cc
 
 FLAGS = #-Wall -Wextra -Werror
 
-LINKFLAGS = #-lreadline
+LINKFLAGS = -lreadline
 
 LIBS = libft \
 
@@ -100,4 +100,4 @@ base : all
 	./${NAME}
 
 leak : all
-	valgrind --trace-children=yes --track-fds=yes --leak-check=full --show-leak-kinds=all ./${NAME}
+	valgrind --suppressions=readline.supp --trace-children=yes --track-fds=yes --leak-check=full --show-leak-kinds=all ./${NAME}
