@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 18:49:58 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/19 23:52:36 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/20 00:19:29 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,10 @@ void	get_infiles(t_data *data)
 	i = 0;
 	while (data->cmds[i])
 	{
-		printf("Before infile : %s\n", data->cmds[i]->line);
+		// printf("Before infile : %s\n", data->cmds[i]->line);
 		get_infile(data, data->cmds[i]);
-		printf("After infile : %s\n", data->cmds[i]->line);
-		printf("Line from the infile : %s\n", get_next_line(data->cmds[i]->in_fd));
+		// printf("After infile : %s\n", data->cmds[i]->line);
+		// printf("Line from the infile : %s\n", get_next_line(data->cmds[i]->in_fd));
 		i++;
 	}
 }
