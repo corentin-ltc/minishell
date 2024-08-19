@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 16:32:01 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/19 16:39:00 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/19 16:59:22 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,21 @@ char	**ft_minisplit(char **dest, char *src, char sep, t_parser parser)
 	i = 0;
 	col = 0;
 	start = i;
-	while (src[i])
+	while (true)
 	{
 		while (update_parser(&parser, src[i])
 			&& (parser.s_quotes || parser.d_quotes))
 			i++;
-		if (src[i + 1] == '\0' || src[i] == sep)
+		if (src[i] == '\0' || src[i] == sep)
 		{
-			if (src[i] != sep)
-				i++;
 			dest[col] = ft_substr(src, start, i - start);
 			if (!dest[col])
 				return (NULL);
 			col++;
 			start = i + 1;
 		}
+		if (!src[i])
+			break ;
 		i++;
 	}
 	return (dest);
@@ -66,17 +66,17 @@ char	**ft_split_noquotes(char *s, char sep)
 {
 	char		**split;
 	t_parser	parser;
-	int			i;
-	int			col;
-	int			start;
+	size_t		wordscount;
 
-	split = calloc((ft_countwords_noquotes(s, sep) + 1), sizeof(char *));
+	wordscount = ft_countwords_noquotes(s, sep);
+	split = calloc((wordscount + 1), sizeof(char *));
 	if (!split)
 		return (NULL);
+	if (wordscount == 0)
+		return (split);
 	parser = new_parser();
 	parser.sep = sep;
-	split = ft_minisplit(split, s, sep, parser);
-	if (!split)
+	if (!ft_minisplit(split, s, sep, parser))
 	{
 		free_2d((void **)split, 0);
 		return (NULL);
