@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:30:21 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 01:20:56 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/20 01:41:19 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,14 @@ static void	handle_outfile(t_parser *parser, char *str, size_t *i)
 
 static void	handle_infile(t_parser *parser, char *str, size_t *i)
 {
+	parser->infile = true;
 	if (str[*i + 1] == '<')
 	{
 		parser->here_doc = true;
-		parser->infile = false;
 		*i += 1;
 	}
 	else
-	{
-		parser->infile = true;
 		parser->here_doc = false;
-	}
 }
 
 void	*parse_str(t_parser *parser, char *str, size_t	*i)

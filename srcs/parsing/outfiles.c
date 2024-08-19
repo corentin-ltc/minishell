@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 00:20:30 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 01:10:35 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/20 01:24:04 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,6 @@ static void	handle_outfile(t_data *data, t_cmd *cmd, t_parser *pars, size_t *i)
 	new_line = ft_strcut(cmd->line, start, *i);
 	if (!new_line)
 		exit_error("malloc", data);
-	printf("Previous line : %s\n", cmd->line);
-	printf("start : %zu, len : %zu\n", start, *i);
-	printf("new_line : %s\n", new_line);
 	free(cmd->line);
 	cmd->line = new_line;
 }
