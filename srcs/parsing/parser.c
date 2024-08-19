@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:30:21 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/19 22:37:28 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/19 23:50:47 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ void	*parse_str(t_parser *parser, char *str, size_t	*i)
 {
 	if (str[*i] == '\0')
 		return (NULL);
-	// printf("-----------\n");
-	// printf("parsed str : %s\n", &str[*i]);
 	if (str[*i] == '<')
 	{
 		if (str[*i + 1] == '<')
@@ -65,15 +63,6 @@ void	*parse_str(t_parser *parser, char *str, size_t	*i)
 		}
 	}
 	*i += 1;
-	// 	if (parser->infile)
-	// 	ft_putstr("infile : true\n");
-	// else
-	// 	ft_putstr("infile : false\n");
-	// if (parser->here_doc)
-	// 	ft_putstr("here_doc : true\n");
-	// else
-	// 	ft_putstr("here_doc : false\n");
-	// printf("-----------\n");
 	return (str);
 }
 
