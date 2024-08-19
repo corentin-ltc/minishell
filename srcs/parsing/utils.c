@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 23:35:58 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/19 23:50:24 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/20 00:17:20 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	ft_istoken(int c)
 {
-	return (!ft_isalnum(c));
-	return (c == '<' || c == '>' || c == '"' || c == '\'' || ft_isspace(c));
+	return (c == '\0' ||
+		c == '<' || c == '>'
+		|| c == '"' || c == '\''
+		|| ft_isspace(c));
 }
