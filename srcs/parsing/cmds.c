@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   cmds.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/18 16:23:39 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 19:43:04 by nbellila         ###   ########.fr       */
+/*   Created: 2024/08/18 15:11:32 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/19 16:43:14 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_cmd	*init_cmd(char *line)
+static t_cmd	*init_cmd(char *line)
 {
 	t_cmd	*cmd;
 
@@ -27,19 +27,31 @@ t_cmd	*init_cmd(char *line)
 	return (cmd);
 }
 
-int	get_varindex(char *line)
+void	get_cmds(t_data *data)
 {
-	t_parser	parser;
-	size_t		i;
+	char	**cmds;
+	size_t	i;
 
-	parser = new_parser();
-	i = 0;
-	while (line[i])
+	cmds = ft_split_noquotes(data->line, '|');
+	if (!cmds)
+		exit_error("An allocation failed", data);
+	data->cmds = ft_calloc(ft_countwords_noquotes(data->line, '|') + 1,
+			sizeof(t_cmd *));
+	if (!data->cmds)
 	{
-		update_parser(&parser, line[i]);
-		if (!parser.s_quotes && line[i] == '$' && ft_isalnum(line[i + 1]))
-			return (i);
+		free(cmds);
+		exit_error("An allocation failed", data);
+	}
+	i = 0;
+	while (cmds[i])
+	{
+		data->cmds[i] = init_cmd(cmds[i]);
+		if (!data->cmds[i])
+		{
+			free_2d((void **)&cmds[i], 0);
+			exit_error("Cmd allocation failed", data);
+		}
 		i++;
 	}
-	return (-42);
+	free(cmds);
 }

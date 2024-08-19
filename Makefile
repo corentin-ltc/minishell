@@ -18,9 +18,10 @@ INCLUDES =	includes \
 INIT =	init.c \
 		signals.c
 
-PARSING =	parsing.c \
+PARSING =	split.c \
 			parser.c \
-			utils.c
+			vars.c \
+			cmds.c 
 
 ERRORS =	errors.c
 
