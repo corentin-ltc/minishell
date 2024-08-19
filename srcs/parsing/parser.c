@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:30:21 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 01:05:48 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/20 01:20:56 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,12 @@ static void	handle_infile(t_parser *parser, char *str, size_t *i)
 
 void	*parse_str(t_parser *parser, char *str, size_t	*i)
 {
+	update_parser(parser, str[*i]);
 	if (str[*i] == '\0')
 		return (NULL);
-	if (str[*i] == '<')
+	if (str[*i] == '<' && !(parser->s_quotes || parser->d_quotes))
 		handle_infile(parser, str, i);
-	else if (str[*i] == '>')
+	else if (str[*i] == '>' && !(parser->s_quotes || parser->d_quotes))
 		handle_outfile(parser, str, i);
 	*i += 1;
 	return (str);
