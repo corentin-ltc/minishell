@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:30:21 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 00:15:11 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/20 00:54:50 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ t_parser	new_parser(void)
 	parser.d_quotes = false;
 	parser.s_quotes = false;
 	parser.infile = false;
+	parser.here_doc = false;
+	parser.outfile = false;
+	parser.append = false;
 	parser.set = NULL;
 	return (parser);
 }
@@ -44,36 +47,41 @@ void	*update_parser(t_parser *parser, char c)
 	return (parser);
 }
 
+static void	handle_outfile(t_parser *parser, char *str, size_t *i)
+{
+	parser->outfile = true;
+	if (str[*i + 1] == '>')
+	{
+		parser->append = true;
+		*i += 1;
+	}
+	else
+		parser->append = false;
+}
+
+static void	handle_infile(t_parser *parser, char *str, size_t *i)
+{
+	if (str[*i + 1] == '<')
+	{
+		parser->here_doc = true;
+		parser->infile = false;
+		*i += 1;
+	}
+	else
+	{
+		parser->infile = true;
+		parser->here_doc = false;
+	}
+}
+
 void	*parse_str(t_parser *parser, char *str, size_t	*i)
 {
 	if (str[*i] == '\0')
 		return (NULL);
 	if (str[*i] == '<')
-	{
-		if (str[*i + 1] == '<')
-		{
-			parser->here_doc = true;
-			parser->infile = false;
-			*i += 1;
-		}
-		else
-		{
-			parser->infile = true;
-			parser->here_doc = false;
-		}
-	}
+		handle_infile(parser, str, i);
+	else if (str[*i] == '>')
+		handle_outfile(parser, str, i);
 	*i += 1;
 	return (str);
-}
-
-void	show_parser(t_parser parser)
-{
-	if (parser.d_quotes)
-		ft_putstr("double quotes : true\n");
-	else
-		ft_putstr("double quotes : false\n");
-	if (parser.s_quotes)
-		ft_putstr("simple quotes : true\n");
-	else
-		ft_putstr("simple quotes : false\n");
 }

@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 15:51:20 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/19 23:45:17 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/20 00:25:52 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_parser{
 	bool	infile;
 	bool	here_doc;
 	bool	outfile;
+	bool	append;
 	char	*set;
 }t_parser;
 

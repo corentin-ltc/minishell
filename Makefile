@@ -22,6 +22,7 @@ PARSING =	split.c \
 			parser.c \
 			vars.c \
 			infiles.c \
+			outfiles.c \
 			cmds.c \
 			utils.c
 
