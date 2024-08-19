@@ -21,6 +21,7 @@ INIT =	init.c \
 PARSING =	split.c \
 			parser.c \
 			vars.c \
+			infiles.c \
 			cmds.c 
 
 ERRORS =	errors.c
