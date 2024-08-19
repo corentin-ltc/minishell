@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:30:21 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 20:54:25 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/18 21:10:11 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ t_parser	new_parser(void)
 
 	parser.d_quotes = false;
 	parser.s_quotes = false;
+	parser.sep = '\0';
 	return (parser);
 }
 
-void	update_parser(t_parser *parser, char c)
+void	*update_parser(t_parser *parser, char c)
 {
 	if (c == '"')
 	{
@@ -37,6 +38,7 @@ void	update_parser(t_parser *parser, char c)
 		else if (parser->d_quotes == false)
 			parser->s_quotes = true;
 	}
+	return (parser);
 }
 
 void	show_parser(t_parser parser)
