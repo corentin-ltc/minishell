@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:30:21 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 21:10:11 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:24:01 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_parser	new_parser(void)
 
 	parser.d_quotes = false;
 	parser.s_quotes = false;
-	parser.sep = '\0';
+	parser.set = NULL;
 	return (parser);
 }
 
