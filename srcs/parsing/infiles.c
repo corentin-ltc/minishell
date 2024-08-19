@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 18:49:58 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/19 23:14:31 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/19 23:52:36 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	update_infile(t_data *data, t_cmd *cmd, char *name)
 
 static void	handle_infile(t_data *data, t_cmd *cmd, t_parser *parser, size_t *i)
 {
+	char	*new_line;
 	char	*name;
 	size_t	start;
 
@@ -37,18 +38,21 @@ static void	handle_infile(t_data *data, t_cmd *cmd, t_parser *parser, size_t *i)
 		parse_str(parser, cmd->line, i);
 	if (!cmd->line[*i])
 		exit_error("syntax error near unexpected token '<'", data);
-	while (ft_isalnum(cmd->line[*i]))
+	while (!ft_istoken(cmd->line[*i]))
 		parse_str(parser, cmd->line, i);
 	name = ft_substr(cmd->line, start, *i - start);
 	if (!name)
 		exit_error("malloc", data);
 	update_infile(data, cmd, name);
 	free(name);
+	new_line = ft_strcut(cmd->line, start - 1, *i);
+	if (!new_line)
+		exit_error("malloc", data);
+	free(cmd->line);
+	cmd->line = new_line;
 }
-/*
-<infile cat > outfile
-*/
-static void get_infile(t_data *data, t_cmd *cmd)
+
+static void	get_infile(t_data *data, t_cmd *cmd)
 {
 	t_parser	parser;
 	size_t		i;
@@ -61,18 +65,22 @@ static void get_infile(t_data *data, t_cmd *cmd)
 		{
 			handle_infile(data, cmd, &parser, &i);
 			parser.infile = false;
+			i = 0;
 		}
 	}
 }
 
-void get_infiles(t_data *data)
+void	get_infiles(t_data *data)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (data->cmds[i])
 	{
+		printf("Before infile : %s\n", data->cmds[i]->line);
 		get_infile(data, data->cmds[i]);
+		printf("After infile : %s\n", data->cmds[i]->line);
+		printf("Line from the infile : %s\n", get_next_line(data->cmds[i]->in_fd));
 		i++;
 	}
 }

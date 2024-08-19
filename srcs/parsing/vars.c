@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 16:34:17 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/19 18:54:08 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/19 23:50:14 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	get_varindex(char *line)
 	while (line[i])
 	{
 		update_parser(&parser, line[i]);
-		if (!parser.s_quotes && line[i] == '$' && ft_isalnum(line[i + 1]))
+		if (!parser.s_quotes && line[i] == '$' && !ft_istoken(line[i + 1]))
 			return (i);
 		i++;
 	}
@@ -35,7 +35,7 @@ static char	*get_varname(t_data *data, char *line)
 	size_t	len;
 
 	len = 0;
-	while (ft_isalnum(line[len]))
+	while (!ft_istoken(line[len]))
 		len++;
 	name = ft_substr(line, 0, len);
 	if (!name)
@@ -49,7 +49,7 @@ static void	*get_newline(t_data *data, size_t index, char *value, char *name)
 	size_t	len;
 
 	len = 0;
-	while (ft_isalnum(name[len]))
+	while (!ft_istoken(name[len]))
 		len++;
 	new = calloc(ft_strlen(data->line) - len + ft_strlen(value), sizeof(char));
 	if (!new)

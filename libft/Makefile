@@ -47,6 +47,7 @@ STRINGS =	ft_strlen.c \
 			ft_reachchar.c \
 			ft_skipchar.c \
 			ft_strmapi.c \
+			ft_strcut.c \
 			ft_striteri.c
 
 MEMORY =	ft_memset.c \

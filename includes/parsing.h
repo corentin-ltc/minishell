@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:48:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/19 22:51:43 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/19 23:52:33 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ t_parser	new_parser(void);
 void		*update_parser(t_parser *parser, char c);
 void		*parse_str(t_parser *parser, char *str, size_t	*i);
 void		show_parser(t_parser parser);
+/*utils*/
+int			ft_istoken(int c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:46:40 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/19 23:14:25 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/19 23:46:59 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ void	free_cmds(t_cmd **cmd)
 		if (cmd[i]->args)
 			free_2d((void **)cmd[i]->args, 0);
 		if (cmd[i]->in_fd > 0)
+		{
 			close(cmd[i]->in_fd);
+			cmd[i]->in_fd = -42;
+		}
 		free(cmd[i]);
 		i++;
 	}

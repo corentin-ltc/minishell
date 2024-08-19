@@ -22,7 +22,8 @@ PARSING =	split.c \
 			parser.c \
 			vars.c \
 			infiles.c \
-			cmds.c 
+			cmds.c \
+			utils.c
 
 ERRORS =	errors.c
 
