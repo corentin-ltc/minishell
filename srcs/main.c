@@ -6,25 +6,38 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 22:47:40 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/20 19:20:13 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int main(int argc, char **argv, char **env)
+void	minishell_loop(t_data *data)
 {
-	char *line;
+	size_t	i;
 
-	env = ft_arrdup(env);
-	set_signals();
-	while (1)
+	while (true)
 	{
-		line = readline("minishell > ");
-		if (!line)
-			exit(1);
-		add_history(line);
-		check_builtin(ft_split(line, " "), &env);
-		free(line);
+		data->line = readline("minishell > ");
+		if (!data->line)
+			exit_error("success", data);
+		add_history(data->line);
+		get_vars(data);
+		get_cmds(data);
+		get_infiles(data);
+		get_outfiles(data);
+		get_args(data);
+		show_data(*data);
+		reset_data(data);
 	}
+}
+
+int	main(int argc, char **argv, char **env)
+{
+	t_data	data;
+
+	set_signals();
+	init_data(&data, env);
+	minishell_loop(&data);
+	return (0);
 }

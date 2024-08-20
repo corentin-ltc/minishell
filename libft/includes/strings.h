@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 14:20:11 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/17 19:03:59 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/19 23:23:55 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ size_t	ft_countchar(char const *s, char const c);
 size_t	ft_skipcharset(char const *s, char *set);
 
 size_t	ft_reachcharset(char const *s, char *set);
+
+char	*ft_strcut(char *str, size_t start, size_t end);
 
 char	*ft_strchr(const char *s, int c);
 

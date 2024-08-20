@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.h                                          :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 17:01:24 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 17:18:22 by nbellila         ###   ########.fr       */
+/*   Created: 2024/08/16 16:57:44 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/18 15:47:42 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIGNALS_H
-# define SIGNALS_H
+#include "minishell.h"
 
-/*functions*/
-void	set_signals(void);
+static void	handle_sig(int sig)
+{
+	(void)sig;
+	if (sig == SIGINT)
+		write(STDOUT_FILENO, "\nminishell > ", 13);
+}	
 
-#endif
+void	set_signals(void)
+{
+	signal(SIGQUIT, handle_sig);
+	signal(SIGINT, handle_sig);
+}
