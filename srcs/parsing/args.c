@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:08:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 16:35:29 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/20 16:44:01 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,22 @@
 
 static void	get_arg(t_data *data, t_cmd *cmd)
 {
+	char	*trimmed;
+	size_t	i;
+
 	cmd->args = ft_split_words(cmd->line, " ");
 	if (!cmd->args)
 		exit_error("malloc", data);
+	i = 0;
+	while (cmd->args[i])
+	{
+		trimmed = ft_strtrim(cmd->args[i], "\"");
+		if (!trimmed)
+			exit_error("malloc", data);
+		free(cmd->args[i]);
+		cmd->args[i] = trimmed;
+		i++;
+	}
 }
 
 void	get_args(t_data *data)
