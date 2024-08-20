@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:48:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 14:12:44 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/20 15:39:41 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 /*split*/
 size_t		ft_countwords_noquotes(char *s, char *set);
-char		**ft_minisplit(char **dest, char *src, char *set, t_parser parser);
-char		**ft_split_noquotes(char *s, char *set);
+char		**ft_split_pipes(char *s, char *set);
+char		**ft_split_words(char *s, char *set);
 /*cmds*/
 void		get_cmds(t_data *data);
 /*vars*/
@@ -30,7 +30,6 @@ void		get_args(t_data *data);
 t_parser	new_parser(void);
 void		*update_parser(t_parser *parser, char c);
 void		*parse_str(t_parser *parser, char *str, size_t	*i);
-void		show_parser(t_parser parser);
 /*utils*/
 int			ft_istoken(int c);
 

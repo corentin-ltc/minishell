@@ -6,27 +6,11 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 15:14:26 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/20 15:46:55 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	get_temp_args(t_data *data)
-{
-	t_cmd	*cmd;
-	size_t	i;
-
-	i = 0;
-	while (data->cmds[i])
-	{
-		cmd = data->cmds[i];
-		cmd->args = ft_split_noquotes(cmd->line, " ");
-		if (!cmd->args)
-			exit_error("An allocation failed", data);
-		i++;
-	}
-}
 
 void	minishell_loop(t_data *data)
 {
@@ -42,7 +26,7 @@ void	minishell_loop(t_data *data)
 		get_cmds(data);
 		get_infiles(data);
 		get_outfiles(data);
-		// get_args(data);
+		get_args(data);
 		show_data(*data);
 		reset_data(data);
 	}

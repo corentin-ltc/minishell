@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:30:21 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 15:14:44 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/20 16:31:34 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	*update_parser(t_parser *parser, char c)
 	parser->quotes = false;
 	if (parser->d_quotes || parser->s_quotes)
 		parser->quotes = true;
-	// printf("char : %c, quotes : %d\n", c, parser->quotes);
 	if (!c)
 		return (NULL);
 	return (parser);
