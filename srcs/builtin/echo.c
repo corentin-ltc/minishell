@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:59:38 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/17 17:42:00 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:48:07 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_echo(char **argv, char **env)
 {
 	bool	n_flag;
 	size_t	i;
-	
+
 	n_flag = is_flagchar(argv[1], 'n');
 	i = 1;
 	while (n_flag && is_flagchar(argv[i], 'n'))

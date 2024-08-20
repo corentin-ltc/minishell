@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.h                                           :+:      :+:    :+:   */
+/*   ft_strcut.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 17:48:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/19 17:04:57 by nbellila         ###   ########.fr       */
+/*   Created: 2024/08/19 23:20:08 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/19 23:30:34 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERRORS_H
-# define ERRORS_H
+#include "libft.h"
 
-/*functions*/
-void	shell_error(char *cmd, char *message);
+char	*ft_strcut(char *str, size_t start, size_t end)
+{
+	char	*new;
+	size_t	i;
+	size_t	i_new;
 
-void	exit_error(char *str, t_data *data);
-
-void	free_data(t_data *data);
-
-void	free_cmds(t_cmd **cmd);
-
-void	reset_data(t_data *data);
-
-#endif
+	new = ft_calloc(ft_strlen(str) - (end - start) + 1, sizeof(char));
+	if (!new)
+		return (NULL);
+	i = 0;
+	i_new = 0;
+	while (str[i])
+	{
+		if (i < start || i > end)
+		{
+			new[i_new] = str[i];
+			i_new++;
+		}
+		i++;
+	}
+	return (new);
+}

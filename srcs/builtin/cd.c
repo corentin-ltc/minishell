@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:03:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/17 19:50:44 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/18 17:18:06 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static bool	check_access(char *path)
 
 static void	*ft_cd_update_env(char *path, char ***env)
 {
-	char *oldpwd;
-	char *pwd;
+	char	*oldpwd;
+	char	*pwd;
 
 	oldpwd = getcwd(NULL, 0);
 	if (!oldpwd)
@@ -66,12 +66,12 @@ void	ft_cd(char **argv, char ***env)
 	if (!ft_strcmp(path, "-"))
 	{
 		path = ft_getenv("OLDPWD", *env);
+		ft_putstr(path);
 		if (!path)
 			return (shell_error("cd", "no OLDPWD environment variable"));
 	}
 	if (!check_access(path))
 		return (perror(path));
 	if (!ft_cd_update_env(path, env))
-		//todo: free & exit
 		exit(EXIT_FAILURE);
 }

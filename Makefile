@@ -15,9 +15,17 @@ INCLUDES =	includes \
 
 ######################## SOURCES ########################
 
-PARSING =	
+INIT =	init.c \
+		signals.c
 
-SIGNALS =	signals.c
+PARSING =	split.c \
+			parser.c \
+			vars.c \
+			infiles.c \
+			outfiles.c \
+			cmds.c \
+			args.c \
+			utils.c
 
 ERRORS =	errors.c
 
@@ -35,8 +43,8 @@ BUILTIN =	builtin.c \
 UTILS =	env.c
 
 SRCS_NAMES =	main.c \
+				${addprefix init/, ${INIT}} \
 				${addprefix parsing/, ${PARSING}} \
-				${addprefix signals/, ${SIGNALS}} \
 				${addprefix errors/, ${ERRORS}} \
 				${addprefix exec/, ${EXEC}} \
 				${addprefix builtin/, ${BUILTIN}} \
@@ -83,8 +91,8 @@ debug : ${OBJS_DIR} ${OBJS}
 
 ${OBJS_DIR} :
 	mkdir $@
+	mkdir $@init
 	mkdir $@parsing
-	mkdir $@signals
 	mkdir $@errors
 	mkdir $@exec
 	mkdir $@builtin

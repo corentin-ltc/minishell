@@ -1,25 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 16:57:44 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/16 18:51:54 by nbellila         ###   ########.fr       */
+/*   Created: 2024/08/18 15:51:20 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/20 15:04:18 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef DEFINES_H
+# define DEFINES_H
 
-static void handle_sig(int sig)
-{
-	(void)sig;
-	if (sig == SIGINT)
-		write(STDOUT_FILENO, "\nminishell > ", 13);
-}	
-void	set_signals(void)
-{
-	signal(SIGQUIT, handle_sig);
-	signal(SIGINT, handle_sig);
-}
+typedef struct s_cmd{
+	char	*line;
+	char	**args;
+	int		in_fd;
+	int		out_fd;
+	bool	is_heredoc;
+}t_cmd;
+
+typedef struct s_data{
+	char	**env;
+	char	*line;
+	t_cmd	**cmds;
+}t_data;
+
+typedef struct s_parser{
+	bool	quotes;
+	bool	d_quotes;
+	bool	s_quotes;
+	bool	infile;
+	bool	here_doc;
+	bool	outfile;
+	bool	append;
+	char	*set;
+}t_parser;
+
+#endif
