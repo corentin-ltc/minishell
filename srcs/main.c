@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 01:49:17 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/20 15:14:26 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	minishell_loop(t_data *data)
 
 	while (true)
 	{
-		data->line = readline("miniprout > ");
+		data->line = readline("minishell > ");
 		if (!data->line)
 			exit_error("success", data);
 		add_history(data->line);
@@ -42,6 +42,7 @@ void	minishell_loop(t_data *data)
 		get_cmds(data);
 		get_infiles(data);
 		get_outfiles(data);
+		// get_args(data);
 		show_data(*data);
 		reset_data(data);
 	}
