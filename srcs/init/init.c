@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 14:59:26 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 14:11:55 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/20 16:34:52 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ void	show_data(t_data data)
 	{
 		printf("-----------\n");
 		printf("Cmd[%zu]->line: %s\n", i, data.cmds[i]->line);
-		printf("infile : %d, outfile : %d\n", data.cmds[i]->in_fd, data.cmds[i]->out_fd);
-		ft_putarr(data.cmds[i]->args);
+		printf("infile : %d", data.cmds[i]->in_fd);
+		printf(", outfile : %d\n", data.cmds[i]->out_fd);
+		if (data.cmds[i]->args)
+			ft_putarr(data.cmds[i]->args);
 		printf("-----------\n");
 		i++;
 	}
