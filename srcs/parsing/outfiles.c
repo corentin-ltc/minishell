@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 00:20:30 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 14:06:28 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/20 20:21:36 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ static void	handle_outfile(t_data *data, t_cmd *cmd, t_parser *pars, size_t *i)
 		parse_str(pars, cmd->line, i);
 	if (!cmd->line[*i])
 		exit_error("syntax error near unexpected token '<'", data);
-	while (!ft_istoken(cmd->line[*i]))
+	while (pars->quotes || !ft_isfile_limiter(cmd->line[*i]))
 		parse_str(pars, cmd->line, i);
-	name = ft_substr(cmd->line, start, *i - start);
+	name = get_filename(cmd->line + start, *pars);
 	if (!name)
 		exit_error("malloc", data);
 	update_outfile(data, cmd, pars, name);
@@ -85,6 +85,7 @@ void	get_outfiles(t_data *data)
 	while (data->cmds[i])
 	{
 		get_outfile(data, data->cmds[i]);
+		ft_putstr_fd("This is the outfile\n", data->cmds[i]->out_fd);
 		i++;
 	}
 }

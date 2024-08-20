@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:48:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 15:39:41 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/20 20:08:18 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ void		*update_parser(t_parser *parser, char c);
 void		*parse_str(t_parser *parser, char *str, size_t	*i);
 /*utils*/
 int			ft_istoken(int c);
+int			ft_isfile_limiter(int c);
+char		*get_filename(char *str, t_parser parser);
 
 #endif

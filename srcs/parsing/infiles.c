@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 18:49:58 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 14:16:56 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/20 20:21:09 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	update_infile(t_data *data, t_cmd *cmd, t_parser *pars, char *name)
 	if (cmd->in_fd > 0)
 		close(cmd->in_fd);
 	if (pars->here_doc == false)
-		cmd->in_fd = open(trimmed, O_RDONLY, 0777);
+		cmd->in_fd = open(trimmed, O_RDWR, 0777);
 	else
 		get_here_doc(cmd, name);
 	if (cmd->in_fd < 0)
@@ -68,9 +68,9 @@ static void	handle_infile(t_data *data, t_cmd *cmd, t_parser *pars, size_t *i)
 		parse_str(pars, cmd->line, i);
 	if (!cmd->line[*i])
 		exit_error("syntax error near unexpected token '<'", data);
-	while (!ft_istoken(cmd->line[*i]))
+	while (pars->quotes || !ft_isfile_limiter(cmd->line[*i]))
 		parse_str(pars, cmd->line, i);
-	name = ft_substr(cmd->line, start, *i - start);
+	name = get_filename(cmd->line + start, *pars);
 	if (!name)
 		exit_error("malloc", data);
 	update_infile(data, cmd, pars, name);
@@ -78,7 +78,7 @@ static void	handle_infile(t_data *data, t_cmd *cmd, t_parser *pars, size_t *i)
 	start--;
 	if (pars->here_doc)
 		start--;
-	new_line = ft_strcut(cmd->line, start, *i);
+	new_line = ft_strcut(cmd->line, start, *i - 1);
 	if (!new_line)
 		exit_error("malloc", data);
 	free(cmd->line);
@@ -111,6 +111,7 @@ void	get_infiles(t_data *data)
 	while (data->cmds[i])
 	{
 		get_infile(data, data->cmds[i]);
+		ft_putstr_fd("This is the infile\n", data->cmds[i]->in_fd);
 		i++;
 	}
 }
