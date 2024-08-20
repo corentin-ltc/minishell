@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:48:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 00:21:12 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:12:44 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void		get_vars(t_data *data);
 /*files*/
 void		get_infiles(t_data *data);
 void		get_outfiles(t_data *data);
+/*args*/
+void		get_args(t_data *data);
 /*parsers*/
 t_parser	new_parser(void);
 void		*update_parser(t_parser *parser, char c);

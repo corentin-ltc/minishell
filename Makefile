@@ -24,6 +24,7 @@ PARSING =	split.c \
 			infiles.c \
 			outfiles.c \
 			cmds.c \
+			args.c \
 			utils.c
 
 ERRORS =	errors.c

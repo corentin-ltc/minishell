@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 18:49:58 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 01:49:14 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:16:56 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static void	update_infile(t_data *data, t_cmd *cmd, t_parser *pars, char *name)
 	trimmed = ft_strtrim(name, " ");
 	if (!trimmed)
 		exit_error("malloc", data);
-	printf("name : %s\n", trimmed);
 	if (cmd->in_fd > 0)
 		close(cmd->in_fd);
 	if (pars->here_doc == false)
@@ -82,7 +81,6 @@ static void	handle_infile(t_data *data, t_cmd *cmd, t_parser *pars, size_t *i)
 	new_line = ft_strcut(cmd->line, start, *i);
 	if (!new_line)
 		exit_error("malloc", data);
-	printf("new_line : %s\n", new_line);
 	free(cmd->line);
 	cmd->line = new_line;
 }

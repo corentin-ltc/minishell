@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defines.h                                          :+:      :+:    :+:   */
+/*   args.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/18 15:51:20 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 15:04:18 by nbellila         ###   ########.fr       */
+/*   Created: 2024/08/20 14:08:46 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/20 14:26:20 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFINES_H
-# define DEFINES_H
+#include "minishell.h"
 
-typedef struct s_cmd{
-	char	*line;
-	char	**args;
-	int		in_fd;
-	int		out_fd;
-	bool	is_heredoc;
-}t_cmd;
+static void	get_arg(t_data *data, t_cmd *cmd)
+{
+	printf("Line : %s\n", cmd->line);
+	cmd->args = ft_split_noquotes(cmd->line, " ");
+	if (!cmd->args)
+		exit_error("malloc", data);
+	ft_putarr(cmd->args);
+	printf("\n\n\n\n");
+}
 
-typedef struct s_data{
-	char	**env;
-	char	*line;
-	t_cmd	**cmds;
-}t_data;
+void	get_args(t_data *data)
+{
+	size_t	i;
 
-typedef struct s_parser{
-	bool	quotes;
-	bool	d_quotes;
-	bool	s_quotes;
-	bool	infile;
-	bool	here_doc;
-	bool	outfile;
-	bool	append;
-	char	*set;
-}t_parser;
-
-#endif
+	i = 0;
+	while (data->cmds[i])
+	{
+		get_arg(data, data->cmds[i]);
+		i++;
+	}
+}
