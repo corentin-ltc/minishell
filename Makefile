@@ -2,7 +2,7 @@
 
 NAME = minishell
 
-CC = cc
+CC = cc -g3
 
 FLAGS = #-Wall -Wextra -Werror
 
@@ -25,7 +25,7 @@ PARSING =	split.c \
 
 ERRORS =	errors.c
 
-EXEC =	
+EXEC =		exec.c
 
 BUILTIN =	builtin.c \
 			echo.c \
