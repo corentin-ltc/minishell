@@ -29,7 +29,7 @@ PARSING =	split.c \
 
 ERRORS =	errors.c
 
-EXEC =	
+EXEC =	exec.c
 
 BUILTIN =	builtin.c \
 			echo.c \
