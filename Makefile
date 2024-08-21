@@ -2,7 +2,7 @@
 
 NAME = minishell
 
-CC = cc
+CC = cc -g3
 
 FLAGS = #-Wall -Wextra -Werror
 
@@ -29,7 +29,7 @@ PARSING =	split.c \
 
 ERRORS =	errors.c
 
-EXEC =	
+EXEC =		exec.c
 
 BUILTIN =	builtin.c \
 			echo.c \
@@ -106,6 +106,7 @@ ${OBJS_DIR}%.o : ${SRCS_DIR}%.c
 test : base
 
 base : all
+	clear
 	./${NAME}
 
 leak : all
