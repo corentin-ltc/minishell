@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:39:35 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 20:37:19 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/21 20:48:14 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,9 @@ void	exec_cmds(t_data *data)
 	t_cmd	*cmd;
 	size_t	i;
 
+	if (data->cmds[0] && !data->cmds[1])
+		if (check_builtin(data->cmds[0]->args, &data->env))
+			return ;
 	i = 0;
 	while (data->cmds[i])
 	{
