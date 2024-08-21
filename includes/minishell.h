@@ -6,7 +6,7 @@
 /*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:05:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 10:01:43 by cle-tort         ###   ########.fr       */
+/*   Updated: 2024/08/21 03:29:34 by cle-tort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@
 # include "parsing.h"
 # include "errors.h"
 # include "utils.h"
+# include "exec.h"
 
 #endif
