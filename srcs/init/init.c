@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 14:59:26 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 19:34:01 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/21 20:37:08 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	init_data(t_data *data, char **env)
 	data->cmds = NULL;
 	data->line = NULL;
 	data->path = NULL;
+	data->exit_code = 0;
 	data->childs = 0;
 	get_path(data);
 }

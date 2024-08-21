@@ -6,29 +6,52 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:39:35 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 19:56:17 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/21 20:37:19 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	show_cmd(t_cmd *cmd)
+static void	get_exec(t_data *data, t_cmd *cmd, char **path)
 {
-	ft_putstr_fd("\n---------\nExecuting : ", 2);
-	ft_putendl_fd(cmd->line, 2);
-	ft_putstr_fd("in : ", 2);
-	ft_putstr_fd(ft_itoa(cmd->in_fd), 2);
-	ft_putstr_fd(", out : ", 2);
-	ft_putendl_fd(ft_itoa(cmd->in_fd), 2);
-	ft_putstr_fd("---------\n\n", 2);
+	size_t	i;
+	char	*exec_backslash;
+	char	*exec;
+
+	i = 0;
+	while (path[i])
+	{
+		exec_backslash = ft_strjoin(path[i++], "/");
+		if (!exec_backslash)
+			exit_error("An allocation failed\n", data);
+		exec = ft_strjoin(exec_backslash, cmd->args[0]);
+		free(exec_backslash);
+		if (!exec)
+			exit_error("An allocation failed\n", data);
+		if (access(exec, X_OK) != -1)
+		{
+			free(cmd->args[0]);
+			cmd->args[0] = exec;
+			return ;
+		}
+		free(exec);
+	}
+	ft_putstr_fd("command not found: ", 2);
+	ft_putendl_fd(cmd->args[0], 2);
+	cmd->is_valid = false;
 }
 
 static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 {
 	// printf("Child process\n");
 	dup_childs(data, cmd, index);
-	execve(cmd->args[0], cmd->args, data->env);
-	exit_error("", data);
+	if (check_builtin(cmd->args, &data->env))
+		exit_free(data);
+	if (access(cmd->args[0], X_OK) == -1)
+		get_exec(data, cmd, data->path);
+	if (cmd->is_valid)
+		execve(cmd->args[0], cmd->args, data->env);
+	exit_free(data);
 }
 
 static void	handle_parent(t_data *data, t_cmd *cmd)
@@ -40,7 +63,7 @@ static void	ft_exec(t_data *data, t_cmd *cmd, size_t index)
 {
 	pid_t	pid;
 
-	show_cmd(cmd);
+	// show_cmd(cmd);
 	pid = fork();
 	data->childs++;
 	if (pid == 0)
