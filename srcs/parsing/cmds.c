@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 15:11:32 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/19 16:56:27 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/20 15:41:23 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	get_cmds(t_data *data)
 	char	**cmds;
 	size_t	i;
 
-	cmds = ft_split_noquotes(data->line, '|');
+	cmds = ft_split_pipes(data->line, "|");
 	if (!cmds)
 		exit_error("An allocation failed", data);
-	data->cmds = ft_calloc(ft_countwords_noquotes(data->line, '|') + 1,
+	data->cmds = ft_calloc(ft_countwords_noquotes(data->line, "|") + 1,
 			sizeof(t_cmd *));
 	if (!data->cmds)
 	{

@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:30:21 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 21:10:11 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/20 16:31:34 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,14 @@ t_parser	new_parser(void)
 {
 	t_parser	parser;
 
+	parser.quotes = false;
 	parser.d_quotes = false;
 	parser.s_quotes = false;
-	parser.sep = '\0';
+	parser.infile = false;
+	parser.here_doc = false;
+	parser.outfile = false;
+	parser.append = false;
+	parser.set = NULL;
 	return (parser);
 }
 
@@ -38,17 +43,47 @@ void	*update_parser(t_parser *parser, char c)
 		else if (parser->d_quotes == false)
 			parser->s_quotes = true;
 	}
+	parser->quotes = false;
+	if (parser->d_quotes || parser->s_quotes)
+		parser->quotes = true;
+	if (!c)
+		return (NULL);
 	return (parser);
 }
 
-void	show_parser(t_parser parser)
+static void	handle_outfile(t_parser *parser, char *str, size_t *i)
 {
-	if (parser.d_quotes)
-		ft_putstr("double quotes : true\n");
+	parser->outfile = true;
+	if (str[*i + 1] == '>')
+	{
+		parser->append = true;
+		*i += 1;
+	}
 	else
-		ft_putstr("double quotes : false\n");
-	if (parser.s_quotes)
-		ft_putstr("simple quotes : true\n");
+		parser->append = false;
+}
+
+static void	handle_infile(t_parser *parser, char *str, size_t *i)
+{
+	parser->infile = true;
+	if (str[*i + 1] == '<')
+	{
+		parser->here_doc = true;
+		*i += 1;
+	}
 	else
-		ft_putstr("simple quotes : false\n");
+		parser->here_doc = false;
+}
+
+void	*parse_str(t_parser *parser, char *str, size_t	*i)
+{
+	update_parser(parser, str[*i]);
+	if (str[*i] == '\0')
+		return (NULL);
+	if (str[*i] == '<' && !(parser->s_quotes || parser->d_quotes))
+		handle_infile(parser, str, i);
+	else if (str[*i] == '>' && !(parser->s_quotes || parser->d_quotes))
+		handle_outfile(parser, str, i);
+	*i += 1;
+	return (str);
 }

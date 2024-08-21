@@ -6,13 +6,12 @@
 /*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 14:59:26 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/19 19:21:05 by cle-tort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	show_data(t_data data)
+void	show_data(t_data data)
 {
 	size_t	i;
 
@@ -20,7 +19,13 @@ static void	show_data(t_data data)
 	i = 0;
 	while (data.cmds[i])
 	{
-		printf("Cmd[%zu]->line: %s\n", i, data.cmds[i]->line);
+		printf("-----------Cmd[%zu]-----------\n", i);
+		printf("line: %s\n", data.cmds[i]->line);
+		printf("infile : %d", data.cmds[i]->in_fd);
+		printf(", outfile : %d\n", data.cmds[i]->out_fd);
+		if (data.cmds[i]->args)
+			ft_putarr(data.cmds[i]->args);
+		printf("----------------------------\n");
 		i++;
 	}
 }
@@ -34,20 +39,10 @@ void	init_data(t_data *data, char **env)
 	data->line = NULL;
 }
 
-void	minishell_loop(t_data *data)
+void	reset_data(t_data *data)
 {
-	size_t	i;
-
-	while (true)
-	{
-		data->line = readline("minishell > ");
-		if (!data->line)
-			exit_error("success", data);
-		add_history(data->line);
-		get_vars(data);
-		get_cmds(data);
-		show_data(*data);
-		reset_data(data);
-	//	exec(data);
-	}
+	free(data->line);
+	data->line = NULL;
+	free_cmds(data->cmds);
+	data->cmds = NULL;
 }

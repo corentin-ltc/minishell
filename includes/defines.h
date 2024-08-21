@@ -29,9 +29,14 @@ typedef struct s_data{
 }t_data;
 
 typedef struct s_parser{
+	bool	quotes;
 	bool	d_quotes;
 	bool	s_quotes;
-	char	sep;
+	bool	infile;
+	bool	here_doc;
+	bool	outfile;
+	bool	append;
+	char	*set;
 }t_parser;
 
 #endif
