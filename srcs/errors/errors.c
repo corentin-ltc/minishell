@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:46:40 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 20:35:58 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/21 23:06:02 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,10 @@ void	free_data(t_data *data)
 		free(data->line);
 	if (data->cmds)
 		free_cmds(data->cmds);
+	if (data->path)
+		free_2d((void **)data->path, 0);
+	if (data->pipe[0])
+		close(data->pipe[0]);
+	if (data->pipe[1])
+		close(data->pipe[1]);
 }

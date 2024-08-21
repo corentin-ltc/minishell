@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:39:35 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 20:48:14 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/21 23:17:37 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,19 @@ static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 static void	handle_parent(t_data *data, t_cmd *cmd)
 {
 	// printf("Parent process\n");
+	close(data->pipe[0]);
+	close(data->pipe[1]);
+	if (cmd->in_fd > 0)
+		close(cmd->in_fd);
+	if (cmd->out_fd > 0)
+		close(cmd->out_fd);
 }
 
 static void	ft_exec(t_data *data, t_cmd *cmd, size_t index)
 {
 	pid_t	pid;
 
+	// pipe(data->pipe);
 	// show_cmd(cmd);
 	pid = fork();
 	data->childs++;
@@ -77,9 +84,6 @@ void	exec_cmds(t_data *data)
 	t_cmd	*cmd;
 	size_t	i;
 
-	if (data->cmds[0] && !data->cmds[1])
-		if (check_builtin(data->cmds[0]->args, &data->env))
-			return ;
 	i = 0;
 	while (data->cmds[i])
 	{

@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 18:49:58 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 19:21:31 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/21 22:48:00 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	update_infile(t_data *data, t_cmd *cmd, t_parser *pars, char *name)
 	if (cmd->in_fd > 0)
 		close(cmd->in_fd);
 	if (pars->here_doc == false)
-		cmd->in_fd = open(trimmed, O_RDWR, 0777);
+		cmd->in_fd = open(trimmed, O_RDONLY, 0777);
 	else
 		get_here_doc(cmd, name);
 	if (cmd->in_fd < 0)
