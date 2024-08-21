@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 00:20:30 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 20:21:36 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/21 19:30:18 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	get_outfiles(t_data *data)
 	while (data->cmds[i])
 	{
 		get_outfile(data, data->cmds[i]);
-		ft_putstr_fd("This is the outfile\n", data->cmds[i]->out_fd);
+		// ft_putstr_fd("This is the outfile\n", data->cmds[i]->out_fd);
 		i++;
 	}
 }

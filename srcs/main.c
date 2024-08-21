@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 19:05:39 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/21 20:02:01 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	main(int argc, char **argv, char **env)
 		show_data(data);
 		printf("\n\n\n\n\n\n\n");
 		//todo : exec
-		exec_cmds(&data);
+		//todo: if (!single_builtin)
+			exec_cmds(&data);
 		reset_data(&data);
 	}
 	return (0);
