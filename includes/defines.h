@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 15:51:20 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 18:26:33 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/21 19:15:54 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_data{
 	char	*line;
 	int		pipe[2];
 	int		exit_code;
+	size_t	childs;
 }t_data;
 
 typedef struct s_parser{

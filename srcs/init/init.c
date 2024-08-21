@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 14:59:26 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 18:37:05 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/21 19:16:00 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	show_data(t_data data)
 	}
 }
 
-static char	**get_path(t_data *data)
+static void	get_path(t_data *data)
 {
 	char *path;
 
 	if (data->path)
-		free_2((void **)data->path, 2);
+		free_2d((void **)data->path, 2);
 	data->path = NULL;
 	path = ft_getenv("PATH", data->env);
 	if (!path)
@@ -55,6 +55,7 @@ void	init_data(t_data *data, char **env)
 	data->cmds = NULL;
 	data->line = NULL;
 	data->path = NULL;
+	data->childs = 0;
 	get_path(data);
 }
 
@@ -64,5 +65,5 @@ void	reset_data(t_data *data)
 	data->line = NULL;
 	free_cmds(data->cmds);
 	data->cmds = NULL;
-	get_paths(data);
+	get_path(data);
 }
