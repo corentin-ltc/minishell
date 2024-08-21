@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:39:35 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 23:17:37 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/21 23:26:17 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 static void	handle_parent(t_data *data, t_cmd *cmd)
 {
 	// printf("Parent process\n");
-	close(data->pipe[0]);
-	close(data->pipe[1]);
+	// close(data->pipe[0]);
+	// close(data->pipe[1]);
 	if (cmd->in_fd > 0)
 		close(cmd->in_fd);
 	if (cmd->out_fd > 0)
