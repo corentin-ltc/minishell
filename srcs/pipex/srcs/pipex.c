@@ -6,7 +6,7 @@
 /*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 22:40:30 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 11:56:14 by cle-tort         ###   ########.fr       */
+/*   Updated: 2024/08/20 21:36:48 by cle-tort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,11 @@ static void	ft_exec(t_data data, size_t	index)
 	else
 	{
 		close(fd[1]);
-		dup2(fd[0], STDIN_FILENO);
-		close(fd[0]);
+		//?Si prochaine commande n'a pas de redirection d'infile, on dup la pipe, sinon on dup le fd voulu
+		if (next->in_fd == -42)
+			dup2(fd[0], STDIN_FILENO);
+		else
+			dup2(next->in_fd, STDIN_FILENO);
 	}
 }
 

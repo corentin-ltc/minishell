@@ -6,7 +6,7 @@
 /*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 18:55:00 by cle-tort          #+#    #+#             */
-/*   Updated: 2024/08/20 11:47:30 by cle-tort         ###   ########.fr       */
+/*   Updated: 2024/08/21 03:05:42 by cle-tort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,42 +58,51 @@ char	**get_paths(char **envp)
 static void	ft_child(t_cmd *cmds, t_data *data, size_t index, int fd[2])
 {
 	close(fd[0]);
-	dup2(fd[1], STDOUT_FILENO);
+	if (cmds[index].out_fd != -42)
+	{
+		dup2(cmds[index].out_fd, STDOUT_FILENO);
+		close(cmds[index].out_fd);
+	}
+	else
+		dup2(fd[1], STDOUT_FILENO);
 	close(fd[1]);
-	close(cmds[index].out_fd);
 	execve(cmds[index].args[0], cmds[index].args, data->env);
 	// exit error execve
 }
 
-void	ft_exec(t_data *data, t_cmd *cmds, int index, int fd[2])
+void	ft_exec(t_data *data, t_cmd *cmds, int index)
 {
 	char	**paths;
 	int		pid;
+	int		fd[2];
 
-	//pid = fork();
-	if (pid < 0)
+	if (pipe(fd) == -1)
+		// exit and free
+	pid = fork();
+	if (pid == -1)
 	{
 		close(fd[0]);
 		close(fd[1]);
-		// error fork
-		exit(EXIT_FAILURE);
+		// exit error
 	}
-	if (dup2(cmds[index].in_fd, STDIN_FILENO) < 0|| dup2(cmds[index].out_fd, STDOUT_FILENO) < 0)
-	{
-		perror("Dup2");
-		exit(1);
-		//free and exit
-	}
-	if (cmds[index].in_fd != STDIN_FILENO)
-		close(fd[0]);
-	if (pid == 0 && !check_builtin(cmds[index].args, &data->env))
+	if (pid == 0)//&& !check_builtin(cmds[index].args, &data->env))
 	{
 		if (access(cmds[index].args[0], X_OK) == -1)
 			get_exec(data, cmds[index].args);
 		ft_child(cmds, data, index, fd);
 	}
-
-	perror("allo2");
+	else
+	{
+		close(fd[1]);
+		if (cmds[index + 1].args && cmds[index + 1].in_fd == -42)
+		{
+			dup2(fd[0], STDIN_FILENO);
+			close(fd[0]);
+		}
+		else
+			dup2(cmds[index + 1].in_fd, STDIN_FILENO);
+		//close in_fd?
+	}
 }
 
 void	maxi_piping(t_data *data, t_cmd *cmds)
@@ -102,31 +111,34 @@ void	maxi_piping(t_data *data, t_cmd *cmds)
 	int	fd[2];
 	int	pid;
 
-	data->paths = get_paths(data->env);
-	if (!data->paths)
-	{
-		// No path found, free and exit
-	}
+	if (cmds[0].in_fd != STDIN_FILENO)
+		dup2(cmds[0].in_fd, STDIN_FILENO);
 	index = 0;
-	pid = fork();
-	while (cmds[index].args)
+	while (cmds[index + 1].args)
 	{
-		if (cmds[index].out_fd == -42)
-		{
-			if (pipe(fd) == -1)
-			{
-				// error pipe -> free and exit
-			}
-			cmds[index].out_fd = fd[1];
-		}
-		if (cmds[index].in_fd == -42)
-		{
-			close(fd[1]);
-			cmds[index].in_fd = fd[0];
-		}
-		ft_exec(data, cmds, index, fd);
-		wait(NULL);
+		//perror("oh zebi");
+		ft_exec(data, cmds, index);
+		ft_putarr(cmds[index].args);
 		index++;
 	}
+	if (cmds[index].out_fd != STDOUT_FILENO)
+	{
+		perror("allo");
+		dup2(cmds[index].out_fd, STDOUT_FILENO);
+	}
+	pid = fork();
+	if (pid == -1)
+	{
+		// exit error
+	}
+	if (pid == 0)
+	{
+		perror("allo");
+		if (access(cmds[index].args[0], X_OK) == -1)
+			get_exec(data, cmds[index].args);
+		ft_putarr(cmds[index].args);
+		execve(cmds[index].args[0], cmds[index].args, data->env);
+	}
+	wait(NULL);
 }
 
