@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 14:59:26 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 20:24:06 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:37:05 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,31 @@ void	show_data(t_data data)
 	}
 }
 
+static char	**get_path(t_data *data)
+{
+	char *path;
+
+	if (data->path)
+		free_2((void **)data->path, 2);
+	data->path = NULL;
+	path = ft_getenv("PATH", data->env);
+	if (!path)
+		return ;
+	data->path = ft_split(path, ":");
+	if (!data->path)
+		exit_error("Split allocation failed", data);
+}
+
 void	init_data(t_data *data, char **env)
 {
+	set_signals();
 	data->env = ft_arrdup(env);
 	if (!data->env)
 		exit_error("An allocation failed", NULL);
 	data->cmds = NULL;
 	data->line = NULL;
+	data->path = NULL;
+	get_path(data);
 }
 
 void	reset_data(t_data *data)
@@ -46,4 +64,5 @@ void	reset_data(t_data *data)
 	data->line = NULL;
 	free_cmds(data->cmds);
 	data->cmds = NULL;
+	get_paths(data);
 }
