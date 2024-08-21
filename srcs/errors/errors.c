@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:46:40 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 00:44:25 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/21 20:35:58 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,17 @@ void	exit_error(char *str, t_data *data)
 	if (data)
 		free_data(data);
 	exit(EXIT_FAILURE);
+}
+
+void	exit_free(t_data *data)
+{
+	int	exit_code;
+
+	if (!data)
+		exit(EXIT_SUCCESS);
+	exit_code = data->exit_code;
+	free_data(data);
+	exit(exit_code);
 }
 
 void	free_cmds(t_cmd **cmd)

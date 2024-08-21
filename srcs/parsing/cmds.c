@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 15:11:32 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 19:23:48 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/21 20:23:48 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static t_cmd	*init_cmd(char *line)
 	cmd->out_fd = 0;
 	cmd->is_heredoc = false;
 	cmd->args = NULL;
+	cmd->is_valid = true;
 	return (cmd);
 }
 

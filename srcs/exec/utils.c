@@ -6,11 +6,22 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 19:25:33 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 19:34:57 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/21 20:27:25 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	show_cmd(t_cmd *cmd)
+{
+	ft_putstr_fd("\n---------\nExecuting : ", 2);
+	ft_putendl_fd(cmd->line, 2);
+	ft_putstr_fd("in : ", 2);
+	ft_putstr_fd(ft_itoa(cmd->in_fd), 2);
+	ft_putstr_fd(", out : ", 2);
+	ft_putendl_fd(ft_itoa(cmd->in_fd), 2);
+	ft_putstr_fd("---------\n\n", 2);
+}
 
 void	wait_childs(t_data *data)
 {
