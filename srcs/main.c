@@ -6,11 +6,19 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 20:41:16 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/21 23:18:54 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static bool	single_builtin(t_data *data)
+{
+	if (data->cmds[0] && !data->cmds[1])
+		if (check_builtin(data->cmds[0]->args, &data->env))
+			return (true);
+	return (false);
+}
 
 int	main(int argc, char **argv, char **env)
 {
@@ -28,10 +36,10 @@ int	main(int argc, char **argv, char **env)
 		get_infiles(&data);
 		get_outfiles(&data);	
 		get_args(&data);
-		// show_data(data);
-		// printf("\n\n\n\n\n\n\n");
+		show_data(data);
+		printf("\n\n\n\n\n\n\n");
 		//todo : exec
-		//todo: if (!single_builtin)
+		if (!single_builtin(&data))
 			exec_cmds(&data);
 		reset_data(&data);
 	}

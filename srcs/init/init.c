@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 14:59:26 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 20:37:08 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/21 23:16:18 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	get_path(t_data *data)
 	char *path;
 
 	if (data->path)
-		free_2d((void **)data->path, 2);
+		free_2d((void **)data->path, 0);
 	data->path = NULL;
 	path = ft_getenv("PATH", data->env);
 	if (!path)
@@ -57,14 +57,23 @@ void	init_data(t_data *data, char **env)
 	data->path = NULL;
 	data->exit_code = 0;
 	data->childs = 0;
+	data->pipe[0] = 0;
+	data->pipe[1] = 0;
 	get_path(data);
 }
 
 void	reset_data(t_data *data)
 {
+	data->childs = 0;
+	data->pipe[0] = 0;
+	data->pipe[1] = 0;
 	free(data->line);
 	data->line = NULL;
 	free_cmds(data->cmds);
 	data->cmds = NULL;
 	get_path(data);
+	if (data->pipe[0])
+		close(data->pipe[0]);
+	if (data->pipe[1])
+		close(data->pipe[1]);
 }
