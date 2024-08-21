@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 18:49:58 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 22:48:00 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/21 23:35:42 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	get_here_doc(t_cmd *cmd, char *limiter)
 {
 	char	*line;
 
-	cmd->in_fd = open("here_doc", O_WRONLY | O_CREAT | O_APPEND, 0777);
+	cmd->in_fd = open(HERE_DOC, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (cmd->in_fd < 1)
 		return (perror("here_doc"));
 	ft_putstr("heredoc> ");
@@ -34,7 +34,7 @@ static void	get_here_doc(t_cmd *cmd, char *limiter)
 		line = get_next_line(STDIN_FILENO);
 	}
 	close(cmd->in_fd);
-	cmd->in_fd = open("here_doc", O_RDONLY, 0777);
+	cmd->in_fd = open(HERE_DOC, O_RDONLY, 0777);
 	if (cmd->in_fd < 1)
 		perror("here_doc");
 }

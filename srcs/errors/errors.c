@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:46:40 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 23:06:02 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/21 23:37:46 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,6 @@ void	free_data(t_data *data)
 		close(data->pipe[0]);
 	if (data->pipe[1])
 		close(data->pipe[1]);
+	if (access(HERE_DOC, F_OK) == 0)
+		unlink(HERE_DOC);
 }
