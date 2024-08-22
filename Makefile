@@ -2,7 +2,7 @@
 
 NAME = minishell
 
-CC = cc
+CC = cc -g3
 
 FLAGS = #-Wall -Wextra -Werror
 
@@ -108,6 +108,7 @@ ${OBJS_DIR}%.o : ${SRCS_DIR}%.c
 test : base
 
 base : all
+	clear
 	./${NAME}
 
 leak : all
