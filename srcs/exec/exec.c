@@ -6,7 +6,6 @@
 /*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:39:35 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/22 23:36:07 by cle-tort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +46,7 @@ static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 	if (data->cmds[index + 1])
 		cmd->out_fd = data->pipe[1];
 	dup_childs(data, cmd, index);
-	if (check_builtin(cmd->args, &data->env))
+	if (exec_builtin(data, cmd))
 		exit_free(data);
 	if (access(cmd->args[0], X_OK) == -1)
 		get_exec(data, cmd, data->path);

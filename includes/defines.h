@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 15:51:20 by nbellila          #+#    #+#             */
 /*   Updated: 2024/08/21 23:34:51 by nbellila         ###   ########.fr       */

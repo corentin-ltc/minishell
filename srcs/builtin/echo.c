@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:59:38 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 15:48:07 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/22 21:12:26 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,23 @@ static bool	is_flagchar(char *str, char flag)
 	return (false);
 }
 
-void	ft_echo(char **argv, char **env)
+void	ft_echo(t_data *data, t_cmd *cmd)
 {
 	bool	n_flag;
 	size_t	i;
 
-	n_flag = is_flagchar(argv[1], 'n');
+	data->exit_code = 0;
+	if (cmd->args[1] == NULL)
+		return ;
+	n_flag = is_flagchar(cmd->args[1], 'n');
 	i = 1;
-	while (n_flag && is_flagchar(argv[i], 'n'))
+	while (n_flag && is_flagchar(cmd->args[i], 'n'))
 		i++;
-	while (argv[i])
+	while (cmd->args[i])
 	{
-		ft_putstr(argv[i]);
+		ft_putstr(cmd->args[i]);
 		i++;
-		if (argv[i])
+		if (cmd->args[i])
 			ft_putstr(" ");
 	}
 	if (!n_flag)

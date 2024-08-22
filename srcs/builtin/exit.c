@@ -6,23 +6,21 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:03:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 23:21:17 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/22 21:32:40 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_exit(char **argv, char ***env)
+void	ft_exit(t_data *data, t_cmd *cmd)
 {
-	int	status;
-
-	status = EXIT_SUCCESS;
-	if (argv[1])
+	if (cmd->args[1])
 	{
-		status = ft_atoi(argv[1]);
-		if (status < 0 || status > 255)
-			status = 255;
+		data->exit_code = ft_atoi(cmd->args[1]);
+		if (data->exit_code < 0 || data->exit_code > 255)
+			data->exit_code = 255;
 	}
-	ft_putstr("exit\n");
-	exit(status);
+	if (data->cmds[1] == NULL)
+		ft_putstr("exit\n");
+	exit_free(data);
 }
