@@ -3,10 +3,9 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:39:35 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/22 20:54:27 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +43,8 @@ static void	get_exec(t_data *data, t_cmd *cmd, char **path)
 static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 {
 	// printf("Child process\n");
+	if (data->cmds[index + 1])
+		cmd->out_fd = data->pipe[1];
 	dup_childs(data, cmd, index);
 	if (exec_builtin(data, cmd))
 		exit_free(data);
@@ -54,11 +55,15 @@ static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 	exit_free(data);
 }
 
-static void	handle_parent(t_data *data, t_cmd *cmd)
+static void	handle_parent(t_data *data, t_cmd *cmd, size_t  index)
 {
 	// printf("Parent process\n");
-	// close(data->pipe[0]);
-	// close(data->pipe[1]);
+	//show_cmd(cmd);
+	close(data->pipe[1]);
+	if (data->cmds[index + 1] && data->cmds[index + 1]->in_fd == 0)
+		data->cmds[index + 1]->in_fd = data->pipe[0];
+	else
+		close(data->pipe[0]);
 	if (cmd->in_fd > 0)
 		close(cmd->in_fd);
 	if (cmd->out_fd > 0)
@@ -69,14 +74,14 @@ static void	ft_exec(t_data *data, t_cmd *cmd, size_t index)
 {
 	pid_t	pid;
 
-	// pipe(data->pipe);
-	// show_cmd(cmd);
+	pipe(data->pipe);
 	pid = fork();
 	data->childs++;
+		
 	if (pid == 0)
 		handle_child(data, cmd, index);
 	else
-		handle_parent(data, cmd);
+		handle_parent(data, cmd, index);
 }
 
 void	exec_cmds(t_data *data)
