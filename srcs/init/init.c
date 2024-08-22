@@ -6,6 +6,7 @@
 /*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 14:59:26 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/22 22:42:24 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +31,49 @@ void	show_data(t_data data)
 	}
 }
 
+static void	get_path(t_data *data)
+{
+	char *path;
+
+	if (data->path)
+		free_2d((void **)data->path, 0);
+	data->path = NULL;
+	path = ft_getenv("PATH", data->env);
+	if (!path)
+		return ;
+	data->path = ft_split(path, ":");
+	if (!data->path)
+		exit_error("Split allocation failed", data);
+}
+
 void	init_data(t_data *data, char **env)
 {
+	set_signals();
 	data->env = ft_arrdup(env);
 	if (!data->env)
 		exit_error("An allocation failed", NULL);
 	data->cmds = NULL;
 	data->line = NULL;
+	data->path = NULL;
+	data->exit_code = 0;
+	data->childs = 0;
+	data->pipe[0] = 0;
+	data->pipe[1] = 0;
+	get_path(data);
 }
 
 void	reset_data(t_data *data)
 {
+	data->childs = 0;
+	data->pipe[0] = 0;
+	data->pipe[1] = 0;
 	free(data->line);
 	data->line = NULL;
 	free_cmds(data->cmds);
 	data->cmds = NULL;
+	get_path(data);
+	if (data->pipe[0])
+		close(data->pipe[0]);
+	if (data->pipe[1])
+		close(data->pipe[1]);
 }

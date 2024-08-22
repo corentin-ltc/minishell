@@ -6,29 +6,32 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:28:07 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 15:50:19 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/22 22:45:28 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_export(char **argv, char ***env)
+void	ft_export(t_data *data, t_cmd *cmd)
 {
 	size_t	i;
-	size_t	name_len;
+	size_t	name;
 
+	data->exit_code = 0;
 	i = 1;
-	while (argv[i])
+	while (cmd->args[i])
 	{
-		name_len = 0;
-		while (argv[i][name_len] && argv[i][name_len] != '=')
-			name_len++;
-		argv[i][name_len] = '\0';
-		if (name_len != 0 || name_len != ft_strlen(argv[i]))
+		name = 0;
+		while (cmd->args[i][name] && cmd->args[i][name] != '=')
+			name++;
+		if (name > 0 && cmd->args[i][name] == '=')
 		{
-			if (!ft_setenv(argv[i], &argv[i][name_len + 1], env))
-				exit(EXIT_FAILURE);
+			cmd->args[i][name] = '\0';
+			if (!ft_setenv(cmd->args[i], &(cmd->args[i][name + 1]), &(data->env)))
+				exit_error("setenv alloc failed", data);
 		}
+		else
+			data->exit_code = 1;
 		i++;
 	}
 }

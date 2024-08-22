@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 00:20:30 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 20:21:36 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/21 23:40:00 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ static void	update_outfile(t_data *data, t_cmd *cmd, t_parser *pars, char *name)
 	else
 		cmd->out_fd = open(trimmed, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (cmd->out_fd < 0)
+	{
 		perror(trimmed);
+		cmd->is_valid = false;
+	}
 	free(trimmed);
 }
 
@@ -85,7 +88,7 @@ void	get_outfiles(t_data *data)
 	while (data->cmds[i])
 	{
 		get_outfile(data, data->cmds[i]);
-		ft_putstr_fd("This is the outfile\n", data->cmds[i]->out_fd);
+		// ft_putstr_fd("This is the outfile\n", data->cmds[i]->out_fd);
 		i++;
 	}
 }
