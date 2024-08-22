@@ -6,27 +6,27 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:28:07 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 15:50:19 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/22 20:25:40 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_export(char **argv, char ***env)
+void	ft_export(t_data *data, t_cmd *cmd)
 {
 	size_t	i;
-	size_t	name_len;
+	size_t	len;
 
 	i = 1;
-	while (argv[i])
+	while (cmd->args[i])
 	{
-		name_len = 0;
-		while (argv[i][name_len] && argv[i][name_len] != '=')
-			name_len++;
-		argv[i][name_len] = '\0';
-		if (name_len != 0 || name_len != ft_strlen(argv[i]))
+		len = 0;
+		while (cmd->args[i][len] && cmd->args[i][len] != '=')
+			len++;
+		cmd->args[i][len] = '\0';
+		if (len != 0 || len != ft_strlen(cmd->args[i]))
 		{
-			if (!ft_setenv(argv[i], &argv[i][name_len + 1], env))
+			if (!ft_setenv(cmd->args[i], &(cmd->args[i][len + 1]), &(data->env)))
 				exit(EXIT_FAILURE);
 		}
 		i++;

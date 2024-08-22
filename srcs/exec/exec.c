@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:39:35 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 23:26:17 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/22 20:18:22 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 {
 	// printf("Child process\n");
 	dup_childs(data, cmd, index);
-	if (check_builtin(cmd->args, &data->env))
+	if (check_builtin(data, cmd))
 		exit_free(data);
 	if (access(cmd->args[0], X_OK) == -1)
 		get_exec(data, cmd, data->path);

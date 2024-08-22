@@ -6,13 +6,13 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:28:07 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 15:48:37 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/22 20:22:10 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_pwd(char **argv, char **env)
+void	ft_pwd(t_data *data, t_cmd *cmd)
 {
 	char	*path;
 
