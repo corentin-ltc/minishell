@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 19:25:33 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 20:27:25 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/22 22:06:55 by cle-tort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	show_cmd(t_cmd *cmd)
 	ft_putstr_fd("in : ", 2);
 	ft_putstr_fd(ft_itoa(cmd->in_fd), 2);
 	ft_putstr_fd(", out : ", 2);
-	ft_putendl_fd(ft_itoa(cmd->in_fd), 2);
+	ft_putendl_fd(ft_itoa(cmd->out_fd), 2);
 	ft_putstr_fd("---------\n\n", 2);
 }
 
