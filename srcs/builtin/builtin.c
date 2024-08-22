@@ -6,13 +6,32 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:23:03 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/22 20:28:32 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/22 20:53:59 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	check_builtin(t_data *data, t_cmd *cmd)
+bool	is_builtin(char *cmd)
+{
+	if (!ft_strcmp(cmd, "echo"))
+		return (true);
+	else if (!ft_strcmp(cmd, "cd"))
+		return (true);
+	else if (!ft_strcmp(cmd, "pwd"))
+		return (true);
+	else if (!ft_strcmp(cmd, "env"))
+		return (true);
+	else if (!ft_strcmp(cmd, "unset"))
+		return (true);
+	else if (!ft_strcmp(cmd, "export"))
+		return (true);
+	else if (!ft_strcmp(cmd, "exit"))
+		return (true);
+	return (false);
+}
+
+bool	exec_builtin(t_data *data, t_cmd *cmd)
 {
 	if (!ft_strcmp(cmd->args[0], "echo"))
 		ft_echo(data, cmd);
