@@ -3,9 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/23 00:25:08 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +15,6 @@
 static bool	single_builtin(t_data *data)
 {
 	int	stdin;
-	int	stdout;
 
 	if (data->cmds[0] == NULL || data->cmds[1] != NULL)
 		return (false);
@@ -22,12 +22,12 @@ static bool	single_builtin(t_data *data)
 		return (false);
 	if (ft_strcmp(data->cmds[0]->args[0], "exit"))
 	{
-		stdout = dup(STDOUT_FILENO);
+		stdin = dup(STDIN_FILENO);
 		dup_childs(data, data->cmds[0], 0);
 	}
 	exec_builtin(data, data->cmds[0]);
-	dup2(stdout, STDOUT_FILENO);
-	close(stdout);
+	dup2(stdin, STDIN_FILENO);
+	close(stdin);
 	return (true);
 }
 
