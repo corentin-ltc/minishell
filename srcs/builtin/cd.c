@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:03:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/22 20:21:12 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/22 21:29:23 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,28 +49,48 @@ static void	*ft_cd_update_env(char *path, char ***env)
 	return (path);
 }
 
+static char	*get_path(t_data *data, char *str)
+{
+	char	*path;
+
+	path = str;
+	if (str == NULL || !ft_strcmp(str, "--") || !ft_strcmp(str, "~"))
+	{
+		path = ft_getenv("HOME", data->env);
+		if (!path)
+			shell_error("cd", "no HOME environment variable");
+	}
+	else if (!ft_strcmp(str, "-"))
+	{
+		path = ft_getenv("OLDPWD", data->env);
+		if (!path)
+			shell_error("cd", "no OLDPWD environment variable");
+	}
+	else if (!check_access(path))
+	{
+		perror(path);
+		return (NULL);
+	}
+	return (path);
+}
+
 void	ft_cd(t_data *data, t_cmd *cmd)
 {
 	char	*dir;
 	char	*path;
 
-	path = cmd->args[1];
-	if (path && cmd->args[2])
-		return (shell_error("cd", "too many arguments"));
-	if (path == NULL || !ft_strcmp(path, "--"))
+	if (cmd->args[1] && cmd->args[2])
 	{
-		path = ft_getenv("HOME", data->env);
-		if (!path)
-			return (shell_error("cd", "no HOME environment variable"));
+		data->exit_code = 1;
+		shell_error("cd", "too many arguments");
+		return ;
 	}
-	if (!ft_strcmp(path, "-"))
+	path = get_path(data, cmd->args[1]);
+	if (!path)
 	{
-		path = ft_getenv("OLDPWD", data->env);
-		if (!path)
-			return (shell_error("cd", "no OLDPWD environment variable"));
+		data->exit_code = 1;
+		return ;
 	}
-	if (!check_access(path))
-		return (perror(path));
 	if (!ft_cd_update_env(path, &(data->env)))
-		exit(EXIT_FAILURE);
+		exit_error("update pwd alloc failed", data);
 }

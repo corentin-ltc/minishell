@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:59:38 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/22 20:21:46 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/22 21:12:26 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_echo(t_data *data, t_cmd *cmd)
 	bool	n_flag;
 	size_t	i;
 
+	data->exit_code = 0;
 	if (cmd->args[1] == NULL)
 		return ;
 	n_flag = is_flagchar(cmd->args[1], 'n');
