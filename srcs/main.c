@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 23:23:55 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/22 23:06:48 by cle-tort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	main(int argc, char **argv, char **env)
 		get_infiles(&data);
 		get_outfiles(&data);	
 		get_args(&data);
-		show_data(data);
-		printf("\n\n\n\n\n\n\n");
+		//show_data(data);
+		//printf("\n\n\n\n\n\n\n");
 		//todo : exec
 		if (!single_builtin(&data))
 			exec_cmds(&data);

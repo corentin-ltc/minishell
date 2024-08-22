@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:57:44 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 15:47:42 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/22 20:28:40 by cle-tort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ static void	handle_sig(int sig)
 	(void)sig;
 	if (sig == SIGINT)
 		write(STDOUT_FILENO, "\nminishell > ", 13);
+		write(STDIN_FILENO, "\nminitest > ", 13);
 }	
 
 void	set_signals(void)
 {
-	signal(SIGQUIT, handle_sig);
+	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, handle_sig);
 }
