@@ -3,10 +3,9 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/22 22:43:46 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +48,6 @@ int	main(int argc, char **argv, char **env)
 		get_outfiles(&data);	
 		get_args(&data);
 		show_data(data);
-		//todo : exec
 		if (!single_builtin(&data))
 			exec_cmds(&data);
 		printf("exit code : %d\n", data.exit_code);
