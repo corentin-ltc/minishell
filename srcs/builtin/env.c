@@ -6,20 +6,20 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:03:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 15:49:36 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/22 20:24:07 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_env(char **argv, char **env)
+void	ft_env(t_data *data, t_cmd *cmd)
 {
 	size_t	i;
 
 	i = 0;
-	while (env[i])
+	while (data->env[i])
 	{
-		ft_putendl(env[i]);
+		ft_putendl(data->env[i]);
 		i++;
 	}
 }
