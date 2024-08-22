@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:46:40 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 23:37:46 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/22 21:28:55 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,16 @@ void	shell_error(char *cmd, char *message)
 
 void	exit_error(char *str, t_data *data)
 {
+	int	exit_code;
+
 	ft_putendl_fd(str, 2);
-	if (data)
-		free_data(data);
-	exit(EXIT_FAILURE);
+	if (!data)
+		exit(EXIT_FAILURE);
+	exit_code = data->exit_code;
+	free_data(data);
+	if (exit_code == 0)
+		exit(EXIT_FAILURE);
+	exit(exit_code);
 }
 
 void	exit_free(t_data *data)
