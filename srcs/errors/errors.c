@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:46:40 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 00:44:25 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/22 22:43:28 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,27 @@ void	shell_error(char *cmd, char *message)
 
 void	exit_error(char *str, t_data *data)
 {
+	int	exit_code;
+
 	ft_putendl_fd(str, 2);
-	if (data)
-		free_data(data);
-	exit(EXIT_FAILURE);
+	if (!data)
+		exit(EXIT_FAILURE);
+	exit_code = data->exit_code;
+	free_data(data);
+	if (exit_code == 0)
+		exit(EXIT_FAILURE);
+	exit(exit_code);
+}
+
+void	exit_free(t_data *data)
+{
+	int	exit_code;
+
+	if (!data)
+		exit(EXIT_SUCCESS);
+	exit_code = data->exit_code;
+	free_data(data);
+	exit(exit_code);
 }
 
 void	free_cmds(t_cmd **cmd)
@@ -62,4 +79,12 @@ void	free_data(t_data *data)
 		free(data->line);
 	if (data->cmds)
 		free_cmds(data->cmds);
+	if (data->path)
+		free_2d((void **)data->path, 0);
+	if (data->pipe[0])
+		close(data->pipe[0]);
+	if (data->pipe[1])
+		close(data->pipe[1]);
+	if (access(HERE_DOC, F_OK) == 0)
+		unlink(HERE_DOC);
 }

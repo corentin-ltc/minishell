@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 18:12:14 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 16:34:12 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/21 23:08:20 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	**ft_split(char const *s, char *set)
 			break ;
 		tab[col] = ft_substr(s, start, i - start);
 		if (!tab[col])
-			return (free_2d((void **)tab, col));
+			return (free_2d((void **)tab, 0));
 		col++;
 	}
 	tab[col] = 0;

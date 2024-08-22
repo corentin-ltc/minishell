@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 19:03:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/22 21:32:40 by nbellila         ###   ########.fr       */
+/*   Created: 2024/08/21 19:25:33 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/21 20:27:25 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_exit(t_data *data, t_cmd *cmd)
+void	show_cmd(t_cmd *cmd)
 {
-	if (cmd->args[1])
+	ft_putstr_fd("\n---------\nExecuting : ", 2);
+	ft_putendl_fd(cmd->line, 2);
+	ft_putstr_fd("in : ", 2);
+	ft_putstr_fd(ft_itoa(cmd->in_fd), 2);
+	ft_putstr_fd(", out : ", 2);
+	ft_putendl_fd(ft_itoa(cmd->in_fd), 2);
+	ft_putstr_fd("---------\n\n", 2);
+}
+
+void	wait_childs(t_data *data)
+{
+	while (data->childs)
 	{
-		data->exit_code = ft_atoi(cmd->args[1]);
-		if (data->exit_code < 0 || data->exit_code > 255)
-			data->exit_code = 255;
+		waitpid(0, &data->exit_code, 0);
+		data->childs--;
 	}
-	if (data->cmds[1] == NULL)
-		ft_putstr("exit\n");
-	exit_free(data);
 }
