@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 20:02:36 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/18 15:45:28 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/22 20:37:19 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,24 @@
 
 char	**ft_arradd(char ***tab, char *str)
 {
+	char	**old_tab;
 	char	**new_tab;
 	size_t	i;
 
+	old_tab = *tab;
 	i = 0;
-	while (tab[0][i])
+	while (old_tab[i])
 		i++;
-	new_tab = malloc((i - 1 + 1 + 1) * sizeof(char *));
+	new_tab = calloc(i + 1 + 1, sizeof(char *));
 	if (!new_tab)
 		return (NULL);
 	i = 0;
-	while (tab[0][i])
+	while (old_tab[i])
 	{
-		new_tab[i] = tab[0][i];
+		new_tab[i] = old_tab[i];
 		i++;
 	}
 	new_tab[i] = str;
-	new_tab[i + 1] = NULL;
 	free(*tab);
 	*tab = new_tab;
 	return (*tab);
