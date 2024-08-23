@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:28:07 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/22 22:45:28 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/23 07:13:14 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ void	ft_export(t_data *data, t_cmd *cmd)
 				exit_error("setenv alloc failed", data);
 		}
 		else
+		{
 			data->exit_code = 1;
+			shell_error("export", "not a valid identifier");
+		}
 		i++;
 	}
 }
