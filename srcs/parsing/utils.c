@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 23:35:58 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 20:25:38 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/23 07:37:33 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,29 @@ char	*get_filename(char *str, t_parser parser)
 		parse_str(&parser, str, &i);
 	}
 	return (name);
+}
+
+size_t	count_quotes(char *str)
+{
+	t_parser	parser;
+	size_t		count;
+	size_t		i;
+	bool		in_quotes;
+
+	parser = new_parser();
+	in_quotes = false;
+	count = 0;
+	i = 0;
+	while (str[i])
+	{
+		update_parser(&parser, str[i]);
+		if (!parser.quotes && (str[i] == '\'' || str[i] == '"'))
+			count++;
+		else if (parser.d_quotes && str[i] == '"')
+			count++;
+		else if (parser.s_quotes && str[i] == '\'')
+			count++;
+		i++;
+	}
+	return (count);
 }
