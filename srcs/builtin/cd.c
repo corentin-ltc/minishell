@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:03:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/23 00:24:26 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/23 06:18:27 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ static char	*get_path(t_data *data, char *str)
 
 void	ft_cd(t_data *data, t_cmd *cmd)
 {
-	char	*dir;
 	char	*path;
 
 	if (cmd->args[1] && cmd->args[2])

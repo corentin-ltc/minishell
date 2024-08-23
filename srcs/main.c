@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/23 00:25:08 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/23 06:10:54 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,26 @@
 
 static bool	single_builtin(t_data *data)
 {
-	int	stdin;
+	int	stdout;
 
 	if (data->cmds[0] == NULL || data->cmds[1] != NULL)
 		return (false);
 	if (!is_builtin(data->cmds[0]->args[0]))
 		return (false);
+	if (!data->cmds[0]->is_valid)
+	{
+		data->exit_code = 1;
+		return (false);
+	}
 	if (ft_strcmp(data->cmds[0]->args[0], "exit"))
 	{
-		stdin = dup(STDIN_FILENO);
-		dup_childs(data, data->cmds[0], 0);
+		stdout = dup(STDOUT_FILENO);
+		if (data->cmds[0]->out_fd)
+			dup2(data->cmds[0]->out_fd, STDOUT_FILENO);
 	}
 	exec_builtin(data, data->cmds[0]);
-	dup2(stdin, STDIN_FILENO);
-	close(stdin);
+	dup2(stdout, STDOUT_FILENO);
+	close(stdout);
 	return (true);
 }
 
@@ -47,7 +53,7 @@ int	main(int argc, char **argv, char **env)
 		get_infiles(&data);
 		get_outfiles(&data);	
 		get_args(&data);
-		show_data(data);
+		// show_data(data);
 		if (!single_builtin(&data))
 			exec_cmds(&data);
 		printf("exit code : %d\n", data.exit_code);
