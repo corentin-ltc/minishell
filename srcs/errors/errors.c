@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:46:40 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/22 22:43:28 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/23 06:40:52 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	exit_error(char *str, t_data *data)
 {
 	int	exit_code;
 
-	ft_putendl_fd(str, 2);
+	if (*str)
+		ft_putendl_fd(str, 2);
 	if (!data)
 		exit(EXIT_FAILURE);
 	exit_code = data->exit_code;

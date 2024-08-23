@@ -3,9 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:39:35 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/23 06:40:25 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +43,8 @@ static void	get_exec(t_data *data, t_cmd *cmd, char **path)
 
 static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 {
-	// printf("Child process\n");
-	if (data->cmds[index + 1])
-		cmd->out_fd = data->pipe[1];
+	if (cmd->is_valid)
+		exit_error("", data);
 	dup_childs(data, cmd, index);
 	if (exec_builtin(data, cmd))
 		exit_free(data);
@@ -52,22 +52,19 @@ static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 		get_exec(data, cmd, data->path);
 	if (cmd->is_valid)
 		execve(cmd->args[0], cmd->args, data->env);
-	exit_free(data);
+	exit_error("", data);
 }
 
 static void	handle_parent(t_data *data, t_cmd *cmd, size_t  index)
 {
-	// printf("Parent process\n");
-	//show_cmd(cmd);
 	close(data->pipe[1]);
-	if (data->cmds[index + 1] && data->cmds[index + 1]->in_fd == 0)
-		data->cmds[index + 1]->in_fd = data->pipe[0];
-	else
-		close(data->pipe[0]);
 	if (cmd->in_fd > 0)
 		close(cmd->in_fd);
 	if (cmd->out_fd > 0)
 		close(cmd->out_fd);
+	if (data->cmds[index + 1] && data->cmds[index + 1]->in_fd == 0)
+		data->cmds[index + 1]->in_fd = dup(data->pipe[0]);
+	close(data->pipe[0]);
 }
 
 static void	ft_exec(t_data *data, t_cmd *cmd, size_t index)

@@ -3,44 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   dups.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 19:47:42 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/23 06:41:34 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static bool	is_lastcmd(t_data *data, size_t index)
+{
+	return (data->cmds[index + 1] == NULL);
+}
+
 static void	dup_infile(t_data *data, t_cmd *cmd, size_t index)
 {
-	//close(data->pipe[1]);
-	if (index == 0 && cmd->in_fd)
-		dup2(data->cmds[0]->in_fd, STDIN_FILENO);
-	else if (index != 0)
-		dup2(cmd->in_fd, STDIN_FILENO);
-	if (cmd->in_fd > 0)
-		close(cmd->in_fd);
-	close(data->pipe[0]);	
+	close(data->pipe[0]);
+	if (index == 0 && cmd->in_fd == 0)
+		cmd->in_fd = dup(STDIN_FILENO);
+	dup2(cmd->in_fd, STDIN_FILENO);
+	close(cmd->in_fd);
 }
 
 static void	dup_outfile(t_data *data, t_cmd *cmd, size_t index)
 {
-	close(data->pipe[0]);
-	if (data->cmds[index + 1] == NULL && cmd->out_fd)
-	{
-		dup2(cmd->out_fd, STDOUT_FILENO);
-		
-	}
-	else if (data->cmds[index + 1])
-	{
-		if 	(dup2(cmd->out_fd, STDOUT_FILENO) < 0)
-		{
-			perror("Dup2");
-		}
-	}
+	if (is_lastcmd(data, index) && cmd->out_fd == 0)
+		cmd->out_fd = dup(STDOUT_FILENO);
+	else if (!is_lastcmd(data, index) && cmd->out_fd == 0)
+		cmd->out_fd = dup(data->pipe[1]);
 	close(data->pipe[1]);
-	if (cmd->out_fd > 0)
-		close(cmd->out_fd);
+	dup2(cmd->out_fd, STDOUT_FILENO);
+	close(cmd->out_fd);
 }
 void dup_childs(t_data *data, t_cmd *cmd, size_t index)
 {
