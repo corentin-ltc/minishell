@@ -6,7 +6,7 @@
 /*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/23 06:10:54 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/23 07:08:34 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char **argv, char **env)
 	{
 		data.line = readline("minishell > ");
 		if (!data.line)
-			exit_error("success", &data);
+			exit_free(&data);
 		add_history(data.line);
 		get_vars(&data);
 		get_cmds(&data);
@@ -56,7 +56,7 @@ int	main(int argc, char **argv, char **env)
 		// show_data(data);
 		if (!single_builtin(&data))
 			exec_cmds(&data);
-		printf("exit code : %d\n", data.exit_code);
+		// printf("exit code : %d\n", data.exit_code);
 		reset_data(&data);
 	}
 	return (0);

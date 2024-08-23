@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vars.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 16:34:17 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 00:23:49 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/23 07:19:30 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ static void	*get_newline(t_data *data, size_t index, char *value, char *name)
 
 void	get_vars(t_data *data)
 {
-	size_t	i;
 	char	*name;
 	char	*value;
 	int		index;
@@ -77,11 +76,18 @@ void	get_vars(t_data *data)
 	{
 		name = get_varname(data, &data->line[index + 1]);
 		value = ft_getenv(name, data->env);
-		if (!get_newline(data, index, value, name))
+		if (!ft_strcmp(name, "?"))
+			value = ft_itoa(data->exit_code);
+		if ((!ft_strcmp(name, "?") && !value)
+			|| !get_newline(data, index, value, name))
 		{
+			if (!ft_strcmp(name, "?") && value)
+				free(value);
 			free(name);
 			exit_error("An allocation failed", data);
 		}
+		if (!ft_strcmp(name, "?"))
+			free(value);
 		free(name);
 		index = get_varindex(data->line);
 	}
