@@ -6,7 +6,7 @@
 /*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:08:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/23 07:37:44 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/23 07:54:31 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,29 @@
 
 static char	*remove_quotes(char *str)
 {
-	char	*new;
-	size_t	quotes;
+	char		*new;
+	t_parser	parser;
+	size_t		i;
+	size_t		j;
 
-	quotes = count_quotes(str);
-	printf("quotes count : %zu\n", quotes);
-	new = NULL;
+	new = calloc(ft_strlen(str) - count_quotes(str) + 1, sizeof(char));
+	if (!new)
+		return (NULL);
+	parser = new_parser();
+	j = 0;
+	i = 0;
+	while (str[i])
+	{
+		update_parser(&parser, str[i]);
+		if ((!parser.quotes && str[i] != '\'' && str[i] != '"')
+			|| (parser.d_quotes && str[i] != '"')
+			|| (parser.s_quotes && str[i] != '\''))
+		{
+			new[j] = str[i];
+			j++;
+		}
+		i++;
+	}
 	return (new);
 }
 
@@ -34,7 +51,6 @@ static void	get_arg(t_data *data, t_cmd *cmd)
 	i = 0;
 	while (cmd->args[i])
 	{
-		printf("Trimming : %s\n", cmd->args[i]);
 		str_noquotes = remove_quotes(cmd->args[i]);
 		if (!str_noquotes)
 			exit_error("trim malloc", data);
