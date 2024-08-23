@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   infiles.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 18:49:58 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 23:39:42 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/23 09:03:46 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	update_infile(t_data *data, t_cmd *cmd, t_parser *pars, char *name)
 		cmd->in_fd = open(trimmed, O_RDONLY, 0777);
 	else
 		get_here_doc(cmd, name);
-	if (cmd->in_fd < 0)
+	if (cmd->is_valid && cmd->in_fd < 0)
 	{
 		perror(trimmed);
 		cmd->is_valid = false;
