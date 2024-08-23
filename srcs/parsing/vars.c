@@ -6,7 +6,7 @@
 /*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 16:34:17 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/23 07:20:37 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/23 07:58:05 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,14 @@ static char	*get_varname(t_data *data, char *line)
 	char	*name;
 	size_t	len;
 
-	len = 0;
-	while (!ft_istoken(line[len]))
-		len++;
+	if (line[0] == '?')
+		len = 1;
+	else
+	{
+		len = 0;
+		while (!ft_istoken(line[len]))
+			len++;
+	}
 	name = ft_substr(line, 0, len);
 	if (!name)
 		exit_error("Name alloc failed", data);
