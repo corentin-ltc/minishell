@@ -6,7 +6,7 @@
 /*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:39:35 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/23 07:08:35 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/23 09:09:39 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static void	get_exec(t_data *data, t_cmd *cmd, char **path)
 		}
 		free(exec);
 	}
-	ft_putstr_fd("command not found: ", 2);
-	ft_putendl_fd(cmd->args[0], 2);
+	ft_putstr_fd(cmd->args[0], 2);
+	ft_putendl_fd(": command not found", 2);
 	cmd->is_valid = false;
 }
 
@@ -52,6 +52,7 @@ static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 		get_exec(data, cmd, data->path);
 	if (cmd->is_valid)
 		execve(cmd->args[0], cmd->args, data->env);
+	data->exit_code = 1;
 	exit_error("", data);
 }
 
