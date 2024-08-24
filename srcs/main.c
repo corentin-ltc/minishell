@@ -6,7 +6,7 @@
 /*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/23 07:54:22 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/24 18:27:25 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,23 @@ static bool	single_builtin(t_data *data)
 	return (true);
 }
 
+static bool	no_empty_cmd(t_data data)
+{
+	size_t	i;
+
+	i = 0;
+	while (data.cmds[i])
+	{
+		if (data.cmds[i]->args[0] == NULL)
+		{
+			shell_error("pipe", "empty command");
+			return (false);
+		}
+		i++;
+	}
+	return (true);
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	t_data	data;
@@ -55,8 +72,8 @@ int	main(int argc, char **argv, char **env)
 			get_infiles(&data);
 			get_outfiles(&data);	
 			get_args(&data);
-			// show_data(data);
-			if (!single_builtin(&data))
+			show_data(data);
+			if (!single_builtin(&data) && no_empty_cmd(data))
 				exec_cmds(&data);
 		}
 		// printf("exit code : %d\n", data.exit_code);

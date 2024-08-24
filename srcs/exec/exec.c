@@ -6,7 +6,7 @@
 /*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:39:35 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/23 09:09:39 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/24 18:18:24 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ static void	get_exec(t_data *data, t_cmd *cmd, char **path)
 		}
 		free(exec);
 	}
-	ft_putstr_fd(cmd->args[0], 2);
-	ft_putendl_fd(": command not found", 2);
+	perror(cmd->args[0]);
 	cmd->is_valid = false;
 }
 
