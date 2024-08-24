@@ -6,7 +6,7 @@
 /*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 16:32:01 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/24 17:58:13 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/24 18:23:01 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ size_t	ft_countwords_noquotes(char *s, char *set)
 	i = 0;
 	while (s[i])
 	{
-		while (s[i] && ft_strchr(set, s[i]) && update_parser(&parser, s[i]))
-			i++;
+		while (s[i] && ft_strchr(set, s[i]))
+			parse_str(&parser, s, &i);
 		if (s[i] && parser.quotes == false)
 			count++;
-		while (s[i] && !ft_strchr(set, s[i]) && update_parser(&parser, s[i]))
-			i++;
+		while (s[i] && !ft_strchr(set, s[i]))
+			parse_str(&parser, s, &i);
 	}
 	return (count);
 }
@@ -128,6 +128,5 @@ char	**ft_split_words(char *s, char *set)
 		free_2d((void **)split, 0);
 		return (NULL);
 	}
-	ft_putarr(split);
 	return (split);
 }
