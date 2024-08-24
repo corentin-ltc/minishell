@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 19:25:33 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/22 22:06:55 by cle-tort         ###   ########.fr       */
+/*   Updated: 2024/08/24 20:53:01 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	wait_childs(t_data *data)
 {
 	while (data->childs)
 	{
-		waitpid(0, &data->exit_code, 0);
+		waitpid(-1, &data->exit_code, 0);
+		data->exit_code /= 256;
 		data->childs--;
 	}
 }
