@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:39:35 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/24 18:18:24 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/24 21:07:20 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static void	get_exec(t_data *data, t_cmd *cmd, char **path)
 		}
 		free(exec);
 	}
-	perror(cmd->args[0]);
+	if (access(cmd->args[0], X_OK) == -1)
+		shell_error(cmd->args[0], "command not found");
 	cmd->is_valid = false;
 }
 
@@ -47,12 +48,17 @@ static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 	dup_childs(data, cmd, index);
 	if (exec_builtin(data, cmd))
 		exit_free(data);
-	if (access(cmd->args[0], X_OK) == -1)
+	if (data->path)
 		get_exec(data, cmd, data->path);
+	else if (access(cmd->args[0], X_OK) == -1)
+	{
+		perror(cmd->args[0]);
+		cmd->is_valid = false;
+	}
 	if (cmd->is_valid)
 		execve(cmd->args[0], cmd->args, data->env);
 	data->exit_code = 1;
-	exit_error("", data);
+	exit_free(data);
 }
 
 static void	handle_parent(t_data *data, t_cmd *cmd, size_t  index)
