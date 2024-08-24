@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:30:21 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 16:31:34 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/24 18:00:10 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,11 @@ t_parser	new_parser(void)
 
 void	*update_parser(t_parser *parser, char c)
 {
-	if (c == '"')
-	{
-		if (parser->d_quotes == true)
-			parser->d_quotes = false;
-		else if (parser->s_quotes == false)
-			(parser->d_quotes = true);
-	}
-	else if (c == '\'')
-	{
-		if (parser->s_quotes == true)
-			parser->s_quotes = false;
-		else if (parser->d_quotes == false)
-			parser->s_quotes = true;
-	}
-	parser->quotes = false;
-	if (parser->d_quotes || parser->s_quotes)
-		parser->quotes = true;
+	if (c == '"' && parser->s_quotes == false)
+		parser->d_quotes = !parser->d_quotes;
+	else if (c == '\'' && parser->d_quotes == false)
+		parser->s_quotes = !parser->s_quotes;
+	parser->quotes = parser->d_quotes || parser->s_quotes;
 	if (!c)
 		return (NULL);
 	return (parser);
