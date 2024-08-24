@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 16:32:01 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/20 20:25:29 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/24 17:58:13 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,11 @@ char	**ft_minisplit_words(char **dest, char *src, char *set, t_parser parser)
 	col = 0;
 	while (update_parser(&parser, src[i]))
 	{
-		while (update_parser(&parser, src[i]) && (src[i] == ' '))
-			i++;
+		while ((src[i] == ' ') && !parser.quotes)
+			parse_str(&parser, src, &i);
 		start = i;
-		if (src[i] && parser.quotes)
-			i++;
-		while (update_parser(&parser, src[i]) && parser.quotes)
-			i++;
-		while (src[i] && (src[i] != ' '))
-			i++;
+		while (src[i] && (parser.quotes || src[i] != ' '))
+			parse_str(&parser, src, &i);
 		if (start == i)
 			break ;
 		dest[col] = ft_substr(src, start, i - start);
@@ -132,5 +128,6 @@ char	**ft_split_words(char *s, char *set)
 		free_2d((void **)split, 0);
 		return (NULL);
 	}
+	ft_putarr(split);
 	return (split);
 }
