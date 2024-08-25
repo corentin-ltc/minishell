@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:39:35 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/25 17:39:53 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/25 19:28:11 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@ static void	get_exec(t_data *data, t_cmd *cmd, char **path)
 
 static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 {
+	if (cmd->is_valid == false)
+	{
+		data->exit_code = 1;
+		exit_free(data);
+	}
 	dup_childs(data, cmd, index);
 	if (exec_builtin(data, cmd))
 		exit_free(data);
