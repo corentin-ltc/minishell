@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:39:35 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/25 19:28:11 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/26 01:25:15 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,24 @@ static void	get_exec(t_data *data, t_cmd *cmd, char **path)
 	cmd->is_valid = false;
 }
 
+static void redirect_cmd(t_data *data, t_cmd *cmd, size_t index)
+{
+	//infile
+	close(data->pipe[0]);
+	if (index == 0 && cmd->in_fd == 0)
+		cmd->in_fd = dup(STDIN_FILENO);
+	dup2(cmd->in_fd, STDIN_FILENO);
+	close(cmd->in_fd);
+	//outfile
+	if (data->cmds[index + 1] == NULL && cmd->out_fd == 0)
+		cmd->out_fd = dup(STDOUT_FILENO);
+	else if (data->cmds[index + 1] != NULL && cmd->out_fd == 0)
+		cmd->out_fd = dup(data->pipe[1]);
+	close(data->pipe[1]);
+	dup2(cmd->out_fd, STDOUT_FILENO);
+	close(cmd->out_fd);
+}
+
 static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 {
 	if (cmd->is_valid == false)
@@ -48,7 +66,7 @@ static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 		data->exit_code = 1;
 		exit_free(data);
 	}
-	dup_childs(data, cmd, index);
+	redirect_cmd(data, cmd, index);
 	if (exec_builtin(data, cmd))
 		exit_free(data);
 	if (data->path)
@@ -80,29 +98,24 @@ static void	handle_parent(t_data *data, t_cmd *cmd, size_t  index)
 	close(data->pipe[0]);
 }
 
-static void	ft_exec(t_data *data, t_cmd *cmd, size_t index)
-{
-	pid_t	pid;
-
-	pipe(data->pipe);
-	pid = fork();
-	data->childs++;
-	if (pid == 0)
-		handle_child(data, cmd, index);
-	else
-		handle_parent(data, cmd, index);
-}
-
 void	exec_cmds(t_data *data)
 {
-	t_cmd	*cmd;
+	pid_t	pid;
 	size_t	i;
 
 	i = 0;
 	while (data->cmds[i])
 	{
-		cmd = data->cmds[i];
-		ft_exec(data, cmd, i);
+		if (pipe(data->pipe) == -1)
+			exit_error("A pipe failed", data);
+		pid = fork();
+		if (pid == -1)
+			exit_error("A fork failed", data);
+		data->childs++;
+		if (pid == 0)
+			handle_child(data, data->cmds[i], i);
+		else
+			handle_parent(data, data->cmds[i], i);
 		i++;
 	}
 	wait_childs(data);

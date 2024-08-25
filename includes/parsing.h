@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:48:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/25 19:25:49 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/26 01:34:01 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,5 @@ void		*parse_str(t_parser *parser, char *str, size_t	*i);
 int			ft_istoken(int c);
 int			ft_isfile_limiter(int c);
 char		*get_filename(char *str, t_parser parser);
-size_t  	count_quotes(char *str);
-bool		empty_pipes(char *str);
-bool		triple_redirection(char *str);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:05:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/25 19:25:26 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/26 01:34:20 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@
 /*structs|defines*/
 # include "defines.h"
 /*sources*/
-# include "init.h"
 # include "builtin.h"
 # include "parsing.h"
-# include "errors.h"
 # include "utils.h"
 # include "exec.h"
 
