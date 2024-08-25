@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 14:59:26 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/23 00:21:28 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/24 21:13:36 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,15 @@ void	reset_data(t_data *data)
 	data->childs = 0;
 	data->pipe[0] = 0;
 	data->pipe[1] = 0;
-	free(data->line);
+	if (data->line)
+		free(data->line);
 	data->line = NULL;
-	free_cmds(data->cmds);
+	if (data->cmds)
+		free_cmds(data->cmds);
 	data->cmds = NULL;
-	get_path(data);
 	if (data->pipe[0])
 		close(data->pipe[0]);
 	if (data->pipe[1])
 		close(data->pipe[1]);
+	get_path(data);
 }
