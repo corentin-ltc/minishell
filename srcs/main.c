@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/25 18:26:33 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/25 19:25:51 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,11 @@ static bool	is_valid_line(char *line)
 		return (false);
 	}
 	//check si triple chevron
+	if (triple_redirection(line))
+	{
+		ft_putstr_fd("syntax error\n", 2);
+		return (false);
+	}
 	return (true);
 }
 
@@ -91,7 +96,7 @@ int	main(int argc, char **argv, char **env)
 			get_infiles(&data);
 			get_outfiles(&data);	
 			get_args(&data);
-			show_data(data);
+			// show_data(data);
 			if (!single_builtin(&data))
 				exec_cmds(&data);
 		}

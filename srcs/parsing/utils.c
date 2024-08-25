@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 23:35:58 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/25 18:26:32 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/25 19:25:48 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,35 @@ bool	empty_pipes(char *str)
 			break ;
 		if (str[i] == '|')
 			i++;
-		printf("Pipe start :%s\n", str + i);
 		while (isspace(str[i]))
 			parse_str(&parser, str, &i);
-		printf("Pipe end :%s\n", str + i);
 		if (str[i] == '|')
+			return (true);
+		i++;
+	}
+	return (false);
+}
+
+bool	triple_redirection(char *str)
+{
+	t_parser	parser;
+	size_t		start;
+	size_t		i;
+
+	i = 0;
+	while (update_parser(&parser, str[i]))
+	{
+		while (str[i] && (parser.quotes || (str[i] != '<' && str[i] != '>')))
+			parse_str(&parser, str, &i);
+		if (str[i] == '\0')
+			break ;
+		if (str[i] == str[i + 1])
+			i += 2;
+		else
+			i += 1;
+		while (isspace(str[i]))
+			parse_str(&parser, str, &i);
+		if (ft_isfile_limiter(str[i]))
 			return (true);
 		i++;
 	}
