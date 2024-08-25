@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:39:35 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/24 21:07:20 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/25 17:39:53 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ static void	get_exec(t_data *data, t_cmd *cmd, char **path)
 
 static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 {
-	if (!cmd->is_valid)
-		exit_error("", data);
 	dup_childs(data, cmd, index);
 	if (exec_builtin(data, cmd))
 		exit_free(data);
@@ -55,9 +53,13 @@ static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 		perror(cmd->args[0]);
 		cmd->is_valid = false;
 	}
-	if (cmd->is_valid)
+	if (!cmd->is_valid)
+		data->exit_code = 127;
+	else
+	{
 		execve(cmd->args[0], cmd->args, data->env);
-	data->exit_code = 1;
+		data->exit_code = 1;
+	}
 	exit_free(data);
 }
 
@@ -80,7 +82,6 @@ static void	ft_exec(t_data *data, t_cmd *cmd, size_t index)
 	pipe(data->pipe);
 	pid = fork();
 	data->childs++;
-		
 	if (pid == 0)
 		handle_child(data, cmd, index);
 	else
