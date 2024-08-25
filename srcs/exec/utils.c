@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 19:25:33 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/24 20:53:01 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/25 17:29:06 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	wait_childs(t_data *data)
 	while (data->childs)
 	{
 		waitpid(-1, &data->exit_code, 0);
-		data->exit_code /= 256;
+		if (WIFEXITED(data->exit_code))
+			data->exit_code = WEXITSTATUS(data->exit_code);
 		data->childs--;
 	}
 }
