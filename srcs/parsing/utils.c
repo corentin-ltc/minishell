@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 23:35:58 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/23 07:54:01 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/25 18:26:32 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,12 @@ size_t	count_quotes(char *str)
 	t_parser	parser;
 	size_t		count;
 	size_t		i;
-	bool		in_quotes;
 
 	parser = new_parser();
-	in_quotes = false;
 	count = 0;
 	i = 0;
-	while (str[i])
+	while (update_parser(&parser, str[i]))
 	{
-		update_parser(&parser, str[i]);
 		if (!parser.quotes && (str[i] == '\'' || str[i] == '"'))
 			count++;
 		else if (parser.d_quotes && str[i] == '"')
@@ -77,4 +74,30 @@ size_t	count_quotes(char *str)
 		i++;
 	}
 	return (count);
+}
+
+bool	empty_pipes(char *str)
+{
+	t_parser	parser;
+	size_t		start;
+	size_t		i;
+
+	i = 0;
+	while (update_parser(&parser, str[i]))
+	{
+		while (str[i] && (parser.quotes || str[i] != '|'))
+			parse_str(&parser, str, &i);
+		if (str[i] == '\0')
+			break ;
+		if (str[i] == '|')
+			i++;
+		printf("Pipe start :%s\n", str + i);
+		while (isspace(str[i]))
+			parse_str(&parser, str, &i);
+		printf("Pipe end :%s\n", str + i);
+		if (str[i] == '|')
+			return (true);
+		i++;
+	}
+	return (false);
 }
