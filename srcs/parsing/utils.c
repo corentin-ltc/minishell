@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 23:35:58 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/25 20:50:47 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/26 01:33:26 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,78 +52,4 @@ char	*get_filename(char *str, t_parser parser)
 		parse_str(&parser, str, &i);
 	}
 	return (name);
-}
-
-size_t	count_quotes(char *str)
-{
-	t_parser	parser;
-	size_t		count;
-	size_t		i;
-
-	parser = new_parser();
-	count = 0;
-	i = 0;
-	while (update_parser(&parser, str[i]))
-	{
-		if (!parser.quotes && (str[i] == '\'' || str[i] == '"'))
-			count++;
-		else if (parser.d_quotes && str[i] == '"')
-			count++;
-		else if (parser.s_quotes && str[i] == '\'')
-			count++;
-		i++;
-	}
-	return (count);
-}
-
-bool	empty_pipes(char *str)
-{
-	t_parser	parser;
-	size_t		start;
-	size_t		i;
-
-	parser = new_parser();
-	i = 0;
-	while (update_parser(&parser, str[i]))
-	{
-		while (str[i] && (parser.quotes || str[i] != '|'))
-			parse_str(&parser, str, &i);
-		if (str[i] == '\0')
-			break ;
-		if (str[i] == '|')
-			i++;
-		while (isspace(str[i]))
-			parse_str(&parser, str, &i);
-		if (str[i] == '|')
-			return (true);
-		i++;
-	}
-	return (false);
-}
-
-bool	triple_redirection(char *str)
-{
-	t_parser	parser;
-	size_t		start;
-	size_t		i;
-
-	parser = new_parser();
-	i = 0;
-	while (update_parser(&parser, str[i]))
-	{
-		while (str[i] && (parser.quotes || (str[i] != '<' && str[i] != '>')))
-			parse_str(&parser, str, &i);
-		if (str[i] == '\0')
-			break ;
-		if (str[i] == str[i + 1])
-			i += 2;
-		else
-			i += 1;
-		while (isspace(str[i]))
-			parse_str(&parser, str, &i);
-		if (ft_isfile_limiter(str[i]))
-			return (true);
-		i++;
-	}
-	return (false);
 }
