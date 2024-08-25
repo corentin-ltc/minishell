@@ -6,11 +6,19 @@
 /*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:03:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/24 18:14:18 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/26 01:56:59 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	make_overflow(int *nb, int limit)
+{
+	if (*nb > limit)
+		*nb = *nb % limit - 1;
+	else if (*nb < 0)
+		*nb = *nb % limit;
+}
 
 void	ft_exit(t_data *data, t_cmd *cmd)
 {
@@ -33,8 +41,7 @@ void	ft_exit(t_data *data, t_cmd *cmd)
 			i++;
 		}
 		data->exit_code = ft_atoi(cmd->args[1]);
-		if (data->exit_code < 0 || data->exit_code > 255)
-			data->exit_code = 156;
+		make_overflow(&data->exit_code, 255);
 	}
 	if (data->cmds[1] == NULL)
 		ft_putstr("exit\n");
