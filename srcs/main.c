@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/24 18:27:25 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/25 18:26:33 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,25 @@ static bool	no_empty_cmd(t_data data)
 	return (true);
 }
 
+static bool	is_valid_line(char *line)
+{
+	//check si quote ouverte
+	if (count_quotes(line) % 2 != 0)
+	{
+		ft_putstr_fd("open quotes found\n", 2);
+		return (false);
+	}
+	//check si pipe vide
+	if (empty_pipes(line))
+	{
+		ft_putstr_fd("empty pipes found\n", 2);
+		return (false);
+	}
+	//check si triple chevron
+	return (true);
+}
+
+
 int	main(int argc, char **argv, char **env)
 {
 	t_data	data;
@@ -65,7 +84,7 @@ int	main(int argc, char **argv, char **env)
 		if (!data.line)
 			exit_free(&data);
 		add_history(data.line);
-		if (count_quotes(data.line) % 2 == 0)
+		if (is_valid_line(data.line))
 		{
 			get_vars(&data);
 			get_cmds(&data);
@@ -73,7 +92,7 @@ int	main(int argc, char **argv, char **env)
 			get_outfiles(&data);	
 			get_args(&data);
 			show_data(data);
-			if (!single_builtin(&data) && no_empty_cmd(data))
+			if (!single_builtin(&data))
 				exec_cmds(&data);
 		}
 		// printf("exit code : %d\n", data.exit_code);
