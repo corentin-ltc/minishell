@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:28:07 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/24 18:14:00 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/25 18:31:25 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	ft_unset(t_data *data, t_cmd *cmd)
 			}
 			i_env++;
 		}
-		if (data->env[i_env] == NULL)
-			data->exit_code = 1;
 		i_arg++;
 	}
 }
