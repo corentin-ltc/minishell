@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:08:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/23 07:54:31 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/25 20:15:36 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	get_args(t_data *data)
 	while (data->cmds[i])
 	{
 		get_arg(data, data->cmds[i]);
+		if (data->cmds[i]->args[0] == NULL)
+			data->cmds[i]->is_valid = false;
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/25 19:25:51 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/25 20:17:27 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static bool	single_builtin(t_data *data)
 {
 	int	stdout;
 
-	if (data->cmds[0] == NULL || data->cmds[1] != NULL)
+	if (data->cmds[0] == NULL || data->cmds[1] || !data->cmds[0]->is_valid)
 		return (false);
 	if (!is_builtin(data->cmds[0]->args[0]))
 		return (false);
@@ -96,7 +96,7 @@ int	main(int argc, char **argv, char **env)
 			get_infiles(&data);
 			get_outfiles(&data);	
 			get_args(&data);
-			// show_data(data);
+			show_data(data);
 			if (!single_builtin(&data))
 				exec_cmds(&data);
 		}

@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 23:35:58 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/25 19:25:48 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/25 19:32:09 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ bool	empty_pipes(char *str)
 	size_t		start;
 	size_t		i;
 
+	parser = new_parser();
 	i = 0;
 	while (update_parser(&parser, str[i]))
 	{
@@ -106,6 +107,7 @@ bool	triple_redirection(char *str)
 	size_t		start;
 	size_t		i;
 
+	parser = new_parser();
 	i = 0;
 	while (update_parser(&parser, str[i]))
 	{
