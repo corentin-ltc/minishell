@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 23:35:58 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/25 19:32:09 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/25 20:50:47 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*get_filename(char *str, t_parser parser)
 	size_t		i;
 	size_t		j;
 
-	name = calloc(ft_strlen(str), sizeof(char));
+	name = calloc(ft_strlen(str) + 1, sizeof(char));
 	if (!name)
 		return (NULL);
 	i = 0;
