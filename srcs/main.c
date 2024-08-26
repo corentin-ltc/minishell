@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 19:21:12 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/26 22:20:22 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	main(int argc, char **argv, char **env)
 			get_cmds(&data);
 			get_cleanlines(&data);
 			get_args(&data);
-			// show_data(data);
 			if (!single_builtin(&data))
 				exec_cmds(&data);
 		}
