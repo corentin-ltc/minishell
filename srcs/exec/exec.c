@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:39:35 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 19:07:12 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/26 22:22:42 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,13 @@ static void	get_exec(t_data *data, t_cmd *cmd, char **path)
 	cmd->is_valid = false;
 }
 
-static void redirect_cmd(t_data *data, t_cmd *cmd, size_t index)
+static void	redirect_cmd(t_data *data, t_cmd *cmd, size_t index)
 {
-	//infile
 	close(data->pipe[0]);
 	if (index == 0 && cmd->in_fd == 0)
 		cmd->in_fd = dup(STDIN_FILENO);
 	dup2(cmd->in_fd, STDIN_FILENO);
 	close(cmd->in_fd);
-	//outfile
 	if (data->cmds[index + 1] == NULL && cmd->out_fd == 0)
 		cmd->out_fd = dup(STDOUT_FILENO);
 	else if (data->cmds[index + 1] != NULL && cmd->out_fd == 0)
@@ -86,7 +84,7 @@ static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 	exit_free(data);
 }
 
-static void	handle_parent(t_data *data, t_cmd *cmd, size_t  index)
+static void	handle_parent(t_data *data, t_cmd *cmd, size_t index)
 {
 	close(data->pipe[1]);
 	if (cmd->in_fd > 0)

@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 00:20:30 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 19:20:59 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/26 22:20:41 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,5 @@ void	get_outfile(t_data *data, t_cmd *cmd)
 			parser.outfile = false;
 			i = 0;
 		}
-	}
-}
-
-void	get_outfiles(t_data *data)
-{
-	size_t	i;
-
-	i = 0;
-	while (data->cmds[i])
-	{
-		get_outfile(data, data->cmds[i]);
-		// ft_putstr_fd("This is the outfile\n", data->cmds[i]->out_fd);
-		i++;
 	}
 }
