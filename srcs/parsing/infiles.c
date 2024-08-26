@@ -3,10 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   infiles.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 18:49:58 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 22:22:38 by cle-tort         ###   ########.fr       */
+
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +103,7 @@ static void	handle_infile(t_data *data, t_cmd *cmd, t_parser *pars, size_t *i)
 	cmd->line = new_line;
 }
 
-static void	get_infile(t_data *data, t_cmd *cmd)
+void	get_infile(t_data *data, t_cmd *cmd)
 {
 	t_parser	parser;
 	size_t		i;
@@ -121,18 +118,5 @@ static void	get_infile(t_data *data, t_cmd *cmd)
 			parser.infile = false;
 			i = 0;
 		}
-	}
-}
-
-void	get_infiles(t_data *data)
-{
-	size_t	i;
-
-	i = 0;
-	while (data->cmds[i])
-	{
-		get_infile(data, data->cmds[i]);
-		// ft_putstr_fd("This is the infile\n", data->cmds[i]->in_fd);
-		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 20:02:36 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/22 20:48:09 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/26 22:21:02 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,5 @@ char	**ft_remove_index(char ***tab, size_t index)
 	free((*tab)[index]);
 	free(*tab);
 	*tab = new_tab;
-	return *tab;
+	return (*tab);
 }

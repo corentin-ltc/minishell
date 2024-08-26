@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmds.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 15:11:32 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/24 18:23:01 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/26 18:55:38 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ static t_cmd	*init_cmd(char *line)
 	cmd = malloc(sizeof(t_cmd));
 	if (!cmd)
 		return (NULL);
+	cmd->clean_line = ft_strdup(line);
+	if (!cmd->clean_line)
+		return (free(cmd), NULL);
 	cmd->line = line;
 	cmd->in_fd = 0;
 	cmd->out_fd = 0;

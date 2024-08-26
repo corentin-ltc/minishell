@@ -3,10 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 18:39:35 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 19:54:27 by cle-tort         ###   ########.fr       */
+
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +38,13 @@ static void	get_exec(t_data *data, t_cmd *cmd, char **path)
 	cmd->is_valid = false;
 }
 
-static void redirect_cmd(t_data *data, t_cmd *cmd, size_t index)
+static void	redirect_cmd(t_data *data, t_cmd *cmd, size_t index)
 {
-	//infile
 	close(data->pipe[0]);
 	if (index == 0 && cmd->in_fd == 0)
 		cmd->in_fd = dup(STDIN_FILENO);
 	dup2(cmd->in_fd, STDIN_FILENO);
 	close(cmd->in_fd);
-	//outfile
 	if (data->cmds[index + 1] == NULL && cmd->out_fd == 0)
 		cmd->out_fd = dup(STDOUT_FILENO);
 	else if (data->cmds[index + 1] != NULL && cmd->out_fd == 0)
@@ -87,7 +82,7 @@ static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 	exit_free(data);
 }
 
-static void	handle_parent(t_data *data, t_cmd *cmd, size_t  index)
+static void	handle_parent(t_data *data, t_cmd *cmd, size_t index)
 {
 	close(data->pipe[1]);
 	if (cmd->in_fd > 0)
@@ -114,7 +109,11 @@ void	exec_cmds(t_data *data)
 			exit_error("A fork failed", data);
 		data->childs++;
 		if (pid == 0)
+		{
+			get_infile(data, data->cmds[i]);
+			get_outfile(data, data->cmds[i]);
 			handle_child(data, data->cmds[i], i);
+		}
 		else
 			handle_parent(data, data->cmds[i], i);
 		i++;

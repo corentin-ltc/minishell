@@ -3,10 +3,6 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 22:25:16 by cle-tort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +25,10 @@ int	main(int argc, char **argv, char **env)
 		{
 			get_vars(&data);
 			get_cmds(&data);
-			get_infiles(&data);
-			if (g_signal != -42)
-			{
-				get_outfiles(&data);	
-				get_args(&data);
-				// show_data(data);
-				if (!single_builtin(&data))
-					exec_cmds(&data);
-			}
+			get_cleanlines(&data);
+			get_args(&data);
+			if (!single_builtin(&data))
+				exec_cmds(&data);
 		}
 		reset_data(&data);
 	}
