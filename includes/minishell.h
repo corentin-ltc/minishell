@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:05:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 01:34:20 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/26 19:45:06 by cle-tort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
+extern int	g_signal;
 
 /*libft*/
 # include "libft.h"
