@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 23:35:58 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 22:21:46 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/26 23:32:56 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	handle_file(t_data *data, t_cmd *cmd, t_parser *pars, size_t *i)
 	while (pars->quotes || !ft_isfile_limiter(cmd->clean_line[*i]))
 		parse_str(pars, cmd->clean_line, i);
 	start--;
-	if (pars->append)
+	if (pars->append || pars->here_doc)
 		start--;
 	new_line = ft_strcut(cmd->clean_line, start, *i - 1);
 	if (!new_line)

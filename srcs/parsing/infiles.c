@@ -48,6 +48,8 @@ static void	get_here_doc(t_data *data, t_cmd *cmd, char *limiter)
 	cmd->in_fd = open(HERE_DOC, O_RDONLY, 0777);
 	if (cmd->in_fd < 1)
 		perror("here_doc");
+	if (g_signal == -42)
+		exit_free(data);
 }
 
 static void	update_infile(t_data *data, t_cmd *cmd, t_parser *pars, char *name)
