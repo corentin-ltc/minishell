@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:48:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 01:34:01 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/26 18:51:23 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,18 @@ size_t		ft_countwords_noquotes(char *s, char *set);
 char		**ft_split_pipes(char *s, char *set);
 char		**ft_split_words(char *s, char *set);
 /*cmds*/
+void		get_cleanlines(t_data *data);
 void		get_cmds(t_data *data);
 /*vars*/
 void		get_vars(t_data *data);
 /*files*/
 void		get_infiles(t_data *data);
+void		get_infile(t_data *data, t_cmd *cmd);
 void		get_outfiles(t_data *data);
+void		get_outfile(t_data *data, t_cmd *cmd);
 /*args*/
 void		get_args(t_data *data);
+void		get_arg(t_data *data, t_cmd *cmd);
 /*parsers*/
 t_parser	new_parser(void);
 void		*update_parser(t_parser *parser, char c);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:55:57 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 01:21:34 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/26 19:09:05 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,9 @@ int	main(int argc, char **argv, char **env)
 		{
 			get_vars(&data);
 			get_cmds(&data);
-			get_infiles(&data);
-			get_outfiles(&data);	
+			get_cleanlines(&data);
 			get_args(&data);
-			// show_data(data);
+			show_data(data);
 			if (!single_builtin(&data))
 				exec_cmds(&data);
 		}

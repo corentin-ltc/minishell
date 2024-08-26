@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 14:59:26 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 01:34:55 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/26 19:06:42 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ void	show_data(t_data data)
 {
 	size_t	i;
 
+	printf("\n");
 	printf("Data->line : %s\n", data.line);
 	i = 0;
 	while (data.cmds[i])
 	{
 		printf("-----------Cmd[%zu]-----------\n", i);
 		printf("line: %s\n", data.cmds[i]->line);
+		printf("clean_line: %s\n", data.cmds[i]->clean_line);
 		printf("infile : %d", data.cmds[i]->in_fd);
 		printf(", outfile : %d\n", data.cmds[i]->out_fd);
 		if (data.cmds[i]->args)
@@ -29,6 +31,7 @@ void	show_data(t_data data)
 		printf("----------------------------\n");
 		i++;
 	}
+	printf("\n");
 }
 
 static void	get_path(t_data *data)
