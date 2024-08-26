@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 18:39:35 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 01:25:15 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/26 19:07:12 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,11 @@ void	exec_cmds(t_data *data)
 			exit_error("A fork failed", data);
 		data->childs++;
 		if (pid == 0)
+		{
+			get_infile(data, data->cmds[i]);
+			get_outfile(data, data->cmds[i]);
 			handle_child(data, data->cmds[i], i);
+		}
 		else
 			handle_parent(data, data->cmds[i], i);
 		i++;

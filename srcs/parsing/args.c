@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:08:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/25 20:15:36 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/26 18:59:16 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ static char	*remove_quotes(char *str)
 	return (new);
 }
 
-static void	get_arg(t_data *data, t_cmd *cmd)
+void	get_arg(t_data *data, t_cmd *cmd)
 {
 	char	*str_noquotes;
 	size_t	i;
 
-	cmd->args = ft_split_words(cmd->line, " ");
+	cmd->args = ft_split_words(cmd->clean_line, " ");
 	if (!cmd->args)
 		exit_error("malloc", data);
 	i = 0;
@@ -58,6 +58,8 @@ static void	get_arg(t_data *data, t_cmd *cmd)
 		cmd->args[i] = str_noquotes;
 		i++;
 	}
+	if (cmd->args[0] == NULL)
+		cmd->is_valid = false;
 }
 
 void	get_args(t_data *data)
@@ -68,8 +70,6 @@ void	get_args(t_data *data)
 	while (data->cmds[i])
 	{
 		get_arg(data, data->cmds[i]);
-		if (data->cmds[i]->args[0] == NULL)
-			data->cmds[i]->is_valid = false;
 		i++;
 	}
 }
