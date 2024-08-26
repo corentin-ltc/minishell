@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:57:44 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/25 20:07:45 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/26 22:26:41 by cle-tort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,13 @@
 
 int	g_signal = 0;
 
-static void	sig_newline(int sig)
+void	sig_newline_heredoc(int sig)
+{
+	g_signal = -42;
+	(void)sig;
+}
+
+void	sig_newline(int sig)
 {
 	g_signal = sig;
 	ft_putstr("\n");
