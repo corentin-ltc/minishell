@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 23:35:58 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 19:20:56 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/26 22:21:46 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	handle_file(t_data *data, t_cmd *cmd, t_parser *pars, size_t *i)
 	while (pars->quotes || !ft_isfile_limiter(cmd->clean_line[*i]))
 		parse_str(pars, cmd->clean_line, i);
 	start--;
-	if (pars->here_doc | pars->append)
+	if (pars->append)
 		start--;
 	new_line = ft_strcut(cmd->clean_line, start, *i - 1);
 	if (!new_line)
@@ -79,27 +79,23 @@ static void	handle_file(t_data *data, t_cmd *cmd, t_parser *pars, size_t *i)
 void	get_cleanlines(t_data *data)
 {
 	t_parser	parser;
-	char	*line;
-	size_t	i_cmd;
-	size_t	i;
+	size_t		i_cmd;
+	size_t		i;
 
 	i_cmd = 0;
 	while (data->cmds[i_cmd])
 	{
-		line = data->cmds[i_cmd]->clean_line;
 		parser = new_parser();
 		i = 0;
-		while (parse_str(&parser, line, &i))
+		while (parse_str(&parser, data->cmds[i_cmd]->clean_line, &i))
 		{
 			if (parser.infile || parser.outfile)
 			{
 				handle_file(data, data->cmds[i_cmd], &parser, &i);
-				parser.infile = false;
-				parser.outfile = false;
+				parser = new_parser();
 				i = 0;
 			}
 		}
 		i_cmd++;
 	}
 }
-
