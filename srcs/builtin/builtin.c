@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:23:03 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 18:30:23 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/26 22:22:08 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ bool	is_builtin(char *cmd)
 
 bool	exec_builtin(t_data *data, t_cmd *cmd)
 {
-	
 	if (!ft_strcmp(cmd->args[0], "echo"))
 		ft_echo(data, cmd);
 	else if (!ft_strcmp(cmd->args[0], "cd"))

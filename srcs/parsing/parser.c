@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:30:21 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/24 18:00:10 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/26 22:21:22 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	*update_parser(t_parser *parser, char c)
 		parser->d_quotes = !parser->d_quotes;
 	else if (c == '\'' && parser->d_quotes == false)
 		parser->s_quotes = !parser->s_quotes;
-	parser->quotes = parser->d_quotes || parser->s_quotes;
+	parser->quotes = (parser->d_quotes || parser->s_quotes);
 	if (!c)
 		return (NULL);
 	return (parser);

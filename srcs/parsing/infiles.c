@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 18:49:58 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 18:52:21 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/26 22:21:31 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,18 +103,5 @@ void	get_infile(t_data *data, t_cmd *cmd)
 			parser.infile = false;
 			i = 0;
 		}
-	}
-}
-
-void	get_infiles(t_data *data)
-{
-	size_t	i;
-
-	i = 0;
-	while (data->cmds[i])
-	{
-		get_infile(data, data->cmds[i]);
-		// ft_putstr_fd("This is the infile\n", data->cmds[i]->in_fd);
-		i++;
 	}
 }
