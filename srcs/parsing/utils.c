@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 23:35:58 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 01:33:26 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/26 22:21:46 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,50 @@ char	*get_filename(char *str, t_parser parser)
 		parse_str(&parser, str, &i);
 	}
 	return (name);
+}
+
+static void	handle_file(t_data *data, t_cmd *cmd, t_parser *pars, size_t *i)
+{
+	char	*new_line;
+	size_t	start;
+
+	start = *i;
+	while (ft_isspace(cmd->clean_line[*i]))
+		parse_str(pars, cmd->clean_line, i);
+	if (!cmd->clean_line[*i])
+		exit_error("syntax error near redirection token", data);
+	while (pars->quotes || !ft_isfile_limiter(cmd->clean_line[*i]))
+		parse_str(pars, cmd->clean_line, i);
+	start--;
+	if (pars->append)
+		start--;
+	new_line = ft_strcut(cmd->clean_line, start, *i - 1);
+	if (!new_line)
+		exit_error("malloc", data);
+	free(cmd->clean_line);
+	cmd->clean_line = new_line;
+}
+
+void	get_cleanlines(t_data *data)
+{
+	t_parser	parser;
+	size_t		i_cmd;
+	size_t		i;
+
+	i_cmd = 0;
+	while (data->cmds[i_cmd])
+	{
+		parser = new_parser();
+		i = 0;
+		while (parse_str(&parser, data->cmds[i_cmd]->clean_line, &i))
+		{
+			if (parser.infile || parser.outfile)
+			{
+				handle_file(data, data->cmds[i_cmd], &parser, &i);
+				parser = new_parser();
+				i = 0;
+			}
+		}
+		i_cmd++;
+	}
 }

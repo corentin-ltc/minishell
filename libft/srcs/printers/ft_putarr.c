@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putarr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:56:01 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/21 02:13:51 by cle-tort         ###   ########.fr       */
+/*   Updated: 2024/08/26 19:05:31 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ void	ft_putarr(char **arr)
 	while (arr[i])
 	{
 		ft_putstr_fd("arr[", 2);
-		ft_putstr_fd(ft_itoa(i), 2);
+		ft_putnbr_fd(i, 2);
 		ft_putstr_fd("]: ", 2);
 		ft_putendl_fd(arr[i], 2);
-		//ft_printf("arr[%d]: %s\n", i, arr[i]);
 		i++;
 	}
 }

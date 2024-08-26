@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:46:40 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 01:55:01 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/26 19:07:01 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	free_cmds(t_cmd **cmd)
 	{
 		if (cmd[i]->line)
 			free(cmd[i]->line);
+		if (cmd[i]->clean_line)
+			free(cmd[i]->clean_line);
 		if (cmd[i]->args)
 			free_2d((void **)cmd[i]->args, 0);
 		if (cmd[i]->in_fd > 0)

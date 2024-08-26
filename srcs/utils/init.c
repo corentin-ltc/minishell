@@ -16,12 +16,14 @@ void	show_data(t_data data)
 {
 	size_t	i;
 
+	printf("\n");
 	printf("Data->line : %s\n", data.line);
 	i = 0;
 	while (data.cmds[i])
 	{
 		printf("-----------Cmd[%zu]-----------\n", i);
 		printf("line: %s\n", data.cmds[i]->line);
+		printf("clean_line: %s\n", data.cmds[i]->clean_line);
 		printf("infile : %d", data.cmds[i]->in_fd);
 		printf(", outfile : %d\n", data.cmds[i]->out_fd);
 		if (data.cmds[i]->args)
@@ -29,6 +31,7 @@ void	show_data(t_data data)
 		printf("----------------------------\n");
 		i++;
 	}
+	printf("\n");
 }
 
 static void	get_path(t_data *data)
