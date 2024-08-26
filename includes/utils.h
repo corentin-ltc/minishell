@@ -3,10 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 17:48:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 18:40:05 by nbellila         ###   ########.fr       */
+
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +29,8 @@ char	*get_filenaname(char *str);
 bool	is_valid_line(char *line);
 bool	single_builtin(t_data *data);
 size_t	count_quotes(char *str);
+/*signals*/
+void	sig_newline_heredoc(int sig);
+void	sig_newline(int sig);
 
 #endif

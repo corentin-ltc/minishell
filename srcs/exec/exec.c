@@ -3,10 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/21 18:39:35 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 22:22:42 by nbellila         ###   ########.fr       */
+
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +75,7 @@ static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 		data->exit_code = 127;
 	else
 	{
+		signal(SIGQUIT, SIG_DFL);
 		execve(cmd->args[0], cmd->args, data->env);
 		data->exit_code = 1;
 	}
