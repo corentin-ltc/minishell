@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 00:47:50 by nabil             #+#    #+#             */
-/*   Updated: 2024/08/27 20:11:41 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/27 20:22:45 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ static bool	empty_pipes(char *str)
 
 	parser = new_parser();
 	i = 0;
+	if (str[0] == '|')
+		return (true);
 	while (update_parser(&parser, str[i]))
 	{
 		while (str[i] && (parser.quotes || str[i] != '|'))
@@ -76,6 +78,8 @@ static bool	empty_pipes(char *str)
 			break ;
 		if (str[i] == '|')
 			i++;
+		if (str[i] == '\0')
+			return (true);
 		while (isspace(str[i]))
 			parse_str(&parser, str, &i);
 		if (str[i] == '|')
