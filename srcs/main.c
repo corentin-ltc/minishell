@@ -28,10 +28,13 @@ int	main(int argc, char **argv, char **env)
 			get_vars(&data);
 			get_cmds(&data);
 			get_heredocs(&data);
-			get_cleanlines(&data);
-			get_args(&data);
-			if (!single_builtin(&data))
-				exec_cmds(&data);
+			if (g_signal != -42)
+			{
+				get_cleanlines(&data);
+				get_args(&data);
+				if (!single_builtin(&data))
+					exec_cmds(&data);
+			}
 		}
 		reset_data(&data);
 	}
