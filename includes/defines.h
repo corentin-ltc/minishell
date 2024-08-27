@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 15:51:20 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 18:51:43 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:56:18 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_cmd{
 	char	**args;
 	int		in_fd;
 	int		out_fd;
-	bool	is_heredoc;
+	char	*heredoc;
 	bool	is_valid;
 }t_cmd;
 

@@ -8,6 +8,8 @@
 
 #include "minishell.h"
 
+void	get_heredocs(t_data *data);
+
 int	main(int argc, char **argv, char **env)
 {
 	t_data	data;
@@ -25,6 +27,7 @@ int	main(int argc, char **argv, char **env)
 		{
 			get_vars(&data);
 			get_cmds(&data);
+			get_heredocs(&data);
 			get_cleanlines(&data);
 			get_args(&data);
 			if (!single_builtin(&data))

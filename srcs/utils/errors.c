@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:46:40 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 19:07:01 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/27 20:15:11 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,15 @@ void	free_cmds(t_cmd **cmd)
 			free(cmd[i]->clean_line);
 		if (cmd[i]->args)
 			free_2d((void **)cmd[i]->args, 0);
-		if (cmd[i]->in_fd > 0)
-		{
+		if (access(cmd[i]->heredoc, F_OK) == 0)
+			unlink(cmd[i]->heredoc);
+		free(cmd[i]->heredoc);
+		if (cmd[i]->in_fd)
 			close(cmd[i]->in_fd);
-			cmd[i]->in_fd = -42;
-		}
-		if (cmd[i]->out_fd > 0)
-		{
+		cmd[i]->in_fd = 0;
+		if (cmd[i]->out_fd)
 			close(cmd[i]->out_fd);
-			cmd[i]->out_fd = -42;
-		}
+		cmd[i]->out_fd = 0;
 		free(cmd[i]);
 		i++;
 	}
@@ -88,6 +87,4 @@ void	free_data(t_data *data)
 		close(data->pipe[0]);
 	if (data->pipe[1])
 		close(data->pipe[1]);
-	if (access(HERE_DOC, F_OK) == 0)
-		unlink(HERE_DOC);
 }

@@ -18,6 +18,7 @@ INCLUDES =	includes \
 PARSING =	split.c \
 			parser.c \
 			vars.c \
+			heredocs.c \
 			infiles.c \
 			outfiles.c \
 			cmds.c \
