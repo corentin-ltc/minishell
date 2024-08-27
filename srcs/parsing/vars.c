@@ -39,7 +39,7 @@ static char	*get_varname(t_data *data, char *line)
 	else
 	{
 		len = 0;
-		while (!ft_istoken(line[len]))
+		while (ft_isalnum(line[len]))
 			len++;
 	}
 	name = ft_substr(line, 0, len);
