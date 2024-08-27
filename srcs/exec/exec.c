@@ -75,7 +75,7 @@ static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 		data->exit_code = 127;
 	else
 	{
-		signal(SIGQUIT, SIG_DFL);
+		signal(SIGQUIT, sig_newline);
 		execve(cmd->args[0], cmd->args, data->env);
 		data->exit_code = 1;
 	}

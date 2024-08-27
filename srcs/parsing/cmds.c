@@ -6,13 +6,28 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 15:11:32 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 18:55:38 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/27 20:06:22 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static t_cmd	*init_cmd(char *line)
+static char	*get_heredoc_name(size_t index)
+{
+	char	*name;
+	char	*number;
+
+	number = ft_itoa(index);
+	if (!number)
+		return(NULL);
+	name = ft_strjoin_sep(".heredoc_", ".tmp", number);
+	free(number);
+	if (!name)
+		return (NULL);
+	return (name);
+}
+
+static t_cmd	*init_cmd(char *line, size_t index)
 {
 	t_cmd	*cmd;
 
@@ -22,10 +37,12 @@ static t_cmd	*init_cmd(char *line)
 	cmd->clean_line = ft_strdup(line);
 	if (!cmd->clean_line)
 		return (free(cmd), NULL);
+	cmd->heredoc = get_heredoc_name(index);
+	if (!cmd->heredoc)
+		return (free(cmd->clean_line), free(cmd), NULL);
 	cmd->line = line;
 	cmd->in_fd = 0;
 	cmd->out_fd = 0;
-	cmd->is_heredoc = false;
 	cmd->args = NULL;
 	cmd->is_valid = true;
 	return (cmd);
@@ -49,7 +66,7 @@ void	get_cmds(t_data *data)
 	i = 0;
 	while (cmds[i])
 	{
-		data->cmds[i] = init_cmd(cmds[i]);
+		data->cmds[i] = init_cmd(cmds[i], i);
 		if (!data->cmds[i])
 		{
 			free_2d((void **)&cmds[i], 0);
