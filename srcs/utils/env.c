@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 18:18:19 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/22 20:24:08 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/27 22:00:46 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char	*ft_setenv(char *name, char *value, char ***env)
 				free(str);
 				return (NULL);
 			}
+			break;
 		}
 		i++;
 	}
