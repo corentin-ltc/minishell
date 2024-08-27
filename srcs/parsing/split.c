@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 16:32:01 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/24 18:23:01 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/27 22:15:31 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ char	**ft_minisplit_words(char **dest, char *src, char *set, t_parser parser)
 		if (start == i)
 			break ;
 		dest[col] = ft_substr(src, start, i - start);
+		free(dest[col]);
+		dest[col] = NULL;
 		if (!dest[col])
 			return (free_2d((void **)dest, col));
 		col++;
@@ -102,10 +104,7 @@ char	**ft_split_pipes(char *s, char *set)
 	parser = new_parser();
 	parser.set = set;
 	if (!ft_minisplit(split, s, set, parser))
-	{
-		free_2d((void **)split, 0);
 		return (NULL);
-	}
 	return (split);
 }
 
@@ -124,9 +123,6 @@ char	**ft_split_words(char *s, char *set)
 	parser = new_parser();
 	parser.set = set;
 	if (!ft_minisplit_words(split, s, set, parser))
-	{
-		free_2d((void **)split, 0);
 		return (NULL);
-	}
 	return (split);
 }
