@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 00:20:30 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 22:20:41 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/27 21:29:52 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	update_outfile(t_data *data, t_cmd *cmd, t_parser *pars, char *name)
 		cmd->out_fd = open(trimmed, O_WRONLY | O_CREAT | O_APPEND, 0777);
 	else
 		cmd->out_fd = open(trimmed, O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	if (cmd->out_fd < 0)
+	if (cmd->is_valid && cmd->out_fd < 0)
 	{
 		perror(trimmed);
 		cmd->is_valid = false;
