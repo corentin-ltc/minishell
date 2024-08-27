@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 16:32:01 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/27 22:15:31 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/27 22:20:14 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ char	**ft_minisplit_words(char **dest, char *src, char *set, t_parser parser)
 		if (start == i)
 			break ;
 		dest[col] = ft_substr(src, start, i - start);
-		free(dest[col]);
-		dest[col] = NULL;
 		if (!dest[col])
 			return (free_2d((void **)dest, col));
 		col++;
