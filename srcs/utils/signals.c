@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:57:44 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/27 00:36:11 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/27 22:45:21 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	g_signal = 0;
 void	sig_newline_heredoc(int sig)
 {
 	g_signal = -42;
+	close(0);
+	ft_putstr("\n");
 	(void)sig;
 }
 
