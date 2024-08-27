@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 15:51:20 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/27 19:56:18 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/28 00:34:55 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define DEFINES_H
 
 # define HERE_DOC ".here_doc.tmp"
+
+extern int	g_signal;
 
 typedef struct s_cmd{
 	char	*clean_line;

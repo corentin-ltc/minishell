@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 14:59:26 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/27 20:00:49 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/28 00:28:20 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	show_data(t_data data)
 
 static void	get_path(t_data *data)
 {
-	char *path;
+	char	*path;
 
 	if (data->path)
 		free_2d((void **)data->path, 0);
@@ -67,6 +67,7 @@ void	init_data(t_data *data, char **env)
 
 void	reset_data(t_data *data)
 {
+	g_signal = 0;
 	data->childs = 0;
 	data->pipe[0] = 0;
 	data->pipe[1] = 0;

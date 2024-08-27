@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/28 00:25:51 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/28 00:26:09 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	get_heredocs(t_data *data);
 
 int	main(int argc, char **argv, char **env)
 {
@@ -19,24 +21,22 @@ int	main(int argc, char **argv, char **env)
 	init_data(&data, env);
 	while (true)
 	{
+		reset_data(&data);
 		data.line = readline("minishell > ");
 		if (!data.line)
 			exit_free(&data);
 		add_history(data.line);
-		if (is_valid_line(data.line))
-		{
-			get_vars(&data);
-			get_cmds(&data);
-			get_heredocs(&data);
-			if (g_signal != -42)
-			{
-				get_cleanlines(&data);
-				get_args(&data);
-				if (!single_builtin(&data))
-					exec_cmds(&data);
-			}
-		}
-		reset_data(&data);
+		if (!is_valid_line(data.line))
+			continue ;
+		get_vars(&data);
+		get_cmds(&data);
+		get_heredocs(&data);
+		if (g_signal == -42)
+			continue ;
+		get_cleanlines(&data);
+		get_args(&data);
+		if (!single_builtin(&data))
+			exec_cmds(&data);
 	}
 	return (0);
 }

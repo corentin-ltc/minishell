@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 19:39:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/28 00:10:03 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/28 00:26:16 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	get_here_doc(t_data *data, t_cmd *cmd, char *limiter)
 	while (g_signal != -42)
 	{
 		if (!here_doc_loop(data, cmd, limiter))
-			break;
+			break ;
 	}
 	close(cmd->in_fd);
 	cmd->in_fd = 0;

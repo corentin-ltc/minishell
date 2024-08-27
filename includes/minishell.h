@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:05:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 19:45:06 by cle-tort         ###   ########.fr       */
+/*   Updated: 2024/08/28 00:35:39 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-
-extern int	g_signal;
 
 /*libft*/
 # include "libft.h"
@@ -23,7 +21,7 @@ extern int	g_signal;
 /*signals*/
 # include <signal.h>
 /*wait*/
-#include <sys/wait.h>
+# include <sys/wait.h>
 /*dirs*/
 # include <sys/types.h>
 # include <dirent.h>

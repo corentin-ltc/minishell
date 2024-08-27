@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:28:07 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/24 18:12:41 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/28 00:28:09 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@ void	ft_export(t_data *data, t_cmd *cmd)
 		name = 0;
 		while (cmd->args[i][name] && ft_isalnum(cmd->args[i][name]))
 			name++;
-		if (ft_isalpha(cmd->args[i][0]) && name > 0 && cmd->args[i][name] == '=')
+		if (ft_isalpha(cmd->args[i][0])
+			&& name > 0 && cmd->args[i][name] == '=')
 		{
 			cmd->args[i][name] = '\0';
-			if (!ft_setenv(cmd->args[i], &(cmd->args[i][name + 1]), &(data->env)))
+			if (!ft_setenv(cmd->args[i],
+					&(cmd->args[i][name + 1]), &(data->env)))
 				exit_error("setenv alloc failed", data);
 		}
 		else if (!ft_isalpha(cmd->args[i][0]) || cmd->args[i][name])
