@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 00:47:50 by nabil             #+#    #+#             */
-/*   Updated: 2024/08/27 20:22:45 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/28 00:28:33 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ static bool	empty_pipes(char *str)
 	}
 	return (false);
 }
+
 static bool	triple_redirection(char *str)
 {
 	t_parser	parser;
@@ -116,7 +117,6 @@ static bool	triple_redirection(char *str)
 
 bool	is_valid_line(char *line)
 {
-	// check pipes seul
 	if (count_quotes(line) % 2 != 0)
 	{
 		ft_putstr_fd("open quotes found\n", 2);

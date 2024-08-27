@@ -3,7 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/28 00:26:46 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/28 00:31:47 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +36,7 @@ static void	get_exec(t_data *data, t_cmd *cmd, char **path)
 		}
 		free(exec);
 	}
-	if (access(cmd->args[0], X_OK) == -1)
-		shell_error(cmd->args[0], "command not found");
+	shell_error(cmd->args[0], "command not found");
 	cmd->is_valid = false;
 	data->exit_code = 127;
 }
@@ -65,7 +67,7 @@ static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 	redirect_cmd(data, cmd, index);
 	if (exec_builtin(data, cmd))
 		exit_free(data);
-	if (ft_countchar(cmd->args[0], '/') == 0)
+	if (ft_countchar(cmd->args[0], '/') == 0 && data->path)
 		get_exec(data, cmd, data->path);
 	else
 		check_absolute_path(data, cmd);

@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:48:54 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 18:51:23 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/28 00:19:54 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ void		get_cmds(t_data *data);
 /*vars*/
 void		get_vars(t_data *data);
 /*files*/
-void		get_infiles(t_data *data);
+void		get_heredocs(t_data *data);
 void		get_infile(t_data *data, t_cmd *cmd);
-void		get_outfiles(t_data *data);
 void		get_outfile(t_data *data, t_cmd *cmd);
 /*args*/
 void		get_args(t_data *data);

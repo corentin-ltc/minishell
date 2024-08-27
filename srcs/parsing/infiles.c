@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   infiles.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/28 00:26:21 by nbellila          #+#    #+#             */
+/*   Updated: 2024/08/28 00:26:29 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-extern int	g_signal;
 
 static void	update_infile(t_data *data, t_cmd *cmd, t_parser *pars, char *name)
 {

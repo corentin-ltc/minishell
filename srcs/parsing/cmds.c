@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 15:11:32 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/27 20:06:22 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/28 00:26:38 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*get_heredoc_name(size_t index)
 
 	number = ft_itoa(index);
 	if (!number)
-		return(NULL);
+		return (NULL);
 	name = ft_strjoin_sep(".heredoc_", ".tmp", number);
 	free(number);
 	if (!name)
