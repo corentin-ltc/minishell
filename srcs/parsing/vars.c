@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vars.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 16:34:17 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/23 07:58:05 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/28 01:07:33 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	get_varindex(char *line)
 	while (line[i])
 	{
 		update_parser(&parser, line[i]);
-		if (!parser.s_quotes && line[i] == '$' && !ft_istoken(line[i + 1]))
+		if (!parser.s_quotes && line[i] == '$' && ft_isalnum(line[i + 1]))
 			return (i);
 		i++;
 	}
@@ -54,7 +54,7 @@ static void	*get_newline(t_data *data, size_t index, char *value, char *name)
 	size_t	len;
 
 	len = 0;
-	while (!ft_istoken(name[len]))
+	while (ft_isalnum(name[len]))
 		len++;
 	new = calloc(ft_strlen(data->line) - len + ft_strlen(value), sizeof(char));
 	if (!new)
