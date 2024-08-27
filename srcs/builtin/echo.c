@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:59:38 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 01:54:54 by nabil            ###   ########.fr       */
+/*   Updated: 2024/08/27 20:11:38 by cle-tort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static bool	is_n_flag(char *str)
 {
 	size_t	i;
 
+	if (!str)
+		return (false);
 	if (str[0] != '-')
 		return (false);
 	i = 1 + ft_skipcharset(&str[1], "n");
