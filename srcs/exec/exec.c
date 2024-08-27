@@ -36,6 +36,7 @@ static void	get_exec(t_data *data, t_cmd *cmd, char **path)
 	if (access(cmd->args[0], X_OK) == -1)
 		shell_error(cmd->args[0], "command not found");
 	cmd->is_valid = false;
+	data->exit_code = 127;
 }
 
 static void	redirect_cmd(t_data *data, t_cmd *cmd, size_t index)
@@ -64,16 +65,11 @@ static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 	redirect_cmd(data, cmd, index);
 	if (exec_builtin(data, cmd))
 		exit_free(data);
-	if (data->path)
+	if (ft_countchar(cmd->args[0], '/') == 0)
 		get_exec(data, cmd, data->path);
-	else if (access(cmd->args[0], X_OK) == -1)
-	{
-		perror(cmd->args[0]);
-		cmd->is_valid = false;
-	}
-	if (!cmd->is_valid)
-		data->exit_code = 127;
 	else
+		check_absolute_path(data, cmd);
+	if (cmd->is_valid)
 	{
 		signal(SIGQUIT, sig_newline);
 		execve(cmd->args[0], cmd->args, data->env);

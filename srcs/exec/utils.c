@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 19:25:33 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/27 00:35:55 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/27 21:12:56 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,32 @@ void	wait_childs(t_data *data)
 			data->exit_code = 128 + g_signal;
 		data->childs--;
 	}
+}
+
+void	check_absolute_path(t_data *data, t_cmd *cmd)
+{
+	void	*dir;
+
+	cmd->is_valid = false;
+	dir = opendir(cmd->args[0]);
+	if (dir)
+	{
+		shell_error(cmd->args[0], "Is a directory");
+		data->exit_code = 126;
+		closedir(dir);
+		return ;
+	}
+	if (access(cmd->args[0], F_OK) == -1)
+	{
+		perror(cmd->args[0]);
+		data->exit_code = 127;
+		return ;
+	}
+	if (access(cmd->args[0], X_OK) == -1)
+	{
+		perror(cmd->args[0]);
+		data->exit_code = 126;
+		return ;
+	}
+	cmd->is_valid = true;
 }
