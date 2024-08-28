@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 16:32:01 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/27 22:20:14 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/28 01:52:12 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	**ft_minisplit_words(char **dest, char *src, char *set, t_parser parser)
 		while ((src[i] == ' ') && !parser.quotes)
 			parse_str(&parser, src, &i);
 		start = i;
-		while (src[i] && (parser.quotes || src[i] != ' '))
+		while (src[i] && (parser.quotes || !ft_strchr(set, src[i])))
 			parse_str(&parser, src, &i);
 		if (start == i)
 			break ;

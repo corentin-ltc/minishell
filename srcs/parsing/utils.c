@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 23:35:58 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/27 00:35:58 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/28 01:51:34 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ char	*get_filename(char *str, t_parser parser)
 	while (parser.quotes || !ft_isfile_limiter(str[i]))
 	{
 		if ((parser.quotes || !ft_istoken(str[i]))
-			&& !(parser.d_quotes && str[i] == '"'
-				|| parser.s_quotes && str[i] == '\''))
+			&& !((parser.d_quotes && str[i] == '"')
+				|| (parser.s_quotes && str[i] == '\'')))
 		{
 			name[j] = str[i];
 			j++;

@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 16:34:17 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/28 01:38:34 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/28 01:48:12 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	get_varindex(char *line)
 	{
 		update_parser(&parser, line[i]);
 		if (!parser.s_quotes && line[i] == '$' && (ft_isalnum(line[i + 1])
-			|| line[i + 1] == '?'))
+				|| line[i + 1] == '?'))
 			return (i);
 		i++;
 	}
