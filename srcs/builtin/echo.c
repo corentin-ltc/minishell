@@ -6,7 +6,7 @@
 /*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:59:38 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/27 20:11:38 by cle-tort         ###   ########.fr       */
+/*   Updated: 2024/08/28 19:24:45 by cle-tort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	ft_echo(t_data *data, t_cmd *cmd)
 	size_t	i;
 
 	data->exit_code = 0;
-	if (cmd->args[1] == NULL)
-		return ;
 	n_flag = is_n_flag(cmd->args[1]);
 	i = 1;
 	while (n_flag && is_n_flag(cmd->args[i]))
