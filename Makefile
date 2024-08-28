@@ -2,9 +2,9 @@
 
 NAME = minishell
 
-CC = cc -g3
+CC = cc
 
-FLAGS = #-Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
 LINKFLAGS = -lreadline
 

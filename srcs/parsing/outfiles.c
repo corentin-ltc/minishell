@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 00:20:30 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/27 21:29:52 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/28 01:51:05 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static void	handle_outfile(t_data *data, t_cmd *cmd, t_parser *pars, size_t *i)
 void	get_outfile(t_data *data, t_cmd *cmd)
 {
 	t_parser	parser;
-	size_t		start;
 	size_t		i;
 
 	parser = new_parser();

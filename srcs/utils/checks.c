@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 00:47:50 by nabil             #+#    #+#             */
-/*   Updated: 2024/08/28 00:28:33 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/28 01:50:42 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ bool	single_builtin(t_data *data)
 		data->exit_code = 1;
 		return (false);
 	}
+	stdout = dup(STDOUT_FILENO);
 	if (ft_strcmp(data->cmds[0]->args[0], "exit"))
 	{
-		stdout = dup(STDOUT_FILENO);
 		if (data->cmds[0]->out_fd)
 			dup2(data->cmds[0]->out_fd, STDOUT_FILENO);
 	}
