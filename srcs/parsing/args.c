@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   args.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:08:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/28 19:35:22 by cle-tort         ###   ########.fr       */
+/*   Updated: 2024/08/30 16:16:38 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,9 @@ void	get_arg(t_data *data, t_cmd *cmd)
 	char	*str_noquotes;
 	size_t	i;
 
-	cmd->args = ft_split_words(cmd->clean_line, " \n\t");
+	cmd->args = ft_split_words(cmd->clean_line, " \n\t\v\f\r");
 	if (!cmd->args)
 		exit_error("malloc", data);
-	ft_putarr(cmd->args);
 	i = 0;
 	while (cmd->args[i])
 	{

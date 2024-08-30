@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 16:32:01 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/28 19:38:15 by cle-tort         ###   ########.fr       */
+/*   Updated: 2024/08/30 16:18:33 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	**ft_minisplit_words(char **dest, char *src, char *set, t_parser parser)
 	update_parser(&parser, src[i]);
 	while (update_parser(&parser, src[i]))
 	{
-		while ((src[i] == ' ') && !parser.quotes)
+		while (ft_strchr(set, src[i]) && !parser.quotes)
 			parse_str(&parser, src, &i);
 		start = i;
 		while (src[i] && (parser.quotes || !ft_strchr(set, src[i])))
