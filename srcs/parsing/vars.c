@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vars.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 16:34:17 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/30 17:27:10 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/30 19:33:09 by cle-tort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ static void	*get_newline(t_data *data, size_t index, char *value, char *name)
 		len++;
 	if (len == 0 && name[len] == '?')
 		len = 1;
-	new = ft_calloc(ft_strlen(data->line) - len + ft_strlen(value), sizeof(char));
+	new = ft_calloc(ft_strlen(data->line) - len
+			+ ft_strlen(value), sizeof(char));
 	if (!new)
 		return (NULL);
 	ft_strlcat(new, data->line, index + 1);

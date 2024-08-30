@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cle-tort <cle-tort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:28:07 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/30 16:55:22 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/30 19:33:01 by cle-tort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_pwd(t_data *data, t_cmd *cmd)
 	}
 	path = getcwd(NULL, 0);
 	if (!path)
-		shell_error("pwd","couldn't get current directory");
+		shell_error("pwd", "couldn't get current directory");
 	else
 		ft_putendl(path);
 	free(path);
