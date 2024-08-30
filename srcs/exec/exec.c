@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 00:26:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/30 16:13:03 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/30 18:26:33 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,7 @@ void	exec_cmds(t_data *data)
 		data->childs++;
 		if (pid == 0)
 		{
-			get_infile(data, data->cmds[i]);
-			get_outfile(data, data->cmds[i]);
+			get_files(data, data->cmds[i]);
 			handle_child(data, data->cmds[i], i);
 		}
 		else

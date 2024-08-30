@@ -19,8 +19,7 @@ PARSING =	split.c \
 			parser.c \
 			vars.c \
 			heredocs.c \
-			infiles.c \
-			outfiles.c \
+			files.c \
 			cmds.c \
 			args.c \
 			utils.c

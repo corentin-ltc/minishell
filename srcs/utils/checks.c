@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 00:47:50 by nabil             #+#    #+#             */
-/*   Updated: 2024/08/28 01:50:42 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/30 18:26:31 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ bool	single_builtin(t_data *data)
 		return (false);
 	if (!is_builtin(data->cmds[0]->args[0]))
 		return (false);
-	get_infile(data, data->cmds[0]);
-	get_outfile(data, data->cmds[0]);
+	get_files(data, data->cmds[0]);
 	if (!data->cmds[0]->is_valid)
 	{
 		data->exit_code = 1;
