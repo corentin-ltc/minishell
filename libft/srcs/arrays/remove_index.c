@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 20:02:36 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/26 22:21:02 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/30 17:26:47 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**ft_remove_index(char ***tab, size_t index)
 	i = 0;
 	while ((*tab)[i])
 		i++;
-	new_tab = calloc((i - 1) + 1, sizeof(char *));
+	new_tab = ft_calloc((i - 1) + 1, sizeof(char *));
 	if (!new_tab)
 		return (NULL);
 	i = 0;

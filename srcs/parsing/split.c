@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 16:32:01 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/30 16:18:33 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/30 17:27:03 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char	**ft_split_pipes(char *s, char *set)
 	size_t		wordscount;
 
 	wordscount = ft_countwords_noquotes(s, set);
-	split = calloc((wordscount + 1), sizeof(char *));
+	split = ft_calloc((wordscount + 1), sizeof(char *));
 	if (!split)
 		return (NULL);
 	if (wordscount == 0)
@@ -114,7 +114,7 @@ char	**ft_split_words(char *s, char *set)
 	size_t		wordscount;
 
 	wordscount = ft_countwords_noquotes(s, set);
-	split = calloc((wordscount + 1), sizeof(char *));
+	split = ft_calloc((wordscount + 1), sizeof(char *));
 	if (!split)
 		return (NULL);
 	if (wordscount == 0)

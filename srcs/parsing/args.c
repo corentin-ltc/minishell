@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:08:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/30 16:16:38 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/30 17:26:56 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*remove_quotes(char *str)
 	size_t		i;
 	size_t		j;
 
-	new = calloc(ft_strlen(str) - count_quotes(str) + 1, sizeof(char));
+	new = ft_calloc(ft_strlen(str) - count_quotes(str) + 1, sizeof(char));
 	if (!new)
 		return (NULL);
 	parser = new_parser();

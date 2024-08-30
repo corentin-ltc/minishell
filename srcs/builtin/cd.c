@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:03:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/30 17:01:49 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/30 17:25:45 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ static bool	check_access(char *path)
 
 	dir = opendir(path);
 	if (!dir)
+	{
+		printf("not a dir\n");
 		return (false);
+	}
 	closedir(dir);
 	return (true);
 }
@@ -32,7 +35,7 @@ static void	*ft_cd_update_env(char *path, char ***env)
 	if (chdir(path) == -1)
 		printf("chdir failed\n");
 	pwd = getcwd(NULL, 0);
-	if (!pwd || !oldpwd) 
+	if (!pwd || !oldpwd)
 		return (shell_error("cd", "couldn't get current directory"), path);
 	if (!ft_setenv("OLDPWD", oldpwd, env) || !ft_setenv("PWD", pwd, env))
 	{
