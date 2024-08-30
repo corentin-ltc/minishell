@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:28:07 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/25 20:11:16 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/30 16:55:22 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,19 @@ void	ft_pwd(t_data *data, t_cmd *cmd)
 {
 	char	*path;
 
+	data->exit_code = 0;
+	path = ft_getenv("PWD", data->env);
+	if (path)
+	{
+		ft_putendl(path);
+		return ;
+	}
 	path = getcwd(NULL, 0);
 	if (!path)
-		exit_error("couldn't get cwd", data);
-	ft_putendl(path);
+		shell_error("pwd","couldn't get current directory");
+	else
+		ft_putendl(path);
 	free(path);
-	data->exit_code = 0;
+	return ;
 	(void)*cmd;
 }
