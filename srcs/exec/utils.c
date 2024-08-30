@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 19:25:33 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/28 00:45:59 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/30 16:07:57 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	show_cmd(t_cmd *cmd)
 
 void	wait_childs(t_data *data)
 {
-	signal(SIGINT, SIG_IGN);
+	signal(SIGINT, sig_update);
 	while (data->childs)
 	{
 		waitpid(-1, &data->exit_code, 0);

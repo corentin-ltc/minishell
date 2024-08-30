@@ -103,7 +103,6 @@ ${OBJS_DIR}%.o : ${SRCS_DIR}%.c
 test : base
 
 base : all
-	clear
 	./${NAME}
 
 leak : all

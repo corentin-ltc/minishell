@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:57:44 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/27 22:45:21 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/30 16:09:43 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ int	g_signal = 0;
 
 void	sig_newline_heredoc(int sig)
 {
-	g_signal = -42;
+	g_signal = sig;
 	close(0);
-	ft_putstr("\n");
-	(void)sig;
 }
 
 void	sig_newline(int sig)
@@ -31,8 +29,13 @@ void	sig_newline(int sig)
 	rl_redisplay();
 }
 
+void	sig_update(int sig)
+{
+	g_signal = sig;
+}
+
 void	set_signals(void)
 {
-	signal(SIGQUIT, SIG_IGN);
+	signal(SIGQUIT, sig_update);
 	signal(SIGINT, sig_newline);
 }

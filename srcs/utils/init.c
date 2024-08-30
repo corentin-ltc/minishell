@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 14:59:26 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/28 00:28:20 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:50:09 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,4 @@ void	reset_data(t_data *data)
 	if (data->pipe[1])
 		close(data->pipe[1]);
 	get_path(data);
-	if (g_signal == -42)
-		g_signal = 0;
 }
