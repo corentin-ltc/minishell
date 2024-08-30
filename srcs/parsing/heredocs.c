@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 19:39:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/28 01:50:52 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:56:55 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	get_here_doc(t_data *data, t_cmd *cmd, char *limiter)
 
 	stdin = dup(STDIN_FILENO);
 	cmd->in_fd = open(cmd->heredoc, O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	while (g_signal != -42)
+	while (g_signal != 2)
 	{
 		if (!here_doc_loop(data, cmd, limiter))
 			break ;

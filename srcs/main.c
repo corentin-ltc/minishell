@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 00:25:51 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/28 00:26:09 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:59:11 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv, char **env)
 		get_vars(&data);
 		get_cmds(&data);
 		get_heredocs(&data);
-		if (g_signal == -42)
+		if (g_signal == 2)
 			continue ;
 		get_cleanlines(&data);
 		get_args(&data);

@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 00:26:46 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/28 00:31:47 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/30 16:05:35 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	handle_child(t_data *data, t_cmd *cmd, size_t index)
 		check_absolute_path(data, cmd);
 	if (cmd->is_valid)
 	{
-		signal(SIGQUIT, sig_newline);
+		signal(SIGQUIT, sig_newline_heredoc);
 		execve(cmd->args[0], cmd->args, data->env);
 		data->exit_code = 1;
 	}

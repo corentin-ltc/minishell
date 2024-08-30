@@ -6,7 +6,7 @@
 /*   By: nbellila <nbellila@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 00:33:17 by nbellila          #+#    #+#             */
-/*   Updated: 2024/08/28 00:33:21 by nbellila         ###   ########.fr       */
+/*   Updated: 2024/08/30 15:56:53 by nbellila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ size_t	count_quotes(char *str);
 /*signals*/
 void	sig_newline_heredoc(int sig);
 void	sig_newline(int sig);
+void	sig_update(int sig);
 
 #endif
